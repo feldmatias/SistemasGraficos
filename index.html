@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <title>Sistemas Graficos</title>
+    <style>
+        body {
+            background-color: grey;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        canvas {
+            background-color: white;
+        }
+
+        textarea {
+            background-color: black;
+            background-color: white;
+        }
+
+        #titulo {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div id="titulo">
+
+    <h1>Sistemas Graficos</h1>
+
+    <canvas id="my-canvas" width="1920" height="1080">
+        Your browser does not support the HTML5 canvas element.
+    </canvas>
+
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/gl-matrix-3.3.0.js"></script>
+<script src="js/webgl-utils.js"></script>
+<script src="js/dat.gui.js"></script>
+
+<script>
+    const mat3 = glMatrix.mat3;
+    const mat4 = glMatrix.mat4;
+    const vec2 = glMatrix.vec2;
+    const vec3 = glMatrix.vec3;
+</script>
+
+<script src="index.js" type="module"></script>
+
+</body>
+</html>
