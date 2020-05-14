@@ -1,6 +1,5 @@
 import {WebGL} from "./webgl/WebGL.js";
-import {FiguraConSuperficie} from "./objects/figuraConSuperficie.js";
-import {FiguraConPlano} from "./objects/figuraConSuperficie.js";
+import {FiguraCompuesta} from "./objects/figuracompuesta.js";
 
 let gl;
 let figura;
@@ -29,8 +28,7 @@ function loadShaders() {
     $.when(loadVertexShader(), loadFragmentShader()).done(function (res1, res2) {
         //this code is executed when all ajax calls are done
         gl.initShaders(vertexShaderSource, fragmentShaderSource);
-        figura = new FiguraConSuperficie(gl);
-        //figura = new FiguraConPlano(gl);
+        figura = new FiguraCompuesta(gl);
         tick();
     });
 
@@ -53,7 +51,7 @@ function loadShaders() {
     }
 }
 
-function drawScene(matrizModelado) {
+function drawScene() {
 
     var matrizProyeccion = mat4.create();
     var matrizVista = mat4.create();
@@ -84,29 +82,19 @@ function drawScene(matrizModelado) {
     var lightPosition = [10.0, 0.0, 3.0];
     gl.gl.uniform3fv(gl.shaderProgram.lightingDirectionUniform, lightPosition);
 
-    gl.gl.uniformMatrix4fv(gl.shaderProgram.mMatrixUniform, false, matrizModelado);
     gl.gl.uniformMatrix4fv(gl.shaderProgram.vMatrixUniform, false, matrizVista);
     gl.gl.uniformMatrix4fv(gl.shaderProgram.pMatrixUniform, false, matrizProyeccion);
-
-    var normalMatrix = mat3.create();
-    mat3.fromMat4(normalMatrix, matrizModelado); // normalMatrix= (inversa(traspuesta(matrizModelado)));
-
-    mat3.invert(normalMatrix, normalMatrix);
-    mat3.transpose(normalMatrix, normalMatrix);
-
-    gl.gl.uniformMatrix3fv(gl.shaderProgram.nMatrixUniform, false, normalMatrix);
 
     figura.draw();
 }
 
-let matrizModelado = mat4.create();
 function tick() {
     requestAnimFrame(tick);
 
     // acumulo rotaciones en matrizModelado
-    mat4.rotate(matrizModelado, matrizModelado,0.03*0.15, [0, 1, 0]);
+    figura.rotate(0.03*0.15, 0, 1, 0);
 
-    drawScene(matrizModelado);
+    drawScene();
 }
 
 window.onload = initWebGL;

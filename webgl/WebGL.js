@@ -88,4 +88,14 @@ export class WebGL {
 
         this.gl.drawElements(this.gl.TRIANGLE_STRIP, indexBuffer.numItems, this.gl.UNSIGNED_SHORT, 0);
     }
+
+    setModelMatrix(modelMatrix) {
+        this.gl.uniformMatrix4fv(this.shaderProgram.mMatrixUniform, false, modelMatrix);
+
+        let normalMatrix = mat3.create();
+        mat3.fromMat4(normalMatrix, modelMatrix); // normalMatrix= (inverse(traspose(modelMatrix)));
+        mat3.invert(normalMatrix, normalMatrix);
+        mat3.transpose(normalMatrix, normalMatrix);
+        this.gl.uniformMatrix3fv(this.shaderProgram.nMatrixUniform, false, normalMatrix);
+    }
 }

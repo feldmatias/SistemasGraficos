@@ -2,17 +2,27 @@ export class DrawableObject {
 
     constructor(gl) {
         this.gl = gl;
+        this.modelMatrix = mat4.create()
     }
 
     getChildren() {
         return [];
     }
 
-    draw() {
+    draw(parentModelMatrix = undefined) {
+        if (!parentModelMatrix) {
+            parentModelMatrix = mat4.create();
+        }
+
+        let modelMatrix = mat4.create();
+        mat4.multiply(modelMatrix, parentModelMatrix, this.modelMatrix);
+
         if (this.positionsBuffer) {
+            this.gl.setModelMatrix(modelMatrix);
             this.gl.drawObject(this)
         }
-        this.getChildren().forEach(child => child.draw());
+
+        this.getChildren().forEach(child => child.draw(modelMatrix));
     }
 
     getPositionsBuffer() {
@@ -45,6 +55,16 @@ export class DrawableObject {
 
     setIndicesBufer(indices) {
         this.indicesBuffer = this.gl.createIndexBuffer(indices, 1);
+    }
+
+    rotate(angle, x, y, z) {
+        mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(x, y, z));
+        return this;
+    }
+
+    translate(x, y, z) {
+        mat4.translate(this.modelMatrix, this.modelMatrix, vec3.fromValues(x, y, z));
+        return this;
     }
 
 }
