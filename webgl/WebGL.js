@@ -98,4 +98,30 @@ export class WebGL {
         mat3.transpose(normalMatrix, normalMatrix);
         this.gl.uniformMatrix3fv(this.shaderProgram.nMatrixUniform, false, normalMatrix);
     }
+
+    setProjection(verticalFieldOfView, aspect, near, far) {
+        let projectionMatrix = mat4.create();
+        mat4.identity(projectionMatrix);
+        mat4.perspective(projectionMatrix, verticalFieldOfView, aspect, near, far);
+        mat4.scale(projectionMatrix, projectionMatrix, [1, -1, 1]); // flip Y, because of a glmatrix bug
+        this.gl.uniformMatrix4fv(this.shaderProgram.pMatrixUniform, false, projectionMatrix);
+    }
+
+    setView(cameraDistance, cameraHeight) {
+        let viewMatrix = mat4.create();
+        mat4.lookAt(viewMatrix,
+            vec3.fromValues(0, cameraHeight, cameraDistance),
+            vec3.fromValues(0, 0, 0),
+            vec3.fromValues(0, 1, 0)
+        );
+        this.gl.uniformMatrix4fv(this.shaderProgram.vMatrixUniform, false, viewMatrix);
+    }
+
+    setLighting(lightPosition, ambientColor, directionalColor) {
+        this.gl.uniform3f(this.shaderProgram.ambientColorUniform, ambientColor[0], ambientColor[1], ambientColor[2]);
+        this.gl.uniform3f(this.shaderProgram.directionalColorUniform, directionalColor[0], directionalColor[1], directionalColor[2]);
+        this.gl.uniform1i(this.shaderProgram.useLightingUniform, true);
+
+        this.gl.uniform3fv(this.shaderProgram.lightingDirectionUniform, lightPosition);
+    }
 }

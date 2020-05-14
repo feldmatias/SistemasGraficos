@@ -53,37 +53,16 @@ function loadShaders() {
 
 function drawScene() {
 
-    var matrizProyeccion = mat4.create();
-    var matrizVista = mat4.create();
+    gl.setProjection(30, 1920 / 1080, 0.1, 100.0);
 
+    let lightPosition = [10.0, 0.0, 3.0];
+    let ambientColor = [0.6, 0.6, 0.6];
+    let directionalColor = [1.2, 1.1, 0.7];
+    gl.setLighting(lightPosition, ambientColor, directionalColor);
 
-    // Se configura la matriz de proyección
-    mat4.identity(matrizProyeccion);
-    mat4.perspective(matrizProyeccion, 30, 1920 / 1080, 0.1, 100.0);
-    mat4.scale(matrizProyeccion, matrizProyeccion, [1, -1, 1]); // parche para hacer un flip de Y, parece haber un bug en glmatrix
-
-    // Se inicializan las variables asociadas con la Iluminación
-
-    gl.gl.uniform1f(gl.shaderProgram.frameUniform, 1);
-    gl.gl.uniform3f(gl.shaderProgram.ambientColorUniform, 0.6, 0.6, 0.6);
-    gl.gl.uniform3f(gl.shaderProgram.directionalColorUniform, 1.2, 1.1, 0.7);
-    gl.gl.uniform1i(gl.shaderProgram.useLightingUniform, 1);
-
-    // Definimos la ubicación de la camara
-
-    var distanciaCamara = 3;
-    var alturaCamara = 0.3;
-    mat4.lookAt(matrizVista,
-        vec3.fromValues(0, alturaCamara, distanciaCamara),
-        vec3.fromValues(0, 0, 0),
-        vec3.fromValues(0, 1, 0)
-    );
-
-    var lightPosition = [10.0, 0.0, 3.0];
-    gl.gl.uniform3fv(gl.shaderProgram.lightingDirectionUniform, lightPosition);
-
-    gl.gl.uniformMatrix4fv(gl.shaderProgram.vMatrixUniform, false, matrizVista);
-    gl.gl.uniformMatrix4fv(gl.shaderProgram.pMatrixUniform, false, matrizProyeccion);
+    var cameraDistance = 3;
+    var cameraHeight = 0.3;
+    gl.setView(cameraDistance, cameraHeight);
 
     figura.draw();
 }
@@ -92,7 +71,7 @@ function tick() {
     requestAnimFrame(tick);
 
     // acumulo rotaciones en matrizModelado
-    figura.rotate(0.03*0.15, 0, 1, 0);
+    figura.rotate(0.03 * 0.15, 0, 1, 0);
 
     drawScene();
 }
