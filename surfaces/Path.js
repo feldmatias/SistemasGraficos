@@ -9,7 +9,10 @@ export class Path {
     }
 
     getLevelNormalMatrix(level) {
-        return mat4.create();
+        let modelMatrix = this.getLevelMatrix(level);
+        let normalMatrix = mat3.create();
+        mat3.normalFromMat4(normalMatrix, modelMatrix);
+        return normalMatrix;
     }
 
 }

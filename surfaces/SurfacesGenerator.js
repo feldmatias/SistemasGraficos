@@ -1,3 +1,5 @@
+import {RevolutionPath} from "./CirclePath.js";
+
 export class SurfacesGenerator {
 
     generateSurface(surface, rows, columns) {
@@ -45,7 +47,7 @@ export class SurfacesGenerator {
             let modified_vertices = this._applyMatrix(vertices, matrix, shape.isClosed());
 
             let normalMatrix = path.getLevelNormalMatrix(i);
-            let modified_normals = this._applyMatrix(normals, normalMatrix, shape.isClosed());
+            let modified_normals = this._applyMatrix(normals, normalMatrix, shape.isClosed(), true);
 
             for (let j = 0; j < modified_vertices.length; j++) {
                 let vertex = modified_vertices[j];
@@ -69,10 +71,19 @@ export class SurfacesGenerator {
         }
     }
 
-    _applyMatrix(vertices, matrix, closed) {
+    generateRevolutionSurface(shape, step=1) {
+        let path = new RevolutionPath(step);
+        return this.generateSweepSurface(shape, path);
+    }
+
+    _applyMatrix(vertices, matrix, closed, normals=false) {
         let modified_vertices = vertices.slice().map(vertex => {
             let modified = vec3.create();
-            vec3.transformMat4(modified, vertex, matrix);
+            if (normals) {
+                vec3.transformMat3(modified, vertex, matrix);
+            } else {
+                vec3.transformMat4(modified, vertex, matrix);
+            }
             return modified;
         });
 

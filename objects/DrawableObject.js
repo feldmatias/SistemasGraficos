@@ -57,6 +57,13 @@ export class DrawableObject {
         this.indicesBuffer = this.gl.createIndexBuffer(indices, 1);
     }
 
+    setBuffers(data) {
+        this.setPositionsBuffer(data.positionBuffer);
+        this.setNormalsBuffer(data.normalBuffer);
+        this.setUvsBuffer(data.uvBuffer);
+        this.setIndicesBufer(data.indexBuffer);
+    }
+
     rotate(angle, x, y, z) {
         mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(x, y, z));
         return this;

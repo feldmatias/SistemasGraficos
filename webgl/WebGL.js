@@ -93,9 +93,7 @@ export class WebGL {
         this.gl.uniformMatrix4fv(this.shaderProgram.mMatrixUniform, false, modelMatrix);
 
         let normalMatrix = mat3.create();
-        mat3.fromMat4(normalMatrix, modelMatrix); // normalMatrix= (inverse(traspose(modelMatrix)));
-        mat3.invert(normalMatrix, normalMatrix);
-        mat3.transpose(normalMatrix, normalMatrix);
+        mat3.normalFromMat4(normalMatrix, modelMatrix);
         this.gl.uniformMatrix3fv(this.shaderProgram.nMatrixUniform, false, normalMatrix);
     }
 

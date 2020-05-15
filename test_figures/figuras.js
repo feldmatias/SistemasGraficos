@@ -1,6 +1,6 @@
-import {Shape} from "./Shape.js";
-import {Surface} from "./Surface.js";
-import {Path} from "./Path.js";
+import {Shape} from "../surfaces/Shape.js";
+import {Surface} from "../surfaces/Surface.js";
+import {Path} from "../surfaces/Path.js";
 
 export class Plano extends Surface {
 
@@ -129,5 +129,36 @@ export class Recorrido extends Path {
 
     getLevelNormalMatrix(level) {
         return mat4.create();
+    }
+}
+
+export class CilindroRevolutionShape extends Shape {
+
+    getVertices() {
+        return [
+            vec3.fromValues(0, 1, 0),
+            vec3.fromValues(1, 1, 0),
+            vec3.fromValues(1, 0, 0),
+            vec3.fromValues(1, -1, 0),
+            vec3.fromValues(0, -1, 0),
+        ];
+    }
+
+    getNormals() {
+        return [
+            vec3.fromValues(0, 1, 0),
+            vec3.fromValues(1, 0, 0),
+            vec3.fromValues(1, 0, 0),
+            vec3.fromValues(1, 0, 0),
+            vec3.fromValues(0, -1, 0),
+        ];
+    }
+
+    getTextures(i) {
+        return vec2.fromValues(i / 5, 0);
+    }
+
+    isClosed() {
+        return false;
     }
 }
