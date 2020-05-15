@@ -44,10 +44,10 @@ export class SurfacesGenerator {
 
         for (let i = 0; i < path.getLevelsCount(); i++) {
             let matrix = path.getLevelMatrix(i);
-            let modified_vertices = this._applyMatrix(vertices, matrix, shape.isClosed());
+            let modified_vertices = this._applyMatrix(vertices, matrix);
 
             let normalMatrix = path.getLevelNormalMatrix(i);
-            let modified_normals = this._applyMatrix(normals, normalMatrix, shape.isClosed(), true);
+            let modified_normals = this._applyMatrix(normals, normalMatrix, true);
 
             for (let j = 0; j < modified_vertices.length; j++) {
                 let vertex = modified_vertices[j];
@@ -59,9 +59,9 @@ export class SurfacesGenerator {
             }
         }
 
-        let cols = vertices.length + (shape.isClosed() ? 0 : -1);
+        let cols = vertices.length - 1;
         let rows = path.getLevelsCount() - 1;
-        let indexBuffer = this._generateIndexBuffer(rows, cols);
+        let indexBuffer = this._generateIndexBuffer(rows, cols, shape.isClosed());
 
         return {
             positionBuffer,
@@ -76,8 +76,8 @@ export class SurfacesGenerator {
         return this.generateSweepSurface(shape, path);
     }
 
-    _applyMatrix(vertices, matrix, closed, normals=false) {
-        let modified_vertices = vertices.slice().map(vertex => {
+    _applyMatrix(vertices, matrix, normals=false) {
+        return vertices.slice().map(vertex => {
             let modified = vec3.create();
             if (normals) {
                 vec3.transformMat3(modified, vertex, matrix);
@@ -86,15 +86,9 @@ export class SurfacesGenerator {
             }
             return modified;
         });
-
-        if (closed) {
-            modified_vertices.push(modified_vertices[0]);
-        }
-
-        return modified_vertices;
     }
 
-    _generateIndexBuffer(rows, columns) {
+    _generateIndexBuffer(rows, columns, closed=false) {
         let indexBuffer = [];
 
         function point(i, j) {
@@ -102,12 +96,18 @@ export class SurfacesGenerator {
         }
 
         for (let i = 0; i <= rows - 1; i++) {
-            if (i > 0) {
+            if (i > 0 && !closed) {
+                // Degenerate triangles to join two rows
                 indexBuffer.push(point(i, columns), point(i, 0));
             }
 
             for (let j = 0; j <= columns; j++) {
                 indexBuffer.push(point(i, j), point(i + 1, j));
+            }
+
+            if (closed) {
+                // Repeat the first column, so it is a closed figure
+                indexBuffer.push(point(i, 0), point(i + 1, 0));
             }
         }
 
