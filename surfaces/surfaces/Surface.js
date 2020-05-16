@@ -5,11 +5,11 @@ export class Surface {
     }
 
     getNormal(u, v) {
-        return vec3.create();
+        return this.getPosition(u, v);
     }
 
     getTextures(u, v) {
-        return vec2.create();
+        return vec2.fromValues(u, v);
     }
 
 }
