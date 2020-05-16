@@ -1,11 +1,11 @@
 import {DrawableObject} from "../objects/DrawableObject.js";
-import {Forma} from "./figuras.js";
 import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js";
-import {CilindroRevolutionShape} from "./figuras.js";
 import { LinePath } from "../surfaces/paths/LinePath.js";
 import { PlaneSurface } from "../surfaces/surfaces/PlaneSurface.js";
 import { SphereSurface } from "../surfaces/surfaces/SphereSurface.js";
 import { OpenCylinderSurface } from "../surfaces/surfaces/OpenCylinderSurface.js"
+import { SquareShape } from "../surfaces/shapes/SquareShape.js";
+import { CylinderRevolutionShape } from "../surfaces/shapes/CylinderRevolutionShape.js";
 
 export class FiguraConSuperficie extends DrawableObject {
 
@@ -15,7 +15,7 @@ export class FiguraConSuperficie extends DrawableObject {
     }
 
     setVerticesData() {
-        let forma = new Forma();
+        let forma = new SquareShape(1);
         let recorrido = new LinePath(true, 2);
 
         let data = new SurfacesGenerator().generateSweepSurface(forma, recorrido);
@@ -76,7 +76,7 @@ export class FiguraConRevoluciones extends DrawableObject {
     }
 
     setVerticesData() {
-        let forma = new CilindroRevolutionShape();
+        let forma = new CylinderRevolutionShape(0.5, 1);
 
         let data = new SurfacesGenerator().generateRevolutionSurface(forma);
         this.setBuffers(data);
