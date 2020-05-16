@@ -7,6 +7,8 @@ export class WebGL {
     }
 
     setup(width, height) {
+        this.gl.canvas.width = width;
+        this.gl.canvas.height = height;
         this.gl.clearColor(0.2,0.2,0.2,1);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
         this.gl.enable(this.gl.DEPTH_TEST);

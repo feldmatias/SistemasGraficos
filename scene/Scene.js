@@ -2,8 +2,9 @@ import {FiguraCompuesta} from "../test_figures/figuracompuesta.js";
 
 export class Scene {
 
-    constructor(gl) {
+    constructor(gl, canvas) {
         this.gl = gl;
+        this.canvas = canvas;
         this.createSceneObjects()
     }
 
@@ -14,6 +15,7 @@ export class Scene {
     draw() {
         this.mainObject.rotate(0.03 * 0.15, 0, 1, 0); // Apply angular velocity
 
+        this.gl.setup(this.canvas.width(), this.canvas.height());
         this.setProjection();
         this.setView();
         this.setLighting();
@@ -21,8 +23,8 @@ export class Scene {
     }
 
     setProjection() {
+        let aspect = this.canvas.width() / this.canvas.height();
         let verticalFieldOfView = 30;
-        let aspect = 1920 / 1080;
         let near = 0.1;
         let far = 100.0;
         this.gl.setProjection(verticalFieldOfView, aspect, near, far);

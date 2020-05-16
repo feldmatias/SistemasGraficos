@@ -14,8 +14,7 @@ function initWebGL() {
     }
 
     if (gl) {
-        gl.setup(canvas.width, canvas.height);
-        scene = new Scene(gl);
+        scene = new Scene(gl, $("#my-canvas"));
         loadShaders();
 
     } else {
