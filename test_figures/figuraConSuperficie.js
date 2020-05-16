@@ -1,9 +1,9 @@
 import {DrawableObject} from "../objects/DrawableObject.js";
 import {Forma} from "./figuras.js";
-import {Recorrido} from "./figuras.js";
 import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js";
 import {Plano} from "./figuras.js";
 import {CilindroRevolutionShape} from "./figuras.js";
+import { LinePath } from "../surfaces/paths/LinePath.js";
 
 export class FiguraConSuperficie extends DrawableObject {
 
@@ -14,7 +14,7 @@ export class FiguraConSuperficie extends DrawableObject {
 
     setVerticesData() {
         let forma = new Forma();
-        let recorrido = new Recorrido();
+        let recorrido = new LinePath(true, 2);
 
         let data = new SurfacesGenerator().generateSweepSurface(forma, recorrido);
         this.setBuffers(data);

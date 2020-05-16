@@ -1,4 +1,4 @@
-import {RevolutionPath} from "./CirclePath.js";
+import {RevolutionPath} from "./paths/CirclePath.js";
 
 export class SurfacesGenerator {
 

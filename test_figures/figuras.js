@@ -1,6 +1,6 @@
 import {Shape} from "../surfaces/Shape.js";
 import {Surface} from "../surfaces/Surface.js";
-import {Path} from "../surfaces/Path.js";
+import {Path} from "../surfaces/paths/Path.js";
 
 export class Plano extends Surface {
 
@@ -111,24 +111,6 @@ export class Forma extends Shape {
 
     isClosed() {
         return true;
-    }
-}
-
-
-export class Recorrido extends Path {
-
-    getLevelsCount() {
-        return 3;
-    }
-
-    getLevelMatrix(level) {
-        let m = mat4.create();
-        mat4.translate(m, m, vec3.fromValues(0, 0, (level - 1) * 2));
-        return m;
-    }
-
-    getLevelNormalMatrix(level) {
-        return mat4.create();
     }
 }
 
