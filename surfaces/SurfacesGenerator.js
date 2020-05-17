@@ -34,7 +34,7 @@ export class SurfacesGenerator {
         }
     }
 
-    generateSweepSurface(shape, path) {
+    generateSweepSurface(shape, path, withCaps=false) {
         let positionBuffer = [];
         let normalBuffer = [];
         let uvBuffer = [];
@@ -42,11 +42,24 @@ export class SurfacesGenerator {
         let vertices = shape.getVertices();
         let normals = shape.getNormals();
 
-        for (let i = 0; i < path.getLevelsCount(); i++) {
-            let matrix = path.getLevelMatrix(i);
+        let levels = Array.from(Array(path.getLevelsCount()).keys());
+        if (withCaps) {
+            levels.unshift(0);
+            levels.push(path.getLevelsCount() -1);
+        }
+
+        for (let i = 0; i < levels.length; i++) {
+            let level = levels[i];
+
+            let matrix = path.getLevelMatrix(level);
+            if (withCaps && (i === 0 || i === levels.length - 1)) {
+                // Repeat first and last levels, but scale to 0 to create the caps.
+                let capsScale = 0.00001;
+                mat4.scale(matrix, matrix, vec3.fromValues(capsScale, capsScale, capsScale));
+            }
             let modified_vertices = this._applyMatrix(vertices, matrix);
 
-            let normalMatrix = path.getLevelNormalMatrix(i);
+            let normalMatrix = path.getLevelNormalMatrix(level);
             let modified_normals = this._applyMatrix(normals, normalMatrix, true);
 
             for (let j = 0; j < modified_vertices.length; j++) {
@@ -60,7 +73,7 @@ export class SurfacesGenerator {
         }
 
         let cols = vertices.length - 1;
-        let rows = path.getLevelsCount() - 1;
+        let rows = levels.length - 1;
         let indexBuffer = this._generateIndexBuffer(rows, cols, shape.isClosed());
 
         return {

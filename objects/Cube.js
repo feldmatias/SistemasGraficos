@@ -12,9 +12,9 @@ export class Cube extends DrawableObject {
 
     setVerticesData(size) {
         let shape = new SquareShape(size);
-        let path = new LinePath(true, size);
+        let path = new LinePath(size);
 
-        let data = new SurfacesGenerator().generateSweepSurface(shape, path);
+        let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
         this.setBuffers(data);
     }
 }
