@@ -1,5 +1,8 @@
 import { DrawableObject } from "../objects/DrawableObject.js";
-import { FiguraConEsfera, FiguraConPlano, FiguraConRevoluciones, FiguraConSuperficie, FiguraConCilindroAbierto } from "./figuraConSuperficie.js";
+import { Cylinder } from "../objects/Cylinder.js";
+import { Sphere } from "../objects/Sphere.js";
+import { Cube } from "../objects/Cube.js"
+import { Plane } from "../objects/Plane.js";
 
 export class FiguraCompuesta extends DrawableObject {
 
@@ -9,30 +12,26 @@ export class FiguraCompuesta extends DrawableObject {
     }
 
     initialize() {
-        this.figura1 = new FiguraConRevoluciones(this.gl);
-        this.figura1.translate(3, 0, 0)
-        this.figura1.rotate(Math.PI / 4, 1, 0, 0)
+        this.cilindro = new Cylinder(this.gl, 0.5, 1);
+        this.cilindro.translate(2, 0, 0)
+        this.cilindro.rotate(Math.PI / 4, 1, 0, 0)
 
-        this.figura2 = new FiguraConSuperficie(this.gl);
-        this.figura2.rotate(Math.PI / 4, 0, 1, 0)
+        this.cubo = new Cube(this.gl, 1);
+        this.cubo.rotate(Math.PI / 4, 0, 1, 0)
 
-        this.plano = new FiguraConPlano(this.gl);
+        this.plano = new Plane(this.gl, 2, 2);
         this.plano.translate(0, -1, 0);
 
-        this.esfera = new FiguraConEsfera(this.gl);
+        this.esfera = new Sphere(this.gl, 0.5);
         this.esfera.translate(-1, -0.5, 0);
-
-        this.cilindroabierto = new FiguraConCilindroAbierto(this.gl);
-        this.cilindroabierto.translate(1.5, -1, 0);
     }
 
     getChildren() {
         return [
-            this.figura1,
-            this.figura2,
+            this.cilindro,
+            this.cubo,
             this.plano,
             this.esfera,
-            this.cilindroabierto,
         ];
     }
 
