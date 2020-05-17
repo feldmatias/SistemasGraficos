@@ -1,4 +1,4 @@
-import {FiguraCompuesta} from "../test_figures/figuracompuesta.js";
+import { FiguraCompuesta } from "../test_figures/figuracompuesta.js";
 
 export class Scene {
 

@@ -1,4 +1,4 @@
-import {RevolutionPath} from "./paths/CirclePath.js";
+import { RevolutionPath } from "./paths/CirclePath.js";
 
 export class SurfacesGenerator {
 
@@ -34,7 +34,7 @@ export class SurfacesGenerator {
         }
     }
 
-    generateSweepSurface(shape, path, withCaps=false) {
+    generateSweepSurface(shape, path, withCaps = false) {
         let positionBuffer = [];
         let normalBuffer = [];
         let uvBuffer = [];
@@ -45,7 +45,7 @@ export class SurfacesGenerator {
         let levels = Array.from(Array(path.getLevelsCount()).keys());
         if (withCaps) {
             levels.unshift(0);
-            levels.push(path.getLevelsCount() -1);
+            levels.push(path.getLevelsCount() - 1);
         }
 
         for (let i = 0; i < levels.length; i++) {
@@ -84,12 +84,12 @@ export class SurfacesGenerator {
         }
     }
 
-    generateRevolutionSurface(shape, step=1) {
+    generateRevolutionSurface(shape, step = 1) {
         let path = new RevolutionPath(step);
         return this.generateSweepSurface(shape, path);
     }
 
-    _applyMatrix(vertices, matrix, normals=false) {
+    _applyMatrix(vertices, matrix, normals = false) {
         return vertices.slice().map(vertex => {
             let modified = vec3.create();
             if (normals) {
@@ -101,7 +101,7 @@ export class SurfacesGenerator {
         });
     }
 
-    _generateIndexBuffer(rows, columns, closed=false) {
+    _generateIndexBuffer(rows, columns, closed = false) {
         let indexBuffer = [];
 
         function point(i, j) {

@@ -1,8 +1,8 @@
-import {Path} from "./Path.js";
+import { Path } from "./Path.js";
 
 export class CirclePath extends Path {
 
-    constructor(radius, angle=360, step=1) {
+    constructor(radius, angle = 360, step = 1) {
         super();
         this.radius = radius;
         this.angle = angle;
@@ -26,7 +26,7 @@ export class CirclePath extends Path {
 }
 
 export class RevolutionPath extends CirclePath {
-    constructor(step=1) {
+    constructor(step = 1) {
         super(0.00001, 360, step);
     }
 }

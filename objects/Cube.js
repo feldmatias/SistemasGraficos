@@ -5,7 +5,7 @@ import { SurfacesGenerator } from "../surfaces/SurfacesGenerator.js"
 
 export class Cube extends DrawableObject {
 
-    constructor(gl, size=1) {
+    constructor(gl, size = 1) {
         super(gl);
         this.setVerticesData(size);
     }

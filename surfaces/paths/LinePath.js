@@ -2,7 +2,7 @@ import { Path } from './Path.js'
 
 export class LinePath extends Path {
 
-    constructor(length=2, step=0.5) {
+    constructor(length = 2, step = 0.5) {
         super();
         this.length = length;
         this.step = step;

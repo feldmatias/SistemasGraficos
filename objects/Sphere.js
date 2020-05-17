@@ -4,7 +4,7 @@ import { SphereSurface } from "../surfaces/surfaces/SphereSurface.js";
 
 export class Sphere extends DrawableObject {
 
-    constructor(gl, radius=1) {
+    constructor(gl, radius = 1) {
         super(gl);
         this.setVerticesData(radius);
     }

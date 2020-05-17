@@ -2,7 +2,7 @@ import { Shape } from './Shape.js'
 
 export class SquareShape extends Shape {
 
-    constructor(size=1) {
+    constructor(size = 1) {
         super();
         this.size = size / 2;
     }
