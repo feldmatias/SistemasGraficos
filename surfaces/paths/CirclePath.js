@@ -2,7 +2,7 @@ import { Path } from "./Path.js";
 
 export class CirclePath extends Path {
 
-    constructor(radius, angle = 360, step = 1) {
+    constructor(radius, angle = 360, step = 5) {
         super();
         this.radius = radius;
         this.angle = angle;
@@ -15,11 +15,9 @@ export class CirclePath extends Path {
 
     getLevelMatrix(level) {
         let angle = level * this.step * Math.PI / 180;
-        let x = this.radius * Math.cos(angle);
-        let z = this.radius * Math.sin(angle);
         let matrix = mat4.create();
         mat4.rotateY(matrix, matrix, angle);
-        mat4.translate(matrix, matrix, [x, 0, z]);
+        mat4.translate(matrix, matrix, [this.radius, 0, 0]);
         return matrix;
     }
 

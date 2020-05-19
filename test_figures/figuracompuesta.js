@@ -4,6 +4,7 @@ import { Sphere } from "../objects/Sphere.js";
 import { Cube } from "../objects/Cube.js"
 import { Plane } from "../objects/Plane.js";
 import {Colors} from "../scene/Colors.js";
+import {Toroid} from "../objects/Toroid.js";
 
 export class FiguraCompuesta extends DrawableObject {
 
@@ -29,6 +30,12 @@ export class FiguraCompuesta extends DrawableObject {
         this.esfera = new Sphere(this.gl, 0.5);
         this.esfera.translate(-1, -0.5, 0);
         this.esfera.setColors([Colors.YELLOW]);
+
+        this.toroide = new Toroid(this.gl, 1, 0.25);
+        this.toroide.setColors([Colors.RED]);
+        this.toroide.rotate(-Math.PI / 4, 1, 0, 0);
+        this.toroide.translate(0, 0, -1)
+
     }
 
     getChildren() {
@@ -37,6 +44,7 @@ export class FiguraCompuesta extends DrawableObject {
             this.cubo,
             this.plano,
             this.esfera,
+            this.toroide
         ];
     }
 
