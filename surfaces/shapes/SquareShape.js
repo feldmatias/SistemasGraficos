@@ -25,7 +25,7 @@ export class SquareShape extends Shape {
     }
 
     getTextures(i) {
-        return vec2.fromValues(i / 4, i / 4);
+        return vec2.fromValues(0, 0);
     }
 
     isClosed() {

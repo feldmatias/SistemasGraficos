@@ -54,15 +54,33 @@ export class DrawableObject {
         return this.indicesBuffer;
     }
 
-    setIndicesBufer(indices) {
+    setIndicesBuffer(indices) {
         this.indicesBuffer = this.gl.createIndexBuffer(indices, 1);
+    }
+
+    getTexture() {
+        return this.texture;
+    }
+
+    setColors(colors, width = 1, height = 1) {
+        colors = colors.map(color => {
+            if (color.length === 3) {
+                color.push(255); // Append alpha=1 for all colors that don't have alpha
+            }
+            return color;
+        });
+        this.texture = this.gl.createColorTexture(colors, width, height);
+    }
+
+    setImage(image) {
+        this.texture = this.gl.createImageTexture(image);
     }
 
     setBuffers(data) {
         this.setPositionsBuffer(data.positionBuffer);
         this.setNormalsBuffer(data.normalBuffer);
         this.setUvsBuffer(data.uvBuffer);
-        this.setIndicesBufer(data.indexBuffer);
+        this.setIndicesBuffer(data.indexBuffer);
     }
 
     rotate(angle, x, y, z) {

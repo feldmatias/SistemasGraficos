@@ -77,4 +77,30 @@ export class WebGL {
         buffer.numItems = data.length / itemSize;
         return buffer;
     }
+
+    createColorTexture(colors, width, height) {
+        let texture = this.gl.createTexture();
+        this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, true);
+        this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
+        let colorsArray = new Uint8Array(colors.flat());
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, width, height, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, colorsArray);
+        return texture;
+    }
+
+    createImageTexture(imagePath) {
+        let texture = this.gl.createTexture();
+        let image = new Image();
+
+        image.onload = function () {
+            this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, true);
+            this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
+            this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image);
+            this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
+            this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR_MIPMAP_NEAREST);
+            this.gl.generateMipmap(this.gl.TEXTURE_2D);
+        };
+
+        image.src = imagePath;
+        return texture;
+    }
 }

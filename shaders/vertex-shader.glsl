@@ -36,8 +36,6 @@ void main(void) {
     vec3 normal = aNormal;
     vec2 uv = aUv;
 
-    vec4 textureColor = texture2D(uSampler, vec2(uv.s, uv.t));
-
     vec4 worldPos = uMMatrix*vec4(position, 1.0);
 
     gl_Position = uPMatrix*uVMatrix*worldPos;
