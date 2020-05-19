@@ -98,10 +98,13 @@ class SweepSurfacesAlgorithm {
 
         for (let i = 0; i < this.levels.length; i++) {
             let level = this.levels[i];
+            let isCap = withCaps && (i === 0 || i === this.levels.length - 1);
 
-            let addCaps = withCaps && (i === 0 || i === this.levels.length - 1);
-            let modified_vertices = this.getVertices(path, level, addCaps);
-            let modified_normals = this.getNormals(path, level);
+            let matrix = path.getLevelMatrix(level);
+            let modified_vertices = this.applyMatrix(this.vertices, matrix, isCap);
+
+            let normalMatrix = path.getLevelNormalMatrix(level);
+            let modified_normals = this.applyMatrix(this.normals, normalMatrix, isCap, true);
 
             for (let j = 0; j < modified_vertices.length; j++) {
                 let vertex = modified_vertices[j];
@@ -127,23 +130,13 @@ class SweepSurfacesAlgorithm {
         return levels;
     }
 
-    getVertices(path, level, withCaps) {
-        let matrix = path.getLevelMatrix(level);
-        if (withCaps) {
-            // Repeat first and last levels, but scale to 0 to create the caps.
+    applyMatrix(vertices, matrix, isCap, normals = false) {
+        if (isCap) {
+            // Scale to 0 to create the caps.
             let capsScale = 0.00001;
             mat4.scale(matrix, matrix, vec3.fromValues(capsScale, capsScale, capsScale));
         }
 
-        return this._applyMatrix(this.vertices, matrix);
-    }
-
-    getNormals(path, level) {
-        let normalMatrix = path.getLevelNormalMatrix(level);
-        return this._applyMatrix(this.normals, normalMatrix, true);
-    }
-
-    _applyMatrix(vertices, matrix, normals = false) {
         return vertices.slice().map(vertex => {
             let modified = vec3.create();
             if (normals) {

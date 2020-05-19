@@ -36,11 +36,11 @@ void main(void) {
     vec3 normal = aNormal;
     vec2 uv = aUv;
 
-    vec4 worldPos = uMMatrix*vec4(position, 1.0);
+    vec4 worldPos = uMMatrix * vec4(position, 1.0);
 
-    gl_Position = uPMatrix*uVMatrix*worldPos;
+    gl_Position = uPMatrix * uVMatrix * worldPos;
 
-    vWorldPosition=worldPos.xyz;
-    vNormal=normalize(uNMatrix * aNormal);
-    vUv=uv;
+    vWorldPosition = worldPos.xyz;
+    vNormal = normalize(uNMatrix * aNormal);
+    vUv = uv;
 }

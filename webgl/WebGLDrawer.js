@@ -57,7 +57,7 @@ export class WebGLDrawer {
     setLighting(lightPosition, ambientColor, directionalColor) {
         this.gl.uniform3f(this.shaderProgram.ambientColorUniform, ambientColor[0], ambientColor[1], ambientColor[2]);
         this.gl.uniform3f(this.shaderProgram.directionalColorUniform, directionalColor[0], directionalColor[1], directionalColor[2]);
-        this.gl.uniform1i(this.shaderProgram.useLightingUniform, true);
+        this.gl.uniform1i(this.shaderProgram.useLightingUniform, false);
 
         this.gl.uniform3fv(this.shaderProgram.lightingDirectionUniform, lightPosition);
     }

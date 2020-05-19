@@ -17,14 +17,13 @@ void main(void) {
 
     vec4 textureColor = texture2D(uSampler, vec2(vUv.s, vUv.t));
 
-    vec3 lightDirection= normalize(uLightPosition - vec3(vWorldPosition));
+    vec3 lightDirection = normalize(uLightPosition - vec3(vWorldPosition));
 
-    //vec3 color=(uAmbientColor+uDirectionalColor*max(dot(vNormal, lightDirection), 0.0))*textureColor.xyz;
-    vec3 color = textureColor.xyz;
+    vec3 color = (uAmbientColor + uDirectionalColor * max(dot(vNormal, lightDirection), 0.0)) * textureColor.xyz;
 
     if (uUseLighting)
-    gl_FragColor = vec4(color, 1.0);
+        gl_FragColor = vec4(color, 1.0);
     else
-    gl_FragColor = vec4(0.7, 0.7, 0.7, 1.0);
+        gl_FragColor = vec4(textureColor.xyz, 1.0);
 
 }
