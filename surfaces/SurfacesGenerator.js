@@ -1,4 +1,4 @@
-import { RevolutionPath } from "./paths/CirclePath.js";
+import {RevolutionPath} from "./paths/CirclePath.js";
 
 export class SurfacesGenerator {
 
@@ -35,70 +35,25 @@ export class SurfacesGenerator {
     }
 
     generateSweepSurface(shape, path, withCaps = false) {
-        let positionBuffer = [];
-        let normalBuffer = [];
-        let uvBuffer = [];
 
-        let vertices = shape.getVertices();
-        let normals = shape.getNormals();
+        let sweepSurface = new SweepSurfacesAlgorithm();
+        sweepSurface.generateSweepSurface(shape, path, withCaps);
 
-        let levels = Array.from(Array(path.getLevelsCount()).keys());
-        if (withCaps) {
-            levels.unshift(0);
-            levels.push(path.getLevelsCount() - 1);
-        }
-
-        for (let i = 0; i < levels.length; i++) {
-            let level = levels[i];
-
-            let matrix = path.getLevelMatrix(level);
-            if (withCaps && (i === 0 || i === levels.length - 1)) {
-                // Repeat first and last levels, but scale to 0 to create the caps.
-                let capsScale = 0.00001;
-                mat4.scale(matrix, matrix, vec3.fromValues(capsScale, capsScale, capsScale));
-            }
-            let modified_vertices = this._applyMatrix(vertices, matrix);
-
-            let normalMatrix = path.getLevelNormalMatrix(level);
-            let modified_normals = this._applyMatrix(normals, normalMatrix, true);
-
-            for (let j = 0; j < modified_vertices.length; j++) {
-                let vertex = modified_vertices[j];
-                positionBuffer.push(vertex[0], vertex[1], vertex[2]);
-                let normal = modified_normals[j];
-                normalBuffer.push(normal[0], normal[1], normal[2]);
-                let uv = shape.getTextures(j);
-                uvBuffer.push(uv[0], uv[1]);
-            }
-        }
-
-        let cols = vertices.length - 1;
-        let rows = levels.length - 1;
+        let cols = sweepSurface.vertices.length - 1;
+        let rows = sweepSurface.levels.length - 1;
         let indexBuffer = this._generateIndexBuffer(rows, cols, shape.isClosed());
 
         return {
-            positionBuffer,
-            normalBuffer,
-            uvBuffer,
-            indexBuffer
+            positionBuffer: sweepSurface.positionBuffer,
+            normalBuffer: sweepSurface.normalBuffer,
+            uvBuffer: sweepSurface.uvBuffer,
+            indexBuffer: indexBuffer
         }
     }
 
     generateRevolutionSurface(shape, step = 1) {
         let path = new RevolutionPath(step);
         return this.generateSweepSurface(shape, path);
-    }
-
-    _applyMatrix(vertices, matrix, normals = false) {
-        return vertices.slice().map(vertex => {
-            let modified = vec3.create();
-            if (normals) {
-                vec3.transformMat3(modified, vertex, matrix);
-            } else {
-                vec3.transformMat4(modified, vertex, matrix);
-            }
-            return modified;
-        });
     }
 
     _generateIndexBuffer(rows, columns, closed = false) {
@@ -125,6 +80,79 @@ export class SurfacesGenerator {
         }
 
         return indexBuffer;
+    }
+
+}
+
+class SweepSurfacesAlgorithm {
+
+    generateSweepSurface(shape, path, withCaps = false) {
+        this.positionBuffer = [];
+        this.normalBuffer = [];
+        this.uvBuffer = [];
+
+        this.vertices = shape.getVertices();
+        this.normals = shape.getNormals();
+
+        this.levels = this.getLevels(path, withCaps);
+
+        for (let i = 0; i < this.levels.length; i++) {
+            let level = this.levels[i];
+
+            let addCaps = withCaps && (i === 0 || i === this.levels.length - 1);
+            let modified_vertices = this.getVertices(path, level, addCaps);
+            let modified_normals = this.getNormals(path, level);
+
+            for (let j = 0; j < modified_vertices.length; j++) {
+                let vertex = modified_vertices[j];
+                this.positionBuffer.push(vertex[0], vertex[1], vertex[2]);
+                let normal = modified_normals[j];
+                this.normalBuffer.push(normal[0], normal[1], normal[2]);
+
+                let u = i / (this.levels.length - 1);
+                let v = j / (modified_vertices.length - 1);
+                let uv = shape.getTextures(u, v);
+                this.uvBuffer.push(uv[0], uv[1]);
+            }
+        }
+    }
+
+    getLevels(path, withCaps) {
+        let levels = Array.from(Array(path.getLevelsCount()).keys());
+        if (withCaps) {
+            // Repeat first and last level
+            levels.unshift(0);
+            levels.push(path.getLevelsCount() - 1);
+        }
+        return levels;
+    }
+
+    getVertices(path, level, withCaps) {
+        let matrix = path.getLevelMatrix(level);
+        if (withCaps) {
+            // Repeat first and last levels, but scale to 0 to create the caps.
+            let capsScale = 0.00001;
+            mat4.scale(matrix, matrix, vec3.fromValues(capsScale, capsScale, capsScale));
+        }
+
+        return this._applyMatrix(this.vertices, matrix);
+    }
+
+    getNormals(path, level) {
+        let normalMatrix = path.getLevelNormalMatrix(level);
+        return this._applyMatrix(this.normals, normalMatrix, true);
+    }
+
+    _applyMatrix(vertices, matrix, normals = false) {
+        return vertices.slice().map(vertex => {
+            let modified = vec3.create();
+            if (normals) {
+                vec3.transformMat3(modified, vertex, matrix);
+            } else {
+                vec3.transformMat4(modified, vertex, matrix);
+            }
+            return modified;
+        });
     }
 
 }

@@ -80,7 +80,6 @@ export class WebGL {
 
     createColorTexture(colors, width, height) {
         let texture = this.gl.createTexture();
-        this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, true);
         this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
         let colorsArray = new Uint8Array(colors.flat());
         this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, width, height, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, colorsArray);
@@ -92,7 +91,6 @@ export class WebGL {
         let image = new Image();
 
         image.onload = () => {
-            this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, true);
             this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
             this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image);
             this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);

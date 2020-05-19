@@ -28,10 +28,6 @@ export class CylinderRevolutionShape extends Shape {
         ];
     }
 
-    getTextures(i) {
-        return vec2.fromValues(i / 5, 0);
-    }
-
     isClosed() {
         return false;
     }

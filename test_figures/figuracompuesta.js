@@ -16,7 +16,7 @@ export class FiguraCompuesta extends DrawableObject {
         this.cilindro = new Cylinder(this.gl, 0.5, 1);
         this.cilindro.translate(2, 0, 0);
         this.cilindro.rotate(Math.PI / 4, 1, 0, 0);
-        this.cilindro.setColors([Colors.RED]);
+        this.cilindro.setImage('img/eifel.jpg');
 
         this.cubo = new Cube(this.gl, 1);
         this.cubo.rotate(Math.PI / 4, 0, 1, 0);

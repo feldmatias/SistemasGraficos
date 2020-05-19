@@ -8,8 +8,8 @@ export class Shape {
         return [];
     }
 
-    getTextures(i) {
-        return vec2.create();
+    getTextures(u, v) {
+        return vec2.fromValues(u , v);
     }
 
     isClosed() {

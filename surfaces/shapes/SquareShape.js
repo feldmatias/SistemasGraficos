@@ -24,10 +24,6 @@ export class SquareShape extends Shape {
         return this.getVertices();
     }
 
-    getTextures(i) {
-        return vec2.fromValues(0, 0);
-    }
-
     isClosed() {
         return true;
     }
