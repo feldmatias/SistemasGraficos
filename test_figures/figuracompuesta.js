@@ -24,7 +24,7 @@ export class FiguraCompuesta extends DrawableObject {
 
         this.plano = new Plane(this.gl, 2, 2);
         this.plano.translate(0, -1, 0);
-        this.plano.setColors([Colors.BLUE]);
+        this.plano.setImage('img/eifel.jpg');
 
         this.esfera = new Sphere(this.gl, 0.5);
         this.esfera.translate(-1, -0.5, 0);

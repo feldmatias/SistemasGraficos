@@ -11,7 +11,7 @@ export class PlaneSurface extends Surface {
     getPosition(u, v) {
         let x = (u - 0.5) * this.width;
         let z = (v - 0.5) * this.height;
-        return vec3.fromValues(x, 0, z);
+        return vec3.fromValues(x, 0, -z);
     }
 
     getNormal(u, v) {
