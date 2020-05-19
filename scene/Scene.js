@@ -27,19 +27,19 @@ export class Scene {
         let verticalFieldOfView = 30;
         let near = 0.1;
         let far = 100.0;
-        this.gl.setProjection(verticalFieldOfView, aspect, near, far);
+        this.gl.getDrawer().setProjection(verticalFieldOfView, aspect, near, far);
     }
 
     setView() {
         let cameraDistance = 3;
         let cameraHeight = 0.3;
-        this.gl.setView(cameraDistance, cameraHeight);
+        this.gl.getDrawer().setView(cameraDistance, cameraHeight);
     }
 
     setLighting() {
         let lightPosition = [10.0, 0.0, 3.0];
         let ambientColor = [0.6, 0.6, 0.6];
         let directionalColor = [1.2, 1.1, 0.7];
-        this.gl.setLighting(lightPosition, ambientColor, directionalColor);
+        this.gl.getDrawer().setLighting(lightPosition, ambientColor, directionalColor);
     }
 }

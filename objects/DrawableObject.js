@@ -18,8 +18,9 @@ export class DrawableObject {
         mat4.multiply(modelMatrix, parentModelMatrix, this.modelMatrix);
 
         if (this.positionsBuffer) {
-            this.gl.setModelMatrix(modelMatrix);
-            this.gl.drawObject(this)
+            let drawer = this.gl.getDrawer();
+            drawer.setModelMatrix(modelMatrix);
+            drawer.drawObject(this);
         }
 
         this.getChildren().forEach(child => child.draw(modelMatrix));
