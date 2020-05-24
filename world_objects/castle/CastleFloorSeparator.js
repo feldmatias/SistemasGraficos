@@ -4,20 +4,19 @@ import {LinePath} from "../../surfaces/paths/LinePath.js";
 import {SurfacesGenerator} from "../../surfaces/SurfacesGenerator.js";
 import {Colors} from "../../scene/Colors.js";
 
-export class CastleFloor extends DrawableObject {
+export class CastleFloorSeparator extends DrawableObject {
 
-    constructor(width, length, height) {
+    constructor(width, length) {
         super();
-        this.initialize(width, length, height);
+        this.initialize(width, length);
     }
 
-    initialize(width, length, height) {
-        let shape = new SquareShape(width, length);
-        let path = new LinePath(height);
+    initialize(width, length) {
+        let shape = new SquareShape(width, width);
+        let path = new LinePath(length);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path);
         this.setBuffers(data);
-        this.rotate(-Math.PI / 2, 1, 0, 0);
         this.setColor(Colors.CASTLE_YELLOW);
     }
 

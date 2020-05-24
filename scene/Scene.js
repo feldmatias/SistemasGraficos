@@ -32,8 +32,8 @@ export class Scene {
     }
 
     setView() {
-        let cameraDistance = 6;
-        let cameraHeight = 0.3;
+        let cameraDistance = 12;
+        let cameraHeight = 6;
         this.gl.getDrawer().setView(cameraDistance, cameraHeight);
     }
 
