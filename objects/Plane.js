@@ -12,7 +12,7 @@ export class Plane extends DrawableObject {
     setVerticesData(width, height) {
         let surface = new PlaneSurface(width, height);
 
-        let data = new SurfacesGenerator().generateSurface(surface, 50, 50);
+        let data = new SurfacesGenerator().generateSurface(surface, 10, 10);
         this.setBuffers(data);
     }
 }
