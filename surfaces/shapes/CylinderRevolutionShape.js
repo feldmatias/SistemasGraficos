@@ -1,6 +1,6 @@
-import { Shape } from "./Shape.js";
+import {RevolutionShape} from "./RevolutionShape.js";
 
-export class CylinderRevolutionShape extends Shape {
+export class CylinderRevolutionShape extends RevolutionShape {
 
     constructor(radius, height) {
         super();

@@ -103,28 +103,23 @@ class SweepSurfacesAlgorithm {
             let matrix = path.getLevelMatrix(level);
             let modified_vertices = this.applyMatrix(this.vertices, matrix, isCap);
 
+            let isNormalCap = withCaps && (i <= 1 || i >= this.levels.length - 2);
+            // Caps have different normals than common levels, although they have the same vertices
+            let normals = isNormalCap ? shape.getCapNormals(i <= 1) : this.normals;
             let normalMatrix = path.getLevelNormalMatrix(level);
-            let modified_normals = this.applyMatrix(this.normals, normalMatrix, isCap, true);
+            let modified_normals = this.applyMatrix(normals, normalMatrix, isCap, true);
 
-            for (let j = 0; j < modified_vertices.length; j++) {
-                let vertex = modified_vertices[j];
-                this.positionBuffer.push(vertex[0], vertex[1], vertex[2]);
-                let normal = modified_normals[j];
-                this.normalBuffer.push(normal[0], normal[1], normal[2]);
-
-                let u = i / (this.levels.length - 1);
-                let v = j / (modified_vertices.length - 1);
-                let uv = shape.getTextures(u, v);
-                this.uvBuffer.push(uv[0], uv[1]);
-            }
+            this.fillBuffers(i, shape, modified_vertices, modified_normals);
         }
     }
 
     getLevels(path, withCaps) {
         let levels = Array.from(Array(path.getLevelsCount()).keys());
         if (withCaps) {
-            // Repeat first and last level
+            // Repeat first and last level twice, one will be scaled to 0, the other will have cap normals but no scale
             levels.unshift(0);
+            levels.unshift(0);
+            levels.push(path.getLevelsCount() - 1);
             levels.push(path.getLevelsCount() - 1);
         }
         return levels;
@@ -148,4 +143,17 @@ class SweepSurfacesAlgorithm {
         });
     }
 
+    fillBuffers(level, shape, modified_vertices, modified_normals) {
+        for (let j = 0; j < modified_vertices.length; j++) {
+            let vertex = modified_vertices[j];
+            this.positionBuffer.push(vertex[0], vertex[1], vertex[2]);
+            let normal = modified_normals[j];
+            this.normalBuffer.push(normal[0], normal[1], normal[2]);
+
+            let u = level / (this.levels.length - 1);
+            let v = j / (modified_vertices.length - 1);
+            let uv = shape.getTextures(u, v);
+            this.uvBuffer.push(uv[0], uv[1]);
+        }
+    }
 }
