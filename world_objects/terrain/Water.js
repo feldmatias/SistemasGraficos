@@ -7,6 +7,8 @@ export class Water extends Plane {
         super(radius, radius);
 
         this.setColor(Colors.WATER_BLUE);
+
+        this.translate(0, 0.025, 0);
     }
 
 }

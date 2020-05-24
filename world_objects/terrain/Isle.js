@@ -7,7 +7,7 @@ export class Isle extends DrawableObject {
 
     constructor(radius = 8, step = 10) {
         super();
-
+        this.radius = radius;
         this.initialize(radius, step);
     }
 
