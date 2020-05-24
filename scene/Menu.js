@@ -8,7 +8,7 @@ export class Menu {
         this.menu = new dat.GUI();
         this.menu.add(this, 'AlturaCamara', 0, 30);
         this.menu.add(this, 'DistanciaCamara', 1, 30);
-        this.menu.add(this, 'VelocidadAngular', -10, 10).step(1);
+        this.menu.add(this, 'VelocidadAngular', 0, 10).step(1);
 
         // Castle configuration
         let castle = this.menu.addFolder('Castillo');
