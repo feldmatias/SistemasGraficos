@@ -1,10 +1,11 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
 import {CastleFloor} from "./CastleFloor.js";
 import {CastleFloorSeparator} from "./CastleFloorSeparator.js";
+import {CastleRoof} from "./roof/CastleRoof.js";
 
 export class Castle extends DrawableObject {
 
-    constructor(width = 4, length = 4, floorsCount = 2, floorHeight = 2) {
+    constructor(width = 3, length = 3, floorsCount = 2, floorHeight = 2) {
         super();
 
         this.width = width;
@@ -20,12 +21,14 @@ export class Castle extends DrawableObject {
         this.floorSeparators = [];
 
         this.createFloors();
+        this.createRoof();
     }
 
     getChildren() {
         return [
             this.floors,
-            this.floorSeparators
+            this.floorSeparators,
+            this.roof,
         ].flat();
     }
 
@@ -59,5 +62,11 @@ export class Castle extends DrawableObject {
         rightSeparator.translate(this.width / 2, this.floorHeight * i, 0);
 
         this.floorSeparators.push(frontSeparator, backSeparator, leftSeparator, rightSeparator);
+    }
+
+    createRoof() {
+        this.roof = new CastleRoof(this.width, this.length, this.floorHeight);
+        let translation = this.floorHeight / 2 + this.floorHeight * this.floorsCount;
+        this.roof.translate(0, 0, translation);
     }
 }

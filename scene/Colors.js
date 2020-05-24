@@ -5,4 +5,5 @@ export const Colors = {
     WHITE: [255, 255, 255],
 
     CASTLE_YELLOW: [175, 170, 121],
+    CASTLE_BLUE: [98, 124, 183],
 };
