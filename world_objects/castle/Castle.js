@@ -5,7 +5,7 @@ import {CastleRoof} from "./roof/CastleRoof.js";
 
 export class Castle extends DrawableObject {
 
-    constructor(width = 3, length = 3, floorsCount = 2, floorHeight = 2) {
+    constructor(width = 4, length = 2, floorsCount = 2, floorHeight = 2) {
         super();
 
         this.width = width;

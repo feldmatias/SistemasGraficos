@@ -5,7 +5,7 @@ export class Shape {
     }
 
     getNormals() {
-        return [];
+        return this.getVertices();
     }
 
     getTextures(u, v) {

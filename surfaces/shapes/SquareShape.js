@@ -21,10 +21,6 @@ export class SquareShape extends Shape {
         ];
     }
 
-    getNormals() {
-        return this.getVertices();
-    }
-
     isClosed() {
         return true;
     }

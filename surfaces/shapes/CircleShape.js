@@ -20,10 +20,6 @@ export class CircleShape extends Shape {
         return vertices;
     }
 
-    getNormals() {
-        return this.getVertices();
-    }
-
     isClosed() {
         return true;
     }
