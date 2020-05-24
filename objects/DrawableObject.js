@@ -97,6 +97,7 @@ export class DrawableObject {
     }
 
     clone() {
+        // Clone object so it reuses buffers
         let cloned = Object.create(
             Object.getPrototypeOf(this),
             Object.getOwnPropertyDescriptors(this)
