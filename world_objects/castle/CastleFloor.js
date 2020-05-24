@@ -32,13 +32,14 @@ export class CastleFloor extends DrawableObject {
         this.windows = [];
         let windowWidth = 0.6;
         let windowHeight = height / 2;
+        let window = new CastleWindow(windowWidth, windowHeight);
 
         for (let i = 0; i < width - 1; i++) {
-            let windowFront = new CastleWindow(windowWidth, windowHeight);
+            let windowFront = window.clone();
             windowFront.rotate(Math.PI / 2, 1, 0, 0);
             windowFront.translate(width / 2 - 1 - i, 0, length / 2);
 
-            let windowBack = new CastleWindow(windowWidth, windowHeight);
+            let windowBack = window.clone();
             windowBack.rotate(Math.PI / 2, 1, 0, 0);
             windowBack.translate(width / 2 - 1 - i, 0, -length / 2);
 
@@ -46,12 +47,12 @@ export class CastleFloor extends DrawableObject {
         }
 
         for (let i = 0; i < length - 1; i++) {
-            let windowLeft = new CastleWindow(windowWidth, windowHeight);
+            let windowLeft = window.clone();
             windowLeft.rotate(Math.PI / 2, 1, 0, 0);
             windowLeft.translate(width / 2, 0, length / 2 - 1 - i);
             windowLeft.rotate(Math.PI / 2, 0, 1, 0);
 
-            let windowRight = new CastleWindow(windowWidth, windowHeight);
+            let windowRight = window.clone();
             windowRight.rotate(Math.PI / 2, 1, 0, 0);
             windowRight.translate(-width / 2, 0, length / 2 - 1 - i);
             windowRight.rotate(Math.PI / 2, 0, 1, 0);

@@ -33,8 +33,9 @@ export class Castle extends DrawableObject {
     }
 
     createFloors() {
+        let floor_base = new CastleFloor(this.width, this.length, this.floorHeight);
         for (let i = 0; i < this.floorsCount; i++) {
-            let floor = new CastleFloor(this.width, this.length, this.floorHeight);
+            let floor = floor_base.clone();
             let translation = this.floorHeight / 2 + this.floorHeight * i;
             floor.translate(0, 0, translation);
             this.floors.push(floor);
@@ -47,18 +48,20 @@ export class Castle extends DrawableObject {
     createFloorSeparators(i) {
         let separatorWidth = 0.1;
 
-        let frontSeparator = new CastleFloorSeparator(separatorWidth, this.width);
-        frontSeparator.rotate(Math.PI / 2, 0, 1, 0);
-        frontSeparator.translate(-this.length / 2, this.floorHeight * i, 0);
+        let separator_front_back = new CastleFloorSeparator(separatorWidth, this.width);
+        separator_front_back.rotate(Math.PI / 2, 0, 1, 0);
 
-        let backSeparator = new CastleFloorSeparator(separatorWidth, this.width);
-        backSeparator.rotate(Math.PI / 2, 0, 1, 0);
+        let frontSeparator = separator_front_back.clone();
+        frontSeparator.translate(-this.length / 2, this.floorHeight * i, 0);
+        let backSeparator = separator_front_back.clone();
         backSeparator.translate(this.length / 2, this.floorHeight * i, 0);
 
-        let leftSeparator = new CastleFloorSeparator(separatorWidth, this.length);
-        leftSeparator.translate(-this.width / 2, this.floorHeight * i, 0);
 
-        let rightSeparator = new CastleFloorSeparator(separatorWidth, this.length);
+        let separator_left_right = new CastleFloorSeparator(separatorWidth, this.length);
+
+        let leftSeparator = separator_left_right.clone();
+        leftSeparator.translate(-this.width / 2, this.floorHeight * i, 0);
+        let rightSeparator = separator_left_right.clone();
         rightSeparator.translate(this.width / 2, this.floorHeight * i, 0);
 
         this.floorSeparators.push(frontSeparator, backSeparator, leftSeparator, rightSeparator);

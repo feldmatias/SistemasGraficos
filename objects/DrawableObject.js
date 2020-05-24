@@ -96,6 +96,15 @@ export class DrawableObject {
         this.getChildren().forEach(child => child.delete());
     }
 
+    clone() {
+        let cloned = Object.create(
+            Object.getPrototypeOf(this),
+            Object.getOwnPropertyDescriptors(this)
+        );
+        cloned.modelMatrix = mat4.clone(this.modelMatrix);
+        return cloned;
+    }
+
     rotate(angle, x, y, z) {
         mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(x, y, z));
         return this;
