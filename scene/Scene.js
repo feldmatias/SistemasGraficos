@@ -1,4 +1,4 @@
-import { FiguraCompuesta } from "../test_figures/figuracompuesta.js";
+import {FiguraCompuesta} from "../test_figures/figuracompuesta.js";
 
 export class Scene {
 
@@ -37,9 +37,7 @@ export class Scene {
     }
 
     setLighting() {
-        let lightPosition = [10.0, 0.0, 3.0];
-        let ambientColor = [0.6, 0.6, 0.6];
-        let directionalColor = [1.2, 1.1, 0.7];
-        this.gl.getDrawer().setLighting(lightPosition, ambientColor, directionalColor);
+        let lightPosition = [0.0, 3.0, 5.0];
+        this.gl.getDrawer().setLighting(lightPosition);
     }
 }

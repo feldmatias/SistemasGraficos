@@ -20,7 +20,7 @@ export class WebGLDrawer {
 
         this.gl.activeTexture(this.gl.TEXTURE0);
         this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.getTexture());
-        this.gl.uniform1i(this.shaderProgram.samplerUniform, 0);
+        this.gl.uniform1i(this.shaderProgram.samplerTextureUniform, 0);
 
         let indexBuffer = drawableObject.getIndicesBuffer();
         this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
@@ -29,11 +29,11 @@ export class WebGLDrawer {
     }
 
     setModelMatrix(modelMatrix) {
-        this.gl.uniformMatrix4fv(this.shaderProgram.mMatrixUniform, false, modelMatrix);
+        this.gl.uniformMatrix4fv(this.shaderProgram.modelMatrixUniform, false, modelMatrix);
 
         let normalMatrix = mat3.create();
         mat3.normalFromMat4(normalMatrix, modelMatrix);
-        this.gl.uniformMatrix3fv(this.shaderProgram.nMatrixUniform, false, normalMatrix);
+        this.gl.uniformMatrix3fv(this.shaderProgram.normalMatrixUniform, false, normalMatrix);
     }
 
     setProjection(verticalFieldOfView, aspect, near, far) {
@@ -41,7 +41,7 @@ export class WebGLDrawer {
         mat4.identity(projectionMatrix);
         mat4.perspective(projectionMatrix, verticalFieldOfView, aspect, near, far);
         mat4.scale(projectionMatrix, projectionMatrix, [1, -1, 1]); // flip Y, because of a glmatrix bug
-        this.gl.uniformMatrix4fv(this.shaderProgram.pMatrixUniform, false, projectionMatrix);
+        this.gl.uniformMatrix4fv(this.shaderProgram.projectionMatrixUniform, false, projectionMatrix);
     }
 
     setView(cameraDistance, cameraHeight) {
@@ -51,14 +51,10 @@ export class WebGLDrawer {
             vec3.fromValues(0, 0, 0),
             vec3.fromValues(0, 1, 0)
         );
-        this.gl.uniformMatrix4fv(this.shaderProgram.vMatrixUniform, false, viewMatrix);
+        this.gl.uniformMatrix4fv(this.shaderProgram.viewMatrixUniform, false, viewMatrix);
     }
 
-    setLighting(lightPosition, ambientColor, directionalColor) {
-        this.gl.uniform3f(this.shaderProgram.ambientColorUniform, ambientColor[0], ambientColor[1], ambientColor[2]);
-        this.gl.uniform3f(this.shaderProgram.directionalColorUniform, directionalColor[0], directionalColor[1], directionalColor[2]);
-        this.gl.uniform1i(this.shaderProgram.useLightingUniform, false);
-
-        this.gl.uniform3fv(this.shaderProgram.lightingDirectionUniform, lightPosition);
+    setLighting(lightPosition) {
+        this.gl.uniform3fv(this.shaderProgram.lightPositionUniform, lightPosition);
     }
 }

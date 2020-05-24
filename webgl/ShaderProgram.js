@@ -17,15 +17,11 @@ export class ShaderProgram {
     }
 
     setUniforms(gl, shaderProgram) {
-        this.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
-        this.mMatrixUniform = gl.getUniformLocation(shaderProgram, "uMMatrix");
-        this.vMatrixUniform = gl.getUniformLocation(shaderProgram, "uVMatrix");
-        this.nMatrixUniform = gl.getUniformLocation(shaderProgram, "uNMatrix");
-        this.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
-        this.useLightingUniform = gl.getUniformLocation(shaderProgram, "uUseLighting");
-        this.ambientColorUniform = gl.getUniformLocation(shaderProgram, "uAmbientColor");
-        this.frameUniform = gl.getUniformLocation(shaderProgram, "time");
-        this.lightingDirectionUniform = gl.getUniformLocation(shaderProgram, "uLightPosition");
-        this.directionalColorUniform = gl.getUniformLocation(shaderProgram, "uDirectionalColor");
+        this.projectionMatrixUniform = gl.getUniformLocation(shaderProgram, "uProjectionMatrix");
+        this.modelMatrixUniform = gl.getUniformLocation(shaderProgram, "uModelMatrix");
+        this.viewMatrixUniform = gl.getUniformLocation(shaderProgram, "uViewMatrix");
+        this.normalMatrixUniform = gl.getUniformLocation(shaderProgram, "uNormalMatrix");
+        this.samplerTextureUniform = gl.getUniformLocation(shaderProgram, "uSampler");
+        this.lightPositionUniform = gl.getUniformLocation(shaderProgram, "uLightPosition");
     }
 }
