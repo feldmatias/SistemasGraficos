@@ -12,7 +12,11 @@ export class CylinderRevolutionShape extends RevolutionShape {
         return [
             vec3.fromValues(0, this.height, 0),
             vec3.fromValues(this.radius, this.height, 0),
+
+            vec3.fromValues(this.radius, this.height, 0),
             vec3.fromValues(this.radius, 0, 0),
+            vec3.fromValues(this.radius, -this.height, 0),
+
             vec3.fromValues(this.radius, -this.height, 0),
             vec3.fromValues(0, -this.height, 0),
         ];
@@ -21,9 +25,13 @@ export class CylinderRevolutionShape extends RevolutionShape {
     getNormals() {
         return [
             vec3.fromValues(0, this.height, 0),
+            vec3.fromValues(0, this.height, 0),
+
             vec3.fromValues(this.radius, 0, 0),
             vec3.fromValues(this.radius, 0, 0),
             vec3.fromValues(this.radius, 0, 0),
+
+            vec3.fromValues(0, -this.height, 0),
             vec3.fromValues(0, -this.height, 0),
         ];
     }

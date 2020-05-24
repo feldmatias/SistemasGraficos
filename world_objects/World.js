@@ -1,5 +1,6 @@
 import {DrawableObject} from "../objects/DrawableObject.js";
 import {Castle} from "./castle/Castle.js";
+import {Terrain} from "./terrain/Terrain.js";
 
 export class World extends DrawableObject {
 
@@ -7,6 +8,7 @@ export class World extends DrawableObject {
         super();
 
         this.createCastle(config);
+        this.createTerrain();
     }
 
     createCastle(config) {
@@ -16,9 +18,14 @@ export class World extends DrawableObject {
         this.castle = new Castle(config.castleWidth, config.castleLength, config.castleFloorsCount);
     }
 
+    createTerrain() {
+        this.terrain = new Terrain();
+    }
+
     getChildren() {
         return [
-            this.castle
+            this.castle,
+            this.terrain,
         ];
     }
 
