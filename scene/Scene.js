@@ -1,4 +1,5 @@
-import {FiguraCompuesta} from "../test_figures/figuracompuesta.js";
+import {World} from "../world_objects/World.js";
+
 
 export class Scene {
 
@@ -9,17 +10,17 @@ export class Scene {
     }
 
     createSceneObjects() {
-        this.mainObject = new FiguraCompuesta(this.gl);
+        this.world = new World();
     }
 
     draw() {
-        this.mainObject.rotate(0.03 * 0.15, 0, 1, 0); // Apply angular velocity
+        this.world.rotate(0.03 * 0.15, 0, 1, 0); // Apply angular velocity
 
         this.gl.setup(this.canvas.width(), this.canvas.height());
         this.setProjection();
         this.setView();
         this.setLighting();
-        this.mainObject.draw();
+        this.world.draw();
     }
 
     setProjection() {
@@ -31,7 +32,7 @@ export class Scene {
     }
 
     setView() {
-        let cameraDistance = 3;
+        let cameraDistance = 6;
         let cameraHeight = 0.3;
         this.gl.getDrawer().setView(cameraDistance, cameraHeight);
     }

@@ -1,20 +1,19 @@
 import {WebGL} from "./webgl/WebGL.js";
 import {Scene} from "./scene/Scene.js";
 
-let gl;
 let scene;
 
 function initWebGL() {
     const canvas = document.getElementById("my-canvas");
     try {
         const context = canvas.getContext("webgl");
-        gl = new WebGL(context);
+        webGL = new WebGL(context);
     } catch (e) {
         alert("Error al obtener el contexto");
     }
 
-    if (gl) {
-        scene = new Scene(gl, $("#my-canvas"));
+    if (webGL) {
+        scene = new Scene(webGL, $("#my-canvas"));
         loadShaders();
 
     } else {
@@ -27,7 +26,7 @@ function loadShaders() {
 
     $.when(loadVertexShader(), loadFragmentShader()).done(function (res1, res2) {
         //this code is executed when all ajax calls are done
-        gl.initShaders(vertexShaderSource, fragmentShaderSource);
+        webGL.initShaders(vertexShaderSource, fragmentShaderSource);
         tick();
     });
 

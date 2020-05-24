@@ -5,13 +5,13 @@ import { SurfacesGenerator } from "../surfaces/SurfacesGenerator.js"
 
 export class Cube extends DrawableObject {
 
-    constructor(gl, size = 1) {
-        super(gl);
+    constructor(size = 1) {
+        super();
         this.setVerticesData(size);
     }
 
     setVerticesData(size) {
-        let shape = new SquareShape(size);
+        let shape = new SquareShape(size, size);
         let path = new LinePath(size);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);

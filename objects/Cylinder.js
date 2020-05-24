@@ -4,8 +4,8 @@ import { SurfacesGenerator } from "../surfaces/SurfacesGenerator.js";
 
 export class Cylinder extends DrawableObject {
 
-    constructor(gl, radius = 1, height = 2) {
-        super(gl);
+    constructor(radius = 1, height = 2) {
+        super();
         this.setVerticesData(radius, height);
     }
 

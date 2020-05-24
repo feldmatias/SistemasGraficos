@@ -4,8 +4,8 @@ import { SurfacesGenerator } from "../surfaces/SurfacesGenerator.js";
 
 export class Plane extends DrawableObject {
 
-    constructor(gl, width = 1, height = 1) {
-        super(gl);
+    constructor(width = 1, height = 1) {
+        super();
         this.setVerticesData(width, height);
     }
 

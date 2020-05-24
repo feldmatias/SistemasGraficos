@@ -14,7 +14,7 @@ void main(void) {
 
     vec3 lightDirection = normalize(uLightPosition - vec3(vWorldPosition));
 
-    vec3 color = dot(lightDirection, vNormal) * textureColor.xyz;
+    vec3 color = (vec3(0.5, 0.5, 0.5) + dot(lightDirection, vNormal)) * textureColor.xyz;
 
     gl_FragColor = vec4(color, 1.0);
 

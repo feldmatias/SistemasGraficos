@@ -5,8 +5,8 @@ import {CirclePath} from "../surfaces/paths/CirclePath.js";
 
 export class Toroid extends DrawableObject {
 
-    constructor(gl, radius = 2, width = 1) {
-        super(gl);
+    constructor(radius = 2, width = 1) {
+        super();
         this.setVerticesData(radius, width);
     }
 

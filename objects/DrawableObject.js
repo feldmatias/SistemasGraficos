@@ -1,7 +1,7 @@
 export class DrawableObject {
 
-    constructor(gl) {
-        this.gl = gl;
+    constructor() {
+        this.gl = webGL;
         this.modelMatrix = mat4.create()
     }
 
@@ -70,6 +70,10 @@ export class DrawableObject {
             return color;
         });
         this.texture = this.gl.createColorTexture(colors, width, height);
+    }
+
+    setColor(color) {
+        this.setColors([color], 1, 1);
     }
 
     setImage(image) {
