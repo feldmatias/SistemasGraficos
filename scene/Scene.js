@@ -1,5 +1,6 @@
 import {World} from "../world_objects/World.js";
 import {Menu} from "./Menu.js";
+import {Colors} from "./Colors.js";
 
 
 export class Scene {
@@ -25,7 +26,7 @@ export class Scene {
 
         this.world.rotate(0.03 * 0.15 * this.config.angularVelocity, 0, 1, 0); // Apply angular velocity
 
-        this.gl.setup(this.canvas.width(), this.canvas.height());
+        this.gl.setup(this.canvas.width(), this.canvas.height(), Colors.SKY_BLUE);
         this.setProjection();
         this.setView();
         this.setLighting();

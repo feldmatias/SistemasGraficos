@@ -10,4 +10,5 @@ export const Colors = {
 
     GRASS_GREEN: [67, 143, 74],
     WATER_BLUE: [137, 169, 207],
+    SKY_BLUE: [234, 255, 255],
 };

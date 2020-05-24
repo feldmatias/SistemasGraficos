@@ -7,10 +7,10 @@ export class WebGL {
         this.gl = context;
     }
 
-    setup(width, height) {
+    setup(width, height, backgroundColor) {
         this.gl.canvas.width = width;
         this.gl.canvas.height = height;
-        this.gl.clearColor(0.2, 0.2, 0.2, 1);
+        this.gl.clearColor(backgroundColor[0] / 255, backgroundColor[1] / 255, backgroundColor[2] / 255, 1);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.viewport(0, 0, width, height);
