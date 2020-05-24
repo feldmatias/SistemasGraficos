@@ -1,4 +1,5 @@
 import {World} from "../world_objects/World.js";
+import {Menu} from "./Menu.js";
 
 
 export class Scene {
@@ -6,15 +7,23 @@ export class Scene {
     constructor(gl, canvas) {
         this.gl = gl;
         this.canvas = canvas;
+        this.createMenu();
         this.createSceneObjects()
     }
 
+    createMenu() {
+        this.menu = new Menu();
+        this.config = this.menu.getSceneConfig();
+    }
+
     createSceneObjects() {
-        this.world = new World();
+        this.world = new World(this.config);
     }
 
     draw() {
-        this.world.rotate(0.03 * 0.15, 0, 1, 0); // Apply angular velocity
+        this.getConfig();
+
+        this.world.rotate(0.03 * 0.15 * this.config.angularVelocity, 0, 1, 0); // Apply angular velocity
 
         this.gl.setup(this.canvas.width(), this.canvas.height());
         this.setProjection();
@@ -32,13 +41,20 @@ export class Scene {
     }
 
     setView() {
-        let cameraDistance = 12;
-        let cameraHeight = 6;
-        this.gl.getDrawer().setView(cameraDistance, cameraHeight);
+        this.gl.getDrawer().setView(this.config.cameraDistance, this.config.cameraHeight);
     }
 
     setLighting() {
         let lightPosition = [0.0, 3.0, 5.0];
         this.gl.getDrawer().setLighting(lightPosition);
+    }
+
+    getConfig() {
+        let lastConfig = this.config;
+        this.config = this.menu.getSceneConfig();
+
+        if (this.config.castleConfigChanged(lastConfig)) {
+            this.world.recreate(this.config);
+        }
     }
 }

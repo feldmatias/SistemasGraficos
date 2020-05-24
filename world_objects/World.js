@@ -3,18 +3,26 @@ import {Castle} from "./castle/Castle.js";
 
 export class World extends DrawableObject {
 
-    constructor() {
+    constructor(config) {
         super();
-        this.initialize();
+
+        this.createCastle(config);
     }
 
-    initialize() {
-        this.castle = new Castle();
+    createCastle(config) {
+        if (this.castle) {
+            this.castle.delete();
+        }
+        this.castle = new Castle(config.castleWidth, config.castleLength, config.castleFloorsCount);
     }
 
     getChildren() {
         return [
             this.castle
         ];
+    }
+
+    recreate(config) {
+        this.createCastle(config);
     }
 }

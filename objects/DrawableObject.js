@@ -87,6 +87,15 @@ export class DrawableObject {
         this.setIndicesBuffer(data.indexBuffer);
     }
 
+    delete() {
+        this.gl.deleteBuffer(this.positionsBuffer);
+        this.gl.deleteBuffer(this.normalsBuffer);
+        this.gl.deleteBuffer(this.uvsBuffer);
+        this.gl.deleteBuffer(this.indicesBuffer);
+        this.gl.deleteTexture(this.texture);
+        this.getChildren().forEach(child => child.delete());
+    }
+
     rotate(angle, x, y, z) {
         mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(x, y, z));
         return this;

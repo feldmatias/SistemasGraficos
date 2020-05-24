@@ -1,4 +1,4 @@
-import { ShaderProgram } from "./ShaderProgram.js";
+import {ShaderProgram} from "./ShaderProgram.js";
 import {WebGLDrawer} from "./WebGLDrawer.js";
 
 export class WebGL {
@@ -78,6 +78,12 @@ export class WebGL {
         return buffer;
     }
 
+    deleteBuffer(buffer) {
+        if (buffer) {
+            this.gl.deleteBuffer(buffer);
+        }
+    }
+
     createColorTexture(colors, width, height) {
         let texture = this.gl.createTexture();
         this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
@@ -100,5 +106,11 @@ export class WebGL {
 
         image.src = imagePath;
         return texture;
+    }
+
+    deleteTexture(texture) {
+        if (texture) {
+            this.gl.deleteTexture(texture);
+        }
     }
 }
