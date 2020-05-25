@@ -1,7 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Trapezium} from "../../../objects/Trapezium.js";
 import {Colors} from "../../../scene/Colors.js";
-import {Cylinder} from "../../../objects/Cylinder.js";
+import {CatapultFrontHandle} from "./CatapultFrontHandle.js";
 
 export class CatapultFront extends DrawableObject {
 
@@ -37,9 +37,7 @@ export class CatapultFront extends DrawableObject {
     }
 
     createHandle() {
-        this.handle = new Cylinder(0.32, this.separation + 0.4);
-        this.handle.setColor(Colors.CATAPULT_DARK_BROWN);
-        this.handle.translate(0,  this.height * 0.9, 0);
-        this.handle.rotate(Math.PI / 2, 1, 0, 0);
+        this.handle = new CatapultFrontHandle(this.separation);
+        this.handle.translate(0, this.height * 0.9, 0);
     }
 }
