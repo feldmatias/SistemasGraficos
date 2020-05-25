@@ -1,25 +1,17 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
-import {CatapultAxle} from "./CatapultAxle.js";
+import {CatapultBase} from "./base/CatapultBase.js";
 
 export class Catapult extends DrawableObject {
 
     constructor() {
         super();
 
-        this.createAxles();
-    }
-
-    createAxles() {
-        this.wheels = [];
-        let wheel_base = new CatapultAxle(5);
-        for (let i = 0; i < 1; i++) {
-            let wheel = wheel_base.clone();
-            wheel.translate(0, 0, i * 5);
-            this.wheels.push(wheel);
-        }
+        this.base = new CatapultBase();
     }
 
     getChildren() {
-        return this.wheels;
+        return [
+            this.base,
+        ]
     }
 }

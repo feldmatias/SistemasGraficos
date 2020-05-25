@@ -1,6 +1,6 @@
-import {DrawableObject} from "../../objects/DrawableObject.js";
-import {Cylinder} from "../../objects/Cylinder.js";
-import {Colors} from "../../scene/Colors.js";
+import {DrawableObject} from "../../../objects/DrawableObject.js";
+import {Cylinder} from "../../../objects/Cylinder.js";
+import {Colors} from "../../../scene/Colors.js";
 
 export class CatapultWheel extends DrawableObject {
 
