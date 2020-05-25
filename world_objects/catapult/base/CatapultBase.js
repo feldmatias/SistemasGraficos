@@ -8,7 +8,11 @@ export class CatapultBase extends DrawableObject {
     constructor(width = 5, length = 10) {
         super();
 
-        this.base = new Cube(width, 0.3, length);
+        this.height = 0.3;
+        this.length = length;
+        this.width = width;
+
+        this.base = new Cube(this.width, this.height, this.length);
         this.base.setColor(Colors.CATAPULT_BROWN);
 
         this.createAxles(width, length);
