@@ -1,6 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Cylinder} from "../../../objects/Cylinder.js";
 import {Colors} from "../../../scene/Colors.js";
+import {CatapultBar} from "../bar/CatapultBar.js";
 
 export class CatapultFrontHandle extends DrawableObject {
 
@@ -10,11 +11,13 @@ export class CatapultFrontHandle extends DrawableObject {
         this.size = size + 0.4;
 
         this.createBase();
+        this.createBar();
     }
 
     getChildren() {
         return [
             this.base,
+            this.bar,
         ]
     }
 
@@ -22,5 +25,11 @@ export class CatapultFrontHandle extends DrawableObject {
         this.base = new Cylinder(0.32, this.size);
         this.base.setColor(Colors.CATAPULT_DARK_BROWN);
         this.base.rotate(Math.PI / 2, 1, 0, 0);
+    }
+
+    createBar() {
+        this.bar = new CatapultBar();
+        this.bar.rotate(Math.PI / 2, 0, -1, 0);
+        this.bar.translate(0, 0.32, this.bar.length / 2 * 0.7);
     }
 }
