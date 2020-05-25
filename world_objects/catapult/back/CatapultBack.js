@@ -1,6 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Trapezium} from "../../../objects/Trapezium.js";
 import {Colors} from "../../../scene/Colors.js";
+import {CatapultBackHandle} from "./CatapultBackHandle.js";
 
 export class CatapultBack extends DrawableObject {
 
@@ -10,26 +11,33 @@ export class CatapultBack extends DrawableObject {
         this.rotate(Math.PI / 2, 0, 1, 0);
 
         this.createTrapeziums();
+        this.createHandle();
     }
 
     getChildren() {
         return [
             this.leftTrapezium,
             this.rightTrapezium,
+            this.handle,
         ]
     }
 
     createTrapeziums() {
-        let height = 1.5;
-        let separation = 1.2;
+        this.height = 1.5;
+        this.separation = 1.2;
 
-        let trapezium = new Trapezium(1.2, 0.4, height, 0.1);
+        let trapezium = new Trapezium(1.2, 0.4, this.height, 0.1);
         trapezium.setColor(Colors.CATAPULT_BROWN);
 
         this.leftTrapezium = trapezium.clone();
-        this.leftTrapezium.translate(0, height / 2, separation / 2);
+        this.leftTrapezium.translate(0, this.height / 2, this.separation / 2);
 
         this.rightTrapezium = trapezium.clone();
-        this.rightTrapezium.translate(0, height / 2, -separation / 2);
+        this.rightTrapezium.translate(0, this.height / 2, -this.separation / 2);
+    }
+
+    createHandle() {
+        this.handle = new CatapultBackHandle(this.separation);
+        this.handle.translate(0,  this.height * 0.6, 0);
     }
 }
