@@ -74,6 +74,7 @@ export class DrawableObject {
 
     setColor(color) {
         this.setColors([color], 1, 1);
+        return this;
     }
 
     setImage(image) {
@@ -113,6 +114,11 @@ export class DrawableObject {
 
     translate(x, y, z) {
         mat4.translate(this.modelMatrix, this.modelMatrix, vec3.fromValues(x, y, z));
+        return this;
+    }
+
+    scale(scale) {
+        mat4.scale(this.modelMatrix, this.modelMatrix, vec3.fromValues(scale, scale, scale));
         return this;
     }
 

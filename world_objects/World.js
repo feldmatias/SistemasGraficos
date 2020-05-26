@@ -11,6 +11,7 @@ export class World extends DrawableObject {
         this.createCastle(config);
         this.createTerrain();
         this.createCatapult();
+        this.rotate(Math.PI * 3 / 2, 0, 1, 0);
     }
 
     createCastle(config) {
@@ -25,13 +26,15 @@ export class World extends DrawableObject {
     }
 
     createCatapult() {
-        this.catapult = new Catapult();
+        this.catapult = new Catapult()
+            .scale(0.3)
+            .translate(0, 1, 45);
     }
 
     getChildren() {
         return [
-            //this.castle,
-            //this.terrain,
+            this.castle,
+            this.terrain,
             this.catapult,
         ];
     }

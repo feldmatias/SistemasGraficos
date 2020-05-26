@@ -20,7 +20,7 @@ export class Menu {
 
     setDefaultValues() {
         this.AlturaCamara = 6;
-        this.DistanciaCamara = 12;
+        this.DistanciaCamara = 18;
         this.VelocidadAngular = 1;
 
         this.Ancho = 5;
