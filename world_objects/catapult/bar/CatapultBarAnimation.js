@@ -16,17 +16,19 @@ export class CatapultBarAnimation extends Animation {
         this.moveCatapultBar();
 
         if (this.currentAngle >= this.maxAngle) {
-            this.velocity *= -1;
+            this.currentAngle = this.maxAngle;
+            this.velocity *= -0.5;
         }
         if (this.currentAngle < 0) {
-            this.velocity *= -1;
+            this.currentAngle = 0;
+            this.velocity *= -2;
             this.stop();
         }
     }
 
     moveCatapultBar() {
-        let angle = this.velocity / 60 * Math.PI / 180;
-        this.currentAngle += this.velocity / 60;
-        this.catapultBar.move(angle);
+        let angle = this.velocity / 60;
+        this.currentAngle += angle;
+        this.catapultBar.move(angle * Math.PI / 180);
     }
 }
