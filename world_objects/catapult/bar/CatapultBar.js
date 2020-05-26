@@ -25,7 +25,7 @@ export class CatapultBar extends DrawableObject {
     }
 
     createBar() {
-        this.length = 10;
+        this.length = 12;
         this.bar = new Cube(0.7, 0.4, this.length);
         this.bar.setColor(Colors.CATAPULT_BROWN);
     }
