@@ -19,6 +19,6 @@ export class Animation {
     }
 
     next() {
-
+        throw "Not implemented"
     }
 }

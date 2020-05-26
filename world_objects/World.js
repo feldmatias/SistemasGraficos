@@ -28,12 +28,12 @@ export class World extends DrawableObject {
     createCatapult() {
         this.catapult = new Catapult()
             .scale(0.3)
-            .translate(0, 1, 45);
+            .translate(0, 1, /*45*/0);
     }
 
     getChildren() {
         return [
-            this.castle,
+            //this.castle,
             this.terrain,
             this.catapult,
         ];
@@ -41,6 +41,6 @@ export class World extends DrawableObject {
 
     recreate(config) {
         this.createCastle(config);
-        this.catapult.animation.start();
+        this.catapult.animation.start(); // TODO: do this on button press
     }
 }
