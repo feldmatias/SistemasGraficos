@@ -41,5 +41,6 @@ export class World extends DrawableObject {
 
     recreate(config) {
         this.createCastle(config);
+        this.catapult.animation.start();
     }
 }

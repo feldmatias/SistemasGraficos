@@ -32,4 +32,9 @@ export class CatapultFrontHandle extends DrawableObject {
             .rotate(Math.PI / 2, 0, -1, 0);
         this.bar.translate(0, 0.25, this.bar.length / 2 * 0.7);
     }
+
+    move(angle) {
+        this.rotate(angle, 0, 0, -1);
+        this.bar.barWeight.rotate(angle, 0, 0, 1);
+    }
 }

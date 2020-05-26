@@ -9,10 +9,16 @@ export class DrawableObject {
         return [];
     }
 
+    getAnimations() {
+        return [];
+    }
+
     draw(parentModelMatrix = undefined) {
         if (!parentModelMatrix) {
             parentModelMatrix = mat4.create();
         }
+
+        this.getAnimations().forEach(animation => animation.animate());
 
         let modelMatrix = mat4.create();
         mat4.multiply(modelMatrix, parentModelMatrix, this.modelMatrix);

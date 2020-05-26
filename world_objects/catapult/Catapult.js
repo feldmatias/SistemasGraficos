@@ -2,6 +2,7 @@ import {DrawableObject} from "../../objects/DrawableObject.js";
 import {CatapultBase} from "./base/CatapultBase.js";
 import {CatapultBack} from "./back/CatapultBack.js";
 import {CatapultFront} from "./front/CatapultFront.js";
+import {CatapultBarAnimation} from "./bar/CatapultBarAnimation.js";
 
 export class Catapult extends DrawableObject {
 
@@ -15,6 +16,8 @@ export class Catapult extends DrawableObject {
 
         this.front = new CatapultFront()
             .translate(this.base.length / 2 - 2.5, this.base.height / 2, 0);
+
+        this.animation = new CatapultBarAnimation(this.front.handle);
     }
 
     getChildren() {
@@ -22,6 +25,12 @@ export class Catapult extends DrawableObject {
             this.base,
             this.back,
             this.front,
+        ]
+    }
+
+    getAnimations() {
+        return [
+            this.animation,
         ]
     }
 }
