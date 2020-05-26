@@ -28,33 +28,33 @@ export class CatapultBar extends DrawableObject {
     }
 
     createBar() {
-        this.length = 12;
-        this.bar = new Cube(0.7, 0.4, this.length);
-        this.bar.setColor(Colors.CATAPULT_BROWN);
+        this.length = 9;
+        this.bar = new Cube(0.7, 0.4, this.length)
+            .setColor(Colors.CATAPULT_BROWN);
     }
 
     createMunitionBase() {
         let size = 2.5;
-        this.munitionBase = new Cube(size, 0.4, size);
-        this.munitionBase.setColor(Colors.CATAPULT_BROWN);
-        this.munitionBase.translate(0, 0, this.length / 2);
+        this.munitionBase = new Cube(size, 0.4, size)
+            .setColor(Colors.CATAPULT_BROWN)
+            .translate(0, 0, this.length / 2);
     }
 
     createBarWeight() {
         this.barWeight = new CatapultBarWeight();
-        this.barWeight.translate(0, -this.barWeight.height * 0.9, -this.length / 2 * 0.95);
-        this.barWeight.rotate(Math.PI / 2, 0, 1, 0);
+        this.barWeight.translate(0, -this.barWeight.height * 0.9, -this.length / 2 * 0.95)
+            .rotate(Math.PI / 2, 0, 1, 0);
     }
 
     createBall() {
-        this.ball = new Ball();
+        this.ball = new Ball()
         this.ball.translate(0, this.ball.radius + 0.2, this.length / 2);
     }
 
     createEnvelope() {
-        this.envelope = new Cylinder(0.5, 0.35);
-        this.envelope.setColor(Colors.WHITE);
-        this.envelope.translate(0, 0, 2);
-        this.envelope.rotate(Math.PI / 2, 1, 0, 0);
+        this.envelope = new Cylinder(0.5, 0.35)
+            .setColor(Colors.WHITE)
+            .translate(0, 0, 1)
+            .rotate(Math.PI / 2, 1, 0, 0);
     }
 }

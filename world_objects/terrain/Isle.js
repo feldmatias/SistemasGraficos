@@ -15,11 +15,10 @@ export class Isle extends DrawableObject {
         let shape = new CylinderRevolutionShape(radius, 0.1);
 
         let data = new SurfacesGenerator().generateRevolutionSurface(shape, step);
-        this.setBuffers(data);
 
-        this.setColor(Colors.GRASS_GREEN);
-
-        this.translate(0, 0.05, 0);
+        this.setBuffers(data)
+            .setColor(Colors.GRASS_GREEN)
+            .translate(0, 0.05, 0);
     }
 
 }

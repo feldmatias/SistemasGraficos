@@ -1,6 +1,6 @@
-import { DrawableObject } from "./DrawableObject.js";
-import { SurfacesGenerator } from "../surfaces/SurfacesGenerator.js";
-import { SphereSurface } from "../surfaces/surfaces/SphereSurface.js";
+import {DrawableObject} from "./DrawableObject.js";
+import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js";
+import {SphereSurface} from "../surfaces/surfaces/SphereSurface.js";
 
 export class Sphere extends DrawableObject {
 

@@ -10,11 +10,11 @@ export class Catapult extends DrawableObject {
 
         this.base = new CatapultBase();
 
-        this.back = new CatapultBack();
-        this.back.translate(-this.base.length / 2 + 1, this.base.height / 2, 0);
+        this.back = new CatapultBack()
+            .translate(-this.base.length / 2 + 1, this.base.height / 2, 0);
 
-        this.front = new CatapultFront();
-        this.front.translate(this.base.length / 2 - 2.5, this.base.height / 2, 0);
+        this.front = new CatapultFront()
+            .translate(this.base.length / 2 - 2.5, this.base.height / 2, 0);
     }
 
     getChildren() {

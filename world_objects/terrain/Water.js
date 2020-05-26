@@ -7,11 +7,9 @@ export class Water extends DrawableObject {
     constructor(radius = 50) {
         super();
 
-        this.object = new Plane(radius, radius);
-
-        this.object.setColor(Colors.WATER_BLUE);
-
-        this.object.translate(0, 0.025, 0);
+        this.object = new Plane(radius, radius)
+            .setColor(Colors.WATER_BLUE)
+            .translate(0, 0.025, 0);
     }
 
     getChildren() {

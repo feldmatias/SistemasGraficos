@@ -16,8 +16,9 @@ export class CastleWindow extends DrawableObject {
         let path = new LinePath(0.2, 0.1);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
-        this.setBuffers(data);
-        this.setColor(Colors.CASTLE_BLACK);
+
+        this.setBuffers(data)
+            .setColor(Colors.CASTLE_BLACK);
     }
 
 }

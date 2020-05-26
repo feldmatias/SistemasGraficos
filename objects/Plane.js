@@ -1,6 +1,6 @@
-import { DrawableObject } from "./DrawableObject.js";
-import { PlaneSurface } from "../surfaces/surfaces/PlaneSurface.js";
-import { SurfacesGenerator } from "../surfaces/SurfacesGenerator.js";
+import {DrawableObject} from "./DrawableObject.js";
+import {PlaneSurface} from "../surfaces/surfaces/PlaneSurface.js";
+import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js";
 
 export class Plane extends DrawableObject {
 

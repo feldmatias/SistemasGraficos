@@ -16,9 +16,10 @@ export class CastleRoof extends DrawableObject {
         let path = new CastleRoofPath(height);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
-        this.setBuffers(data);
-        this.setColor(Colors.CASTLE_BLUE);
-        this.rotate(-Math.PI / 2, 1, 0, 0);
+
+        this.setBuffers(data)
+            .setColor(Colors.CASTLE_BLUE)
+            .rotate(-Math.PI / 2, 1, 0, 0);
     }
 
 }

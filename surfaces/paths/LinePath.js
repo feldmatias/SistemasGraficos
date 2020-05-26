@@ -1,4 +1,4 @@
-import { Path } from './Path.js'
+import {Path} from './Path.js'
 
 export class LinePath extends Path {
 

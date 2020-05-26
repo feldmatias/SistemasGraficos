@@ -16,8 +16,9 @@ export class CastleFloorSeparator extends DrawableObject {
         let path = new LinePath(length);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path);
-        this.setBuffers(data);
-        this.setColor(Colors.CASTLE_YELLOW);
+
+        this.setBuffers(data)
+            .setColor(Colors.CASTLE_YELLOW);
     }
 
 }

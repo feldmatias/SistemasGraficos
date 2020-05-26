@@ -27,27 +27,27 @@ export class CatapultBarWeight extends DrawableObject {
         this.height = 0.75;
         this.separation = 1;
 
-        let trapezium = new Trapezium(0.6, 0.2, this.height, 0.1);
-        trapezium.setColor(Colors.CATAPULT_BROWN);
+        let trapezium = new Trapezium(0.6, 0.2, this.height, 0.1)
+            .setColor(Colors.CATAPULT_BROWN);
 
-        this.leftTrapezium = trapezium.clone();
-        this.leftTrapezium.translate(0, this.height / 2, this.separation / 2);
+        this.leftTrapezium = trapezium.clone()
+            .translate(0, this.height / 2, this.separation / 2);
 
-        this.rightTrapezium = trapezium.clone();
-        this.rightTrapezium.translate(0, this.height / 2, -this.separation / 2);
+        this.rightTrapezium = trapezium.clone()
+            .translate(0, this.height / 2, -this.separation / 2);
     }
 
     createHandle() {
-        this.handle = new Cylinder(0.07, this.separation + 0.4);
-        this.handle.setColor(Colors.CATAPULT_DARK_BROWN);
-        this.handle.translate(0,  this.height * 0.85, 0);
-        this.handle.rotate(Math.PI / 2, 1, 0, 0);
+        this.handle = new Cylinder(0.07, this.separation + 0.4)
+            .setColor(Colors.CATAPULT_DARK_BROWN)
+            .translate(0, this.height * 0.85, 0)
+            .rotate(Math.PI / 2, 1, 0, 0);
     }
 
     createWeight() {
         let size = 1.4;
-        this.weight = new Cube(size, size, size);
-        this.weight.setColor(Colors.CATAPULT_GREY);
-        this.weight.translate(0, -size / 2, 0);
+        this.weight = new Cube(size, size, size)
+            .setColor(Colors.CATAPULT_GREY)
+            .translate(0, -size / 2, 0);
     }
 }

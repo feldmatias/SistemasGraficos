@@ -1,7 +1,7 @@
-import { DrawableObject } from "./DrawableObject.js";
-import { SquareShape } from "../surfaces/shapes/SquareShape.js"
-import { LinePath } from "../surfaces/paths/LinePath.js"
-import { SurfacesGenerator } from "../surfaces/SurfacesGenerator.js"
+import {DrawableObject} from "./DrawableObject.js";
+import {SquareShape} from "../surfaces/shapes/SquareShape.js"
+import {LinePath} from "../surfaces/paths/LinePath.js"
+import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js"
 
 export class Cube extends DrawableObject {
 

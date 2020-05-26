@@ -79,6 +79,7 @@ export class DrawableObject {
 
     setImage(image) {
         this.texture = this.gl.createImageTexture(image);
+        return this;
     }
 
     setBuffers(data) {
@@ -86,6 +87,7 @@ export class DrawableObject {
         this.setNormalsBuffer(data.normalBuffer);
         this.setUvsBuffer(data.uvBuffer);
         this.setIndicesBuffer(data.indexBuffer);
+        return this;
     }
 
     delete() {

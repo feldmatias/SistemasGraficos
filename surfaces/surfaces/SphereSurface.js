@@ -1,4 +1,4 @@
-import { Surface } from './Surface.js'
+import {Surface} from './Surface.js'
 
 export class SphereSurface extends Surface {
 

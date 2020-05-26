@@ -5,15 +5,15 @@ import {Colors} from "../../../scene/Colors.js";
 
 export class CatapultBase extends DrawableObject {
 
-    constructor(width = 5, length = 10) {
+    constructor(width = 5, length = 8) {
         super();
 
         this.height = 0.3;
         this.length = length;
         this.width = width;
 
-        this.base = new Cube(this.width, this.height, this.length);
-        this.base.setColor(Colors.CATAPULT_BROWN);
+        this.base = new Cube(this.width, this.height, this.length)
+            .setColor(Colors.CATAPULT_BROWN);
 
         this.createAxles(width, length);
     }
@@ -30,12 +30,12 @@ export class CatapultBase extends DrawableObject {
         let axle = new CatapultAxle(size);
         let translation = length / 2 - 1.25;
 
-        this.axleFront = axle.clone();
-        this.axleFront.translate(0, 0, translation);
-        this.axleFront.rotate(Math.PI / 2, 0, 1, 0);
+        this.axleFront = axle.clone()
+            .translate(0, 0, translation)
+            .rotate(Math.PI / 2, 0, 1, 0);
 
-        this.axleBack = axle.clone();
-        this.axleBack.translate(0, 0, -translation);
-        this.axleBack.rotate(Math.PI / 2, 0, 1, 0);
+        this.axleBack = axle.clone()
+            .translate(0, 0, -translation)
+            .rotate(Math.PI / 2, 0, 1, 0);
     }
 }

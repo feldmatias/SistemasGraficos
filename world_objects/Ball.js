@@ -9,8 +9,8 @@ export class Ball extends DrawableObject {
 
         this.radius = 1
 
-        this.ball = new Sphere(this.radius);
-        this.ball.setColor(Colors.BALL_GREY);
+        this.ball = new Sphere(this.radius)
+            .setColor(Colors.BALL_GREY);
     }
 
     getChildren() {

@@ -1,6 +1,6 @@
-import { DrawableObject } from "./DrawableObject.js";
-import { CylinderRevolutionShape } from "../surfaces/shapes/CylinderRevolutionShape.js";
-import { SurfacesGenerator } from "../surfaces/SurfacesGenerator.js";
+import {DrawableObject} from "./DrawableObject.js";
+import {CylinderRevolutionShape} from "../surfaces/shapes/CylinderRevolutionShape.js";
+import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js";
 
 export class Cylinder extends DrawableObject {
 

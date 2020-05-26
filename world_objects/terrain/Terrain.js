@@ -28,7 +28,7 @@ export class Terrain extends DrawableObject {
 
     createBridge() {
         let length = this.grass.waterLength;
-        this.bridge = new Bridge(2, length + 1);
-        this.bridge.translate(0, 0, this.isle.radius + length / 2);
+        this.bridge = new Bridge(2, length + 1)
+            .translate(0, 0, this.isle.radius + length / 2);
     }
 }
