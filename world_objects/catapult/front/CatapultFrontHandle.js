@@ -30,6 +30,6 @@ export class CatapultFrontHandle extends DrawableObject {
     createBar() {
         this.bar = new CatapultBar();
         this.bar.rotate(Math.PI / 2, 0, -1, 0);
-        this.bar.translate(0, 0.32, this.bar.length / 2 * 0.7);
+        this.bar.translate(0, 0.25, this.bar.length / 2 * 0.7);
     }
 }
