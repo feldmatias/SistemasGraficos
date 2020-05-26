@@ -2,7 +2,7 @@ import {Animation} from "../../../objects/Animation.js";
 
 export class CatapultBarAnimation extends Animation {
 
-    constructor(catapultBar) {
+    constructor(catapultBar, catapultBackHandle) {
         super();
 
         this.velocity = 30;
@@ -10,11 +10,20 @@ export class CatapultBarAnimation extends Animation {
 
         this.currentAngle = 0;
         this.catapultBar = catapultBar;
+        this.catapultBackHandle = catapultBackHandle;
     }
 
     next() {
-        this.moveCatapultBar();
+        let angle = this.velocity / 60;
+        this.currentAngle += angle;
 
+        this.catapultBar.move(angle * Math.PI / 180);
+        this.catapultBackHandle.move(angle * Math.PI / 180);
+
+        this.checkNextAnimation();
+    }
+
+    checkNextAnimation() {
         if (this.currentAngle >= this.maxAngle) {
             this.currentAngle = this.maxAngle;
             this.velocity *= -0.5;
@@ -24,11 +33,5 @@ export class CatapultBarAnimation extends Animation {
             this.velocity *= -2;
             this.stop();
         }
-    }
-
-    moveCatapultBar() {
-        let angle = this.velocity / 60;
-        this.currentAngle += angle;
-        this.catapultBar.move(angle * Math.PI / 180);
     }
 }

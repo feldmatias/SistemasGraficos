@@ -17,7 +17,7 @@ export class Catapult extends DrawableObject {
         this.front = new CatapultFront()
             .translate(this.base.length / 2 - 2.5, this.base.height / 2, 0);
 
-        this.animation = new CatapultBarAnimation(this.front.handle);
+        this.animation = new CatapultBarAnimation(this.front.handle, this.back.handle);
     }
 
     getChildren() {

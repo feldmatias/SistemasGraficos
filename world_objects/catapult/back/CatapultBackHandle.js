@@ -46,4 +46,9 @@ export class CatapultBackHandle extends DrawableObject {
             .setColor(Colors.WHITE)
             .rotate(Math.PI / 2, 1, 0, 0);
     }
+
+    move(angle) {
+        let velocity = 8;
+        this.rotate(angle * velocity, 0, 0, -1);
+    }
 }

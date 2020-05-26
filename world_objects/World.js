@@ -28,12 +28,12 @@ export class World extends DrawableObject {
     createCatapult() {
         this.catapult = new Catapult()
             .scale(0.3)
-            .translate(0, 1, /*45*/0);
+            .translate(0, 1, 45);
     }
 
     getChildren() {
         return [
-            //this.castle,
+            this.castle,
             this.terrain,
             this.catapult,
         ];
