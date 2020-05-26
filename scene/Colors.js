@@ -15,4 +15,6 @@ export const Colors = {
     CATAPULT_BROWN: [127, 101, 78],
     CATAPULT_DARK_BROWN: [64, 44, 45],
     CATAPULT_GREY: [149, 150, 155],
+
+    BALL_GREY: [153, 154, 159],
 };

@@ -2,6 +2,7 @@ import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Cube} from "../../../objects/Cube.js";
 import {Colors} from "../../../scene/Colors.js";
 import {CatapultBarWeight} from "./CatapultBarWeight.js";
+import {Ball} from "../../Ball.js";
 
 export class CatapultBar extends DrawableObject {
 
@@ -11,6 +12,7 @@ export class CatapultBar extends DrawableObject {
         this.createBar();
         this.createMunitionBase();
         this.createBarWeight();
+        this.createBall();
     }
 
     getChildren() {
@@ -18,6 +20,7 @@ export class CatapultBar extends DrawableObject {
             this.bar,
             this.munitionBase,
             this.barWeight,
+            this.ball,
         ]
     }
 
@@ -38,5 +41,10 @@ export class CatapultBar extends DrawableObject {
         this.barWeight = new CatapultBarWeight();
         this.barWeight.translate(0, -this.barWeight.height * 0.9, -this.length / 2 * 0.95);
         this.barWeight.rotate(Math.PI / 2, 0, 1, 0);
+    }
+
+    createBall() {
+        this.ball = new Ball();
+        this.ball.translate(0, this.ball.radius + 0.2, this.length / 2);
     }
 }
