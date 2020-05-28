@@ -28,9 +28,9 @@ export class Castle extends DrawableObject {
 
     getChildren() {
         return [
-            //this.floors,
-            //this.floorSeparators,
-            //this.roof,
+            this.floors,
+            this.floorSeparators,
+            this.roof,
             this.columns,
         ].flat();
     }
@@ -51,20 +51,20 @@ export class Castle extends DrawableObject {
     createFloorSeparators(i) {
         let separatorWidth = 0.1;
 
-        let separator_front_back = new CastleFloorSeparator(separatorWidth, this.width);
-        separator_front_back.rotate(Math.PI / 2, 0, 1, 0);
+        let separatorFrontBack = new CastleFloorSeparator(separatorWidth, this.width);
+        separatorFrontBack.rotate(Math.PI / 2, 0, 1, 0);
 
-        let frontSeparator = separator_front_back.clone()
+        let frontSeparator = separatorFrontBack.clone()
             .translate(-this.length / 2, this.floorHeight * i, 0);
-        let backSeparator = separator_front_back.clone()
+        let backSeparator = separatorFrontBack.clone()
             .translate(this.length / 2, this.floorHeight * i, 0);
 
 
-        let separator_left_right = new CastleFloorSeparator(separatorWidth, this.length);
+        let separatorLeftRight = new CastleFloorSeparator(separatorWidth, this.length);
 
-        let leftSeparator = separator_left_right.clone()
+        let leftSeparator = separatorLeftRight.clone()
             .translate(-this.width / 2, this.floorHeight * i, 0);
-        let rightSeparator = separator_left_right.clone()
+        let rightSeparator = separatorLeftRight.clone()
             .translate(this.width / 2, this.floorHeight * i, 0);
 
         this.floorSeparators.push(frontSeparator, backSeparator, leftSeparator, rightSeparator);
@@ -77,8 +77,17 @@ export class Castle extends DrawableObject {
     }
 
     createColumns() {
-        this.columns = [];
         let column = new CastleColumn(this.floorHeight / 2 + this.floorHeight * this.floorsCount);
-        this.columns.push(column);
+
+        let rightFrontColumn = column.clone()
+            .translate(this.width / 2, 0, this.length / 2);
+        let rightBackColumn = column.clone()
+            .translate(-this.width / 2, 0, this.length / 2);
+        let leftFrontColumn = column.clone()
+            .translate(this.width / 2, 0, -this.length / 2);
+        let leftBackColumn = column.clone()
+            .translate(-this.width / 2, 0, -this.length / 2);
+
+        this.columns = [rightFrontColumn, rightBackColumn, leftFrontColumn, leftBackColumn];
     }
 }
