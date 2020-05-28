@@ -2,6 +2,7 @@ import {DrawableObject} from "../../objects/DrawableObject.js";
 import {CastleFloor} from "./CastleFloor.js";
 import {CastleFloorSeparator} from "./CastleFloorSeparator.js";
 import {CastleRoof} from "./roof/CastleRoof.js";
+import {CastleColumn} from "./column/CastleColumn.js";
 
 export class Castle extends DrawableObject {
 
@@ -22,13 +23,15 @@ export class Castle extends DrawableObject {
 
         this.createFloors();
         this.createRoof();
+        this.createColumns();
     }
 
     getChildren() {
         return [
-            this.floors,
-            this.floorSeparators,
-            this.roof,
+            //this.floors,
+            //this.floorSeparators,
+            //this.roof,
+            this.columns,
         ].flat();
     }
 
@@ -71,5 +74,11 @@ export class Castle extends DrawableObject {
         let translation = this.floorHeight / 2 + this.floorHeight * this.floorsCount;
         this.roof = new CastleRoof(this.width, this.length, this.floorHeight)
             .translate(0, 0, translation);
+    }
+
+    createColumns() {
+        this.columns = [];
+        let column = new CastleColumn(this.floorHeight / 2 + this.floorHeight * this.floorsCount);
+        this.columns.push(column);
     }
 }
