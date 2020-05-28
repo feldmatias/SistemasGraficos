@@ -12,7 +12,7 @@ export class CastleFloorSeparator extends DrawableObject {
     }
 
     initialize(width, length) {
-        let shape = new SquareShape(width, width);
+        let shape = new SquareShape(width * 2, width);
         let path = new LinePath(length);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path);
