@@ -2,7 +2,7 @@ import {CurvePoint} from "./CurvePoint.js";
 
 export class CurvesCalculator {
 
-    constructor(step = 0.1) {
+    constructor(step = 0.05) {
         this.step = step;
     }
 
