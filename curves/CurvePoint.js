@@ -16,8 +16,8 @@ export class CurvePoint {
     }
 
     getNormal() {
-        let result = vec3.fromValues(-this.tangent[1], this.tangent[0], 0);
-        vec3.subtract(result, result, this.point);
+        let result = vec3.fromValues(this.tangent[0], this.tangent[1], 0);
+        vec3.cross(result, result, vec3.fromValues(0, 0, 1));
         return result;
     }
 
