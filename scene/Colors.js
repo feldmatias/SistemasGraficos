@@ -5,7 +5,7 @@ export const Colors = {
     WHITE: [255, 255, 255],
 
     CASTLE_YELLOW: [175, 170, 121],
-    CASTLE_BLUE: [98, 124, 183],
+    CASTLE_BLUE: [41, 64, 113],
     CASTLE_BLACK: [46, 46, 53],
 
     GRASS_GREEN: [67, 143, 74],

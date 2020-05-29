@@ -9,7 +9,7 @@ export class Scene {
         this.gl = gl;
         this.canvas = canvas;
         this.createMenu();
-        this.createSceneObjects()
+        this.createSceneObjects();
     }
 
     createMenu() {
@@ -46,7 +46,7 @@ export class Scene {
     }
 
     setLighting() {
-        let lightPosition = [0.0, 3.0, 5.0];
+        let lightPosition = [0.0, 19.0, 15.0];
         this.gl.getDrawer().setLighting(lightPosition);
     }
 
