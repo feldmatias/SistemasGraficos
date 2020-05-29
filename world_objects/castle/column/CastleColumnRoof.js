@@ -12,7 +12,7 @@ export class CastleColumnRoof extends DrawableObject {
     }
 
     initialize(height, width) {
-        let shape = new CastleColumnRoofShape(height * 0.6, width);
+        let shape = new CastleColumnRoofShape(height * 0.8, width);
 
         let data = new SurfacesGenerator().generateRevolutionSurface(shape);
 

@@ -12,6 +12,7 @@ export class CastleColumn extends DrawableObject {
         this.height = height;
         this.topHeight = topHeight;
         this.width = 0.4;
+        this.topWidth = this.width * 1.5;
 
         this.initialize();
         this.createRoof();
@@ -24,7 +25,7 @@ export class CastleColumn extends DrawableObject {
     }
 
     initialize() {
-        let shape = new CastleColumnShape(this.height, this.topHeight, this.width);
+        let shape = new CastleColumnShape(this.height, this.topHeight, this.width, this.topWidth);
 
         let data = new SurfacesGenerator().generateRevolutionSurface(shape);
 
@@ -33,7 +34,7 @@ export class CastleColumn extends DrawableObject {
     }
 
     createRoof() {
-        this.roof = new CastleColumnRoof(this.topHeight, this.width * 1.2 + 0.1)
+        this.roof = new CastleColumnRoof(this.topHeight, this.topWidth + 0.15)
             .translate(0, this.height, 0);
     }
 
