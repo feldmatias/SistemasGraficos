@@ -1,7 +1,7 @@
-import {Shape} from "../../../surfaces/shapes/Shape.js";
 import {BezierCubicCurves} from "../../../curves/BezierCubicCurves.js";
+import {RevolutionShape} from "../../../surfaces/shapes/RevolutionShape.js";
 
-export class CastleColumnRoofShape extends Shape {
+export class CastleColumnRoofShape extends RevolutionShape {
 
     constructor(height, width) {
         super();

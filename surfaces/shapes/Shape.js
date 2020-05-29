@@ -13,7 +13,7 @@ export class Shape {
     }
 
     isClosed() {
-        return true;
+        return false;
     }
 
     getCapNormals(isFirstCap) {

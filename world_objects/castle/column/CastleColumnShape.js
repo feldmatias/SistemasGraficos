@@ -1,7 +1,7 @@
-import {Shape} from "../../../surfaces/shapes/Shape.js";
 import {BezierCubicCurves} from "../../../curves/BezierCubicCurves.js";
+import {RevolutionShape} from "../../../surfaces/shapes/RevolutionShape.js";
 
-export class CastleColumnShape extends Shape {
+export class CastleColumnShape extends RevolutionShape {
 
     constructor(height, topHeight, width, topWidth) {
         super();
@@ -67,6 +67,10 @@ export class CastleColumnShape extends Shape {
             vec3.fromValues(this.topWidth, this.height - this.topHeight + this.curveHeight, 0),
         ]
         this.curvePoints = bezierCurvesCalculator.calculateForPoints(curveControlPoints);
+    }
+
+    isClosed() {
+        return false;
     }
 
 }
