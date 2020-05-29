@@ -3,7 +3,7 @@ import {BezierCubicCurves} from "../../../curves/BezierCubicCurves.js";
 
 export class CastleColumnShape extends Shape {
 
-    constructor(height, topHeight = 2, width = 0.5) {
+    constructor(height, topHeight, width ) {
         super();
         this.height = height;
         this.topHeight = topHeight;

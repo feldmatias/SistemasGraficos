@@ -77,7 +77,8 @@ export class Castle extends DrawableObject {
     }
 
     createColumns() {
-        let column = new CastleColumn(this.floorHeight / 2 + this.floorHeight * this.floorsCount);
+        let columnHeight = this.floorHeight / 2 + this.floorHeight * this.floorsCount;
+        let column = new CastleColumn(columnHeight, this.floorHeight);
 
         let rightFrontColumn = column.clone()
             .translate(this.width / 2, 0, this.length / 2);
