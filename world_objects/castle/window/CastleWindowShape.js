@@ -75,7 +75,7 @@ export class CastleWindowShape extends Shape {
     }
 
     createCurveVertices() {
-        let bezierCurvesCalculator = new BezierQuadraticCurves();
+        let curvesCalculator = new BezierQuadraticCurves();
         let curveControlPoints = [
             vec3.fromValues(-this.width, this.curveStart, 0),
             vec3.fromValues(-this.width, this.height, 0),
@@ -84,6 +84,6 @@ export class CastleWindowShape extends Shape {
             vec3.fromValues(this.width, this.height, 0),
             vec3.fromValues(this.width, this.curveStart, 0),
         ]
-        this.curvePoints = bezierCurvesCalculator.calculateForPoints(curveControlPoints);
+        this.curvePoints = curvesCalculator.calculateForPoints(curveControlPoints);
     }
 }

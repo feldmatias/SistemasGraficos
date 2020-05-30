@@ -24,14 +24,14 @@ export class CastleColumnRoofShape extends RevolutionShape {
     }
 
     createCurveVertices() {
-        let bezierCurvesCalculator = new BezierCubicCurves();
+        let curvesCalculator = new BezierCubicCurves();
         let curveControlPoints = [
             vec3.fromValues(this.width, 0, 0),
             vec3.fromValues(this.width * 0.2, this.height * 0.5, 0),
             vec3.fromValues(0.03, this.height * 0.8, 0),
             vec3.fromValues(0.03, this.height, 0),
         ]
-        this.curvePoints = bezierCurvesCalculator.calculateForPoints(curveControlPoints);
+        this.curvePoints = curvesCalculator.calculateForPoints(curveControlPoints);
     }
 
 }

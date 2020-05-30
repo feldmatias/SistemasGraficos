@@ -59,14 +59,14 @@ export class CastleColumnShape extends RevolutionShape {
     }
 
     createCurveVertices() {
-        let bezierCurvesCalculator = new BezierCubicCurves();
+        let curvesCalculator = new BezierCubicCurves();
         let curveControlPoints = [
             vec3.fromValues(this.width, this.height - this.topHeight, 0),
             vec3.fromValues(this.width, this.height - this.topHeight + this.curveHeight / 2, 0),
             vec3.fromValues(this.topWidth, this.height - this.topHeight + this.curveHeight / 2, 0),
             vec3.fromValues(this.topWidth, this.height - this.topHeight + this.curveHeight, 0),
         ]
-        this.curvePoints = bezierCurvesCalculator.calculateForPoints(curveControlPoints);
+        this.curvePoints = curvesCalculator.calculateForPoints(curveControlPoints);
     }
 
     isClosed() {

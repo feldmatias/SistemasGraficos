@@ -23,9 +23,9 @@ export class BSplineCubicCurves extends CurvesCalculator {
     calculateForPoints(points) {
         let curvePoints = [];
         for (let i = 0; i < points.length - 3; i++) {
-            let current_points = [points[i], points[i + 1], points[i + 2], points[i + 3]];
-            let current_curve_points = this._calculateForPoints(current_points);
-            curvePoints.push(current_curve_points);
+            let currentPoints = [points[i], points[i + 1], points[i + 2], points[i + 3]];
+            let currentCurvePoints = this._calculateForPoints(currentPoints);
+            curvePoints.push(currentCurvePoints);
         }
         return curvePoints.flat();
     }

@@ -10,7 +10,7 @@ export class CirclePath extends Path {
     }
 
     getLevelsCount() {
-        return this.angle / this.step + 1;
+        return Math.round(this.angle / this.step) + 1;
     }
 
     getLevelMatrix(level) {

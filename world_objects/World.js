@@ -2,6 +2,7 @@ import {DrawableObject} from "../objects/DrawableObject.js";
 import {Castle} from "./castle/Castle.js";
 import {Terrain} from "./terrain/Terrain.js";
 import {Catapult} from "./catapult/Catapult.js";
+import {Wall} from "./wall/Wall.js";
 
 export class World extends DrawableObject {
 
@@ -11,7 +12,7 @@ export class World extends DrawableObject {
         this.createCastle(config);
         this.createTerrain();
         this.createCatapult();
-        this.rotate(Math.PI * 3 / 2, 0, 1, 0);
+        this.createWall();
     }
 
     createCastle(config) {
@@ -31,11 +32,16 @@ export class World extends DrawableObject {
             .translate(0, 1, 45);
     }
 
+    createWall() {
+        this.wall = new Wall();
+    }
+
     getChildren() {
         return [
             this.castle,
             this.terrain,
             this.catapult,
+            this.wall,
         ];
     }
 
