@@ -28,8 +28,8 @@ export class CastleColumnRoofShape extends RevolutionShape {
         let curveControlPoints = [
             vec3.fromValues(this.width, 0, 0),
             vec3.fromValues(this.width * 0.2, this.height * 0.5, 0),
-            vec3.fromValues(0.03, this.height * 0.8, 0),
-            vec3.fromValues(0.03, this.height, 0),
+            vec3.fromValues(0, this.height * 0.8, 0),
+            vec3.fromValues(0, this.height, 0),
         ]
         this.curvePoints = curvesCalculator.calculateForPoints(curveControlPoints);
     }

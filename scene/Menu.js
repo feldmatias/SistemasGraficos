@@ -19,7 +19,7 @@ export class Menu {
 
         // Wall configuration
         let wall = this.menu.addFolder('Muralla');
-        wall.add(this, 'Altura', 1, 6).step(0.5);
+        wall.add(this, 'Altura', 3, 7).step(0.5);
         wall.add(this, 'Columnas', 4, 8).step(1);
         wall.open();
     }
