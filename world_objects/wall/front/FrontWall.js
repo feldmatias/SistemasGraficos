@@ -35,6 +35,6 @@ export class FrontWall extends DrawableObject {
     }
 
     createEntrance() {
-        this.entrance = new WallEntrance(this.width * 0.8, this.entranceLength, this.height + 0.3);
+        this.entrance = new WallEntrance(this.width * 0.5, this.entranceLength, this.height + 0.3);
     }
 }

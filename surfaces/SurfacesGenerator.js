@@ -100,14 +100,15 @@ class SweepSurfacesAlgorithm {
             let level = this.levels[i];
             let isCap = withCaps && (i === 0 || i === this.levels.length - 1);
 
+            let vertices = isCap ? shape.getCapVertices() : this.vertices;
             let matrix = path.getLevelMatrix(level);
-            let modified_vertices = this.applyMatrix(this.vertices, matrix, isCap);
+            let modified_vertices = this.applyMatrix(vertices, matrix);
 
             let isNormalCap = withCaps && (i <= 1 || i >= this.levels.length - 2);
             // Caps have different normals than common levels, although they have the same vertices
             let normals = isNormalCap ? shape.getCapNormals(i <= 1) : this.normals;
             let normalMatrix = path.getLevelNormalMatrix(level);
-            let modified_normals = this.applyMatrix(normals, normalMatrix, isCap, true);
+            let modified_normals = this.applyMatrix(normals, normalMatrix, true);
 
             this.fillBuffers(i, shape, modified_vertices, modified_normals);
         }
@@ -125,13 +126,7 @@ class SweepSurfacesAlgorithm {
         return levels;
     }
 
-    applyMatrix(vertices, matrix, isCap, normals = false) {
-        if (isCap) {
-            // Scale to 0 to create the caps.
-            let capsScale = 0.00001;
-            mat4.scale(matrix, matrix, vec3.fromValues(capsScale, capsScale, capsScale));
-        }
-
+    applyMatrix(vertices, matrix, normals = false) {
         return vertices.slice().map(vertex => {
             let modified = vec3.create();
             if (normals) {

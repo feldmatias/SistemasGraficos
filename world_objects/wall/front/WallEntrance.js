@@ -19,7 +19,7 @@ export class WallEntrance extends DrawableObject {
         let shape = new WallEntranceShape(this.height, this.length);
         let path = new LinePath(this.width);
 
-        let data = new SurfacesGenerator().generateSweepSurface(shape, path, false);
+        let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
 
         this.setBuffers(data)
             .setColor(Colors.WALL_GREY);

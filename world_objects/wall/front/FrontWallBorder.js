@@ -20,7 +20,7 @@ export class FrontWallBorder extends DrawableObject {
         let shape = new WallShape(this.height, this.width);
         let path = new LinePath(this.length);
 
-        let data = new SurfacesGenerator().generateSweepSurface(shape, path);
+        let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
 
         this.setBuffers(data)
             .setColor(Colors.WALL_GREY);

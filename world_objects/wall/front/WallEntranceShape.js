@@ -59,6 +59,33 @@ export class WallEntranceShape extends Shape {
         ];
     }
 
+    getCapVertices() {
+        let width = this.width - this.wallWidth / 2;
+        let height = this.height - this.wallWidth / 2;
+        return [
+            vec3.fromValues(-width, 0, 0),
+            vec3.fromValues(-width, height, 0),
+            vec3.fromValues(-width, height, 0),
+            vec3.fromValues(width, height, 0),
+            vec3.fromValues(width, height, 0),
+            vec3.fromValues(width, 0, 0),
+
+            vec3.fromValues(width, 0, 0),
+            vec3.fromValues(width, 0, 0),
+
+            vec3.fromValues(width, 0, 0),
+            vec3.fromValues(width, height, 0),
+            vec3.fromValues(width, height, 0),
+            vec3.fromValues(-width, height, 0),
+            vec3.fromValues(-width, height, 0),
+            vec3.fromValues(-width, 0, 0),
+
+            vec3.fromValues(-width, 0, 0),
+            vec3.fromValues(-width, 0, 0),
+
+        ];
+    }
+
     isClosed() {
         return true;
     }

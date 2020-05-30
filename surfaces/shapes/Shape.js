@@ -16,6 +16,16 @@ export class Shape {
         return false;
     }
 
+    getCapVertices() {
+        let capsScale = 0.00001;
+        let vertices = this.getVertices();
+        return vertices.slice().map(vertex => {
+            let modified = vec3.create();
+            vec3.scale(modified, vertex, capsScale);
+            return modified;
+        });
+    }
+
     getCapNormals(isFirstCap) {
         // The normals in caps are always in z direction
         let verticesCount = this.getVertices().length;
