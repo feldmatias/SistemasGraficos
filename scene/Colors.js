@@ -17,6 +17,7 @@ export const Colors = {
     CATAPULT_GREY: [149, 150, 155],
 
     WALL_GREY: [152, 153, 158],
+    WALL_BROWN: [74, 60, 51],
 
     BALL_GREY: [153, 154, 159],
 };

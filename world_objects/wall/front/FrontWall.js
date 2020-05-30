@@ -9,7 +9,7 @@ export class FrontWall extends DrawableObject {
         this.height = height;
         this.width = width * 0.9;
         this.length = Math.round(length);
-        this.entranceLength = 5;
+        this.entranceLength = 4;
 
         this.createBorders();
         this.createEntrance();
