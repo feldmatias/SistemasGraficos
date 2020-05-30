@@ -12,7 +12,7 @@ export class World extends DrawableObject {
         this.createCastle(config);
         this.createTerrain();
         this.createCatapult();
-        this.createWall();
+        this.createWall(config);
     }
 
     createCastle(config) {
@@ -29,11 +29,14 @@ export class World extends DrawableObject {
     createCatapult() {
         this.catapult = new Catapult()
             .scale(0.3)
-            .translate(0, 1, 45);
+            .translate(0, 1, 55);
     }
 
-    createWall() {
-        this.wall = new Wall();
+    createWall(config) {
+        if (this.wall) {
+            this.wall.delete();
+        }
+        this.wall = new Wall(config.wallColumnCount, config.wallHeight);
     }
 
     getChildren() {
@@ -45,8 +48,12 @@ export class World extends DrawableObject {
         ];
     }
 
-    recreate(config) {
+    recreateCastle(config) {
         this.createCastle(config);
         this.catapult.animation.start(); // TODO: do this on button press
+    }
+
+    recreateWall(config) {
+        this.createWall(config);
     }
 }

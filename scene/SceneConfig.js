@@ -36,4 +36,19 @@ export class SceneConfig {
             this.castleFloorsCount !== lastConfig.castleFloorsCount;
     }
 
+    setWallHeight(wallHeight) {
+        this.wallHeight = wallHeight;
+        return this;
+    }
+
+    setWallColumnCount(wallColumnCount) {
+        this.wallColumnCount = wallColumnCount;
+        return this;
+    }
+
+    wallConfigChanged(lastConfig) {
+        return this.wallHeight !== lastConfig.wallHeight ||
+            this.wallColumnCount !== lastConfig.wallColumnCount;
+    }
+
 }

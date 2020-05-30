@@ -55,7 +55,11 @@ export class Scene {
         this.config = this.menu.getSceneConfig();
 
         if (this.config.castleConfigChanged(lastConfig)) {
-            this.world.recreate(this.config);
+            this.world.recreateCastle(this.config);
+        }
+
+        if (this.config.wallConfigChanged(lastConfig)) {
+            this.world.recreateWall(this.config);
         }
     }
 }

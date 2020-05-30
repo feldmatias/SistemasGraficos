@@ -6,7 +6,7 @@ import {Colors} from "../../scene/Colors.js";
 
 export class Wall extends DrawableObject {
 
-    constructor(columns = 6, height = 4, width = 4) {
+    constructor(columns, height, width = 4) {
         super();
         this.columns = columns;
         this.height = height;
@@ -15,7 +15,7 @@ export class Wall extends DrawableObject {
         this.angleStep = 360 / this.columns;
 
         this.initialize();
-        this.rotate(-Math.PI / 3, 0, 1, 0);
+        this.rotate(-Math.PI / 4, 0, 1, 0);
     }
 
     initialize() {
