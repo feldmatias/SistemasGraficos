@@ -31,6 +31,6 @@ export class Wall extends DrawableObject {
         let length = Math.sqrt(2 * this.radius * this.radius * (1 - Math.cos(this.angleStep * Math.PI / 180)));
         let translation = Math.sqrt(this.radius * this.radius - length * length / 4);
         this.frontWall = new FrontWall(this.height, this.width, length)
-            .translate(-translation - 0.25, 0, 0);
+            .translate(0, 0, translation + 0.25);
     }
 }

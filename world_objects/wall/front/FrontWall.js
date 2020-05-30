@@ -1,8 +1,6 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
-import {WallShape} from "../border/WallShape.js";
-import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../../scene/Colors.js";
-import {LinePath} from "../../../surfaces/paths/LinePath.js";
+import {WallEntrance} from "./WallEntrance.js";
+import {FrontWallBorder} from "./FrontWallBorder.js";
 
 export class FrontWall extends DrawableObject {
 
@@ -10,20 +8,33 @@ export class FrontWall extends DrawableObject {
         super();
         this.height = height;
         this.width = width * 0.9;
-        this.length = length;
+        this.length = Math.round(length);
+        this.entranceLength = 5;
 
-        this.initialize();
-        this.rotate(Math.PI / 2, 0, 1, 0);
+        this.createBorders();
+        this.createEntrance();
     }
 
-    initialize() {
-        let shape = new WallShape(this.height, this.width);
-        let path = new LinePath(this.length);
-
-        let data = new SurfacesGenerator().generateSweepSurface(shape, path);
-
-        this.setBuffers(data)
-            .setColor(Colors.WALL_GREY);
+    getChildren() {
+        return [
+            this.borders,
+            this.entrance,
+        ].flat();
     }
 
+    createBorders() {
+        let border = new FrontWallBorder(this.height, this.width, (this.length - this.entranceLength) / 2);
+
+        let leftBorder = border.clone()
+            .translate(0, 0, (border.length + this.entranceLength) / 2);
+
+        let rightBorder = border.clone()
+            .translate(0, 0, -(border.length + this.entranceLength) / 2);
+
+        this.borders = [leftBorder, rightBorder];
+    }
+
+    createEntrance() {
+        this.entrance = new WallEntrance(this.width * 0.8, this.entranceLength, this.height + 0.3);
+    }
 }
