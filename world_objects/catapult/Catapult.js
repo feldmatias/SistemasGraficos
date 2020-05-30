@@ -3,6 +3,7 @@ import {CatapultBase} from "./base/CatapultBase.js";
 import {CatapultBack} from "./back/CatapultBack.js";
 import {CatapultFront} from "./front/CatapultFront.js";
 import {CatapultBarAnimation} from "./bar/CatapultBarAnimation.js";
+import {CatapultRope} from "./CatapultRope.js";
 
 export class Catapult extends DrawableObject {
 
@@ -17,6 +18,8 @@ export class Catapult extends DrawableObject {
         this.front = new CatapultFront()
             .translate(this.base.length / 2 - 2.5, this.base.height / 2, 0);
 
+        this.rope = new CatapultRope(this.front.getEnvelope(), this.back.getEnvelope());
+
         this.animation = new CatapultBarAnimation(this.front.handle, this.back.handle);
     }
 
@@ -25,6 +28,7 @@ export class Catapult extends DrawableObject {
             this.base,
             this.back,
             this.front,
+            this.rope,
         ]
     }
 

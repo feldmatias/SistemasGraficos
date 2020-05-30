@@ -40,4 +40,8 @@ export class CatapultBack extends DrawableObject {
         this.handle = new CatapultBackHandle(this.separation)
             .translate(0, this.height * 0.6, 0);
     }
+
+    getEnvelope() {
+        return this.handle.envelope;
+    }
 }

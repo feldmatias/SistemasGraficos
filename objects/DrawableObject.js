@@ -2,7 +2,8 @@ export class DrawableObject {
 
     constructor() {
         this.gl = webGL;
-        this.modelMatrix = mat4.create()
+        this.modelMatrix = mat4.create();
+        this.worldModelMatrix = mat4.create();
     }
 
     getChildren() {
@@ -20,16 +21,16 @@ export class DrawableObject {
 
         this.getAnimations().forEach(animation => animation.animate());
 
-        let modelMatrix = mat4.create();
-        mat4.multiply(modelMatrix, parentModelMatrix, this.modelMatrix);
+        this.worldModelMatrix = mat4.create();
+        mat4.multiply(this.worldModelMatrix, parentModelMatrix, this.modelMatrix);
 
         if (this.positionsBuffer) {
             let drawer = this.gl.getDrawer();
-            drawer.setModelMatrix(modelMatrix);
+            drawer.setModelMatrix(this.worldModelMatrix);
             drawer.drawObject(this);
         }
 
-        this.getChildren().forEach(child => child.draw(modelMatrix));
+        this.getChildren().forEach(child => child.draw(this.worldModelMatrix));
     }
 
     getPositionsBuffer() {
@@ -127,6 +128,11 @@ export class DrawableObject {
 
     scale(scale) {
         mat4.scale(this.modelMatrix, this.modelMatrix, vec3.fromValues(scale, scale, scale));
+        return this;
+    }
+
+    scaleY(scale) {
+        mat4.scale(this.modelMatrix, this.modelMatrix, vec3.fromValues(1, scale, 1));
         return this;
     }
 
