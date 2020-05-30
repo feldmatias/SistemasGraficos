@@ -26,7 +26,7 @@ export class Menu {
 
     setDefaultValues() {
         this.AlturaCamara = 6;
-        this.DistanciaCamara = 18;
+        this.DistanciaCamara = 25;
         this.VelocidadAngular = 1;
 
         // Castle configuration

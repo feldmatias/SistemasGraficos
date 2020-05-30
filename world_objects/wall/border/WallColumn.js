@@ -1,6 +1,6 @@
-import {DrawableObject} from "../../objects/DrawableObject.js";
-import {SurfacesGenerator} from "../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../scene/Colors.js";
+import {DrawableObject} from "../../../objects/DrawableObject.js";
+import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
+import {Colors} from "../../../scene/Colors.js";
 import {WallColumnShape} from "./WallColumnShape.js";
 
 export class WallColumn extends DrawableObject {

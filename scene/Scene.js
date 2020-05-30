@@ -24,7 +24,7 @@ export class Scene {
     draw() {
         this.getConfig();
 
-        this.world.rotate(0.03 * 0.15 * this.config.angularVelocity, 0, 1, 0); // Apply angular velocity
+        // this.world.rotate(0.03 * 0.15 * this.config.angularVelocity, 0, 1, 0); // Apply angular velocity
 
         this.gl.setup(this.canvas.width(), this.canvas.height(), Colors.SKY_BLUE);
         this.setProjection();

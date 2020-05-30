@@ -1,5 +1,5 @@
-import {RevolutionShape} from "../../surfaces/shapes/RevolutionShape.js";
-import {BSplineQuadraticCurves} from "../../curves/BSplineQuadraticCurves.js";
+import {RevolutionShape} from "../../../surfaces/shapes/RevolutionShape.js";
+import {BSplineQuadraticCurves} from "../../../curves/BSplineQuadraticCurves.js";
 
 export class WallShape extends RevolutionShape {
 

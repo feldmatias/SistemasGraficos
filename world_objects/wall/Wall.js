@@ -1,9 +1,6 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
-import {SurfacesGenerator} from "../../surfaces/SurfacesGenerator.js";
-import {WallShape} from "./WallShape.js";
-import {CirclePath} from "../../surfaces/paths/CirclePath.js";
-import {Colors} from "../../scene/Colors.js";
-import {WallColumn} from "./WallColumn.js";
+import {FrontWall} from "./front/FrontWall.js";
+import {WallBorder} from "./border/WallBorder.js";
 
 export class Wall extends DrawableObject {
 
@@ -15,48 +12,25 @@ export class Wall extends DrawableObject {
         this.radius = 16 - width / 2;
         this.angleStep = 360 / this.columnCount;
 
-        this.initialize();
-        this.createColumns();
-        this.rotateToFront();
+        this.createBorderWall();
+        this.createFrontWall();
     }
 
     getChildren() {
-        return this.columns;
+        return [
+            this.borderWall,
+            this.frontWall,
+        ].flat();
     }
 
-    initialize() {
-        let shape = new WallShape(this.height, this.width);
-        let path = new CirclePath(this.radius, 360 - this.angleStep, this.angleStep);
-
-        let data = new SurfacesGenerator().generateSweepSurface(shape, path);
-
-        this.setBuffers(data)
-            .setColor(Colors.WALL_GREY);
+    createBorderWall() {
+        this.borderWall = new WallBorder(this.columnCount, this.height, this.width, this.radius);
     }
 
-    rotateToFront() {
-        let angles = {
-            4: 45,
-            5: 55,
-            6: 60,
-            7: 65,
-            8: 68,
-        }
-        let angle = angles[this.columnCount] * Math.PI / 180;
-        this.rotate(-angle, 0, 1, 0);
-    }
-
-    createColumns() {
-        this.columns = [];
-        let baseColumn = new WallColumn(this.height, this.width * 1.2);
-
-        for (let i = 0; i < this.columnCount; i++) {
-            let angle = this.angleStep * i * Math.PI / 180;
-            let x = Math.cos(angle) * this.radius;
-            let z = Math.sin(angle) * this.radius;
-            let column = baseColumn.clone()
-                .translate(x, 0, z);
-            this.columns.push(column);
-        }
+    createFrontWall() {
+        let length = Math.sqrt(2 * this.radius * this.radius * (1 - Math.cos(this.angleStep * Math.PI / 180)));
+        let translation = Math.sqrt(this.radius * this.radius - length * length / 4);
+        this.frontWall = new FrontWall(this.height, this.width, length)
+            .translate(-translation - 0.25, 0, 0);
     }
 }
