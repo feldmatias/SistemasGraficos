@@ -12,7 +12,7 @@ export class CastleColumn extends DrawableObject {
         this.height = height;
         this.topHeight = topHeight;
         this.width = 0.4;
-        this.topWidth = this.width * 1.5;
+        this.topWidth = this.width * 1.8;
 
         this.initialize();
         this.createRoof();

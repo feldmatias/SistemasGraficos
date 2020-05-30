@@ -12,7 +12,7 @@ export class CastleWindow extends DrawableObject {
     }
 
     initialize(width, height) {
-        let shape = new CastleWindowShape(width, height);
+        let shape = new CastleWindowShape(width, height * 0.6);
         let path = new LinePath(0.2, 0.1);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);

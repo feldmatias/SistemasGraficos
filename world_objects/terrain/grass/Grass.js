@@ -5,7 +5,7 @@ import {GrassShape} from "./GrassShape.js";
 
 export class Grass extends DrawableObject {
 
-    constructor(isleLength, waterLength = 3) {
+    constructor(isleLength, waterLength = 5) {
         super();
 
         this.isleLength = isleLength;

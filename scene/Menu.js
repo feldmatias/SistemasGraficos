@@ -12,8 +12,8 @@ export class Menu {
 
         // Castle configuration
         let castle = this.menu.addFolder('Castillo');
-        castle.add(this, 'Ancho', 2, 6).step(1);
-        castle.add(this, 'Largo', 2, 6).step(1);
+        castle.add(this, 'Ancho', 4, 12).step(1);
+        castle.add(this, 'Largo', 4, 12).step(1);
         castle.add(this, 'Pisos', 1, 5).step(1);
         castle.open();
 
@@ -30,8 +30,8 @@ export class Menu {
         this.VelocidadAngular = 1;
 
         // Castle configuration
-        this.Ancho = 5;
-        this.Largo = 3;
+        this.Ancho = 7;
+        this.Largo = 9;
         this.Pisos = 2;
 
         // Wall configuration

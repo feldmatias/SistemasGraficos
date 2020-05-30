@@ -6,7 +6,7 @@ import {CastleColumn} from "./column/CastleColumn.js";
 
 export class Castle extends DrawableObject {
 
-    constructor(width, length, floorsCount, floorHeight = 2) {
+    constructor(width, length, floorsCount, floorHeight = 4) {
         super();
 
         this.width = width;
@@ -77,8 +77,8 @@ export class Castle extends DrawableObject {
     }
 
     createColumns() {
-        let columnHeight = this.floorHeight / 2 + this.floorHeight * this.floorsCount;
-        let column = new CastleColumn(columnHeight, this.floorHeight);
+        let columnHeight = this.floorHeight / 4 + this.floorHeight * this.floorsCount;
+        let column = new CastleColumn(columnHeight, this.floorHeight * 0.6);
 
         let rightFrontColumn = column.clone()
             .translate(this.width / 2, 0, this.length / 2);

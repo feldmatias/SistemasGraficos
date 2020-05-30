@@ -12,7 +12,7 @@ export class Wall extends DrawableObject {
         this.columnCount = columnCount;
         this.height = height;
         this.width = width;
-        this.radius = 12 - width / 2;
+        this.radius = 16 - width / 2;
         this.angleStep = 360 / this.columnCount;
 
         this.initialize();
