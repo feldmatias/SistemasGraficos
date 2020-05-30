@@ -15,7 +15,7 @@ export class Wall extends DrawableObject {
         this.angleStep = 360 / this.columns;
 
         this.initialize();
-        this.rotate(-Math.PI / 4, 0, 1, 0);
+        this.rotateToFront();
     }
 
     initialize() {
@@ -28,4 +28,15 @@ export class Wall extends DrawableObject {
             .setColor(Colors.WALL_GREY);
     }
 
+    rotateToFront() {
+        let angles = {
+            4: 45,
+            5: 55,
+            6: 60,
+            7: 65,
+            8: 68,
+        }
+        let angle = angles[this.columns] * Math.PI / 180;
+        this.rotate(-angle, 0, 1, 0);
+    }
 }
