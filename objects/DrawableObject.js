@@ -116,6 +116,11 @@ export class DrawableObject {
         return cloned;
     }
 
+    setModelMatrix(modelMatrix) {
+        this.modelMatrix = modelMatrix;
+        return this;
+    }
+
     rotate(angle, x, y, z) {
         mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(x, y, z));
         return this;

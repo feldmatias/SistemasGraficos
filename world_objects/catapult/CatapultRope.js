@@ -8,6 +8,9 @@ export class CatapultRope extends DrawableObject {
         super();
         this.frontEnvelope = frontEnvelope;
         this.backEnvelope = backEnvelope;
+
+        this.rope = new Cylinder(0.015, 1)
+            .setColor(Colors.WHITE);
     }
 
     draw() {
@@ -21,14 +24,11 @@ export class CatapultRope extends DrawableObject {
 
         let distance = vec3.distance(destination, origin);
 
-        this.rope = new Cylinder(0.015, 1)
-            .setColor(Colors.WHITE);
-
         let lookMatrix = mat4.create();
         mat4.targetTo(lookMatrix, origin, destination, vec3.fromValues(0, 1, 0));
-        mat4.multiply(this.rope.modelMatrix, this.rope.modelMatrix, lookMatrix);
 
-        this.rope.rotate(Math.PI / 2, 1, 0, 0)
+        this.rope.setModelMatrix(lookMatrix)
+            .rotate(Math.PI / 2, 1, 0, 0)
             .scaleY(distance)
             .translate(0, -0.5, 0);
     }
