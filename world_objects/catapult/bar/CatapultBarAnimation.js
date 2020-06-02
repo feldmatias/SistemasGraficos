@@ -28,7 +28,7 @@ export class CatapultBarAnimation extends Animation {
             this.currentAngle = this.maxAngle;
             this.velocity *= -0.5;
         }
-        if (this.currentAngle < 0) {
+        if (this.currentAngle <= 0) {
             this.currentAngle = 0;
             this.velocity *= -2;
             this.stop();
