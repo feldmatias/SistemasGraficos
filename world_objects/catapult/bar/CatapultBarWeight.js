@@ -47,6 +47,6 @@ export class CatapultBarWeight extends DrawableObject {
         let size = 1.4;
         this.weight = new Cube(size, size, size)
             .setColor(Colors.CATAPULT_GREY)
-            .translate(0, -size, 0);
+            .translate(0, -size / 2 - this.height * 0.7, 0);
     }
 }
