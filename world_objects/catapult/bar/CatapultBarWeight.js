@@ -31,16 +31,15 @@ export class CatapultBarWeight extends DrawableObject {
             .setColor(Colors.CATAPULT_BROWN);
 
         this.leftTrapezium = trapezium.clone()
-            .translate(0, this.height / 2, this.separation / 2);
+            .translate(0, -this.height / 2 /* *0.85 */, this.separation / 2);
 
         this.rightTrapezium = trapezium.clone()
-            .translate(0, this.height / 2, -this.separation / 2);
+            .translate(0, -this.height / 2, -this.separation / 2);
     }
 
     createHandle() {
         this.handle = new Cylinder(0.07, this.separation + 0.4)
             .setColor(Colors.CATAPULT_DARK_BROWN)
-            .translate(0, this.height * 0.85, 0)
             .rotate(Math.PI / 2, 1, 0, 0);
     }
 
@@ -48,6 +47,6 @@ export class CatapultBarWeight extends DrawableObject {
         let size = 1.4;
         this.weight = new Cube(size, size, size)
             .setColor(Colors.CATAPULT_GREY)
-            .translate(0, -size / 2, 0);
+            .translate(0, -size, 0);
     }
 }
