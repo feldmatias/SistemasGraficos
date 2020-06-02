@@ -24,17 +24,17 @@ export class CatapultFrontHandle extends DrawableObject {
     createBase() {
         this.base = new Cylinder(0.32, this.size)
             .setColor(Colors.CATAPULT_DARK_BROWN)
-            .rotate(Math.PI / 2, 1, 0, 0);
+            .rotateX(Math.PI / 2);
     }
 
     createBar() {
         this.bar = new CatapultBar()
-            .rotate(Math.PI / 2, 0, -1, 0);
+            .rotateY(-Math.PI / 2);
         this.bar.translate(0, 0.25, this.bar.length / 2 * 0.7);
     }
 
     move(angle) {
-        this.rotate(angle, 0, 0, -1);
-        this.bar.barWeight.rotate(angle, 0, 0, 1);
+        this.rotateZ(-angle);
+        this.bar.barWeight.rotateZ(angle);
     }
 }

@@ -52,7 +52,7 @@ export class Castle extends DrawableObject {
         let separatorWidth = 0.1;
 
         let separatorFrontBack = new CastleFloorSeparator(separatorWidth, this.width);
-        separatorFrontBack.rotate(Math.PI / 2, 0, 1, 0);
+        separatorFrontBack.rotateY(Math.PI / 2);
 
         let frontSeparator = separatorFrontBack.clone()
             .translate(-this.length / 2, this.floorHeight * i, 0);

@@ -8,7 +8,7 @@ export class CatapultWheel extends DrawableObject {
         super();
 
         this.object = new Cylinder(1, 0.2)
-            .rotate(Math.PI / 2, 1, 0, 0)
+            .rotateX(Math.PI / 2)
             .setColor(Colors.CATAPULT_BROWN);
     }
 

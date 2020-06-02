@@ -121,11 +121,6 @@ export class DrawableObject {
         return this;
     }
 
-    rotate(angle, x, y, z) {
-        mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(x, y, z));
-        return this;
-    }
-
     translate(x, y, z) {
         mat4.translate(this.modelMatrix, this.modelMatrix, vec3.fromValues(x, y, z));
         return this;
@@ -138,6 +133,21 @@ export class DrawableObject {
 
     scaleY(scale) {
         mat4.scale(this.modelMatrix, this.modelMatrix, vec3.fromValues(1, scale, 1));
+        return this;
+    }
+
+    rotateX(angle) {
+        mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(1, 0, 0));
+        return this;
+    }
+
+    rotateY(angle) {
+        mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(0, 1, 0));
+        return this;
+    }
+
+    rotateZ(angle) {
+        mat4.rotate(this.modelMatrix, this.modelMatrix, angle, vec3.fromValues(0, 0, 1));
         return this;
     }
 

@@ -28,7 +28,7 @@ export class CatapultRope extends DrawableObject {
         mat4.targetTo(lookMatrix, origin, destination, vec3.fromValues(0, 1, 0));
 
         this.rope.setModelMatrix(lookMatrix)
-            .rotate(Math.PI / 2, 1, 0, 0)
+            .rotateX(Math.PI / 2)
             .scaleY(distance)
             .translate(0, -0.5, 0);
     }

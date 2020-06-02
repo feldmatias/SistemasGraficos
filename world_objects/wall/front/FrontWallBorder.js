@@ -13,7 +13,7 @@ export class FrontWallBorder extends DrawableObject {
         this.length = length;
 
         this.initialize();
-        this.rotate(Math.PI / 2, 0, 1, 0);
+        this.rotateY(Math.PI / 2);
     }
 
     initialize() {

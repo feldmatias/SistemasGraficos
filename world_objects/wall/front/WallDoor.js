@@ -28,7 +28,7 @@ export class WallDoor extends DrawableObject {
     }
 
     move(angle) {
-        this.rotate(angle, 1, 0, 0);
+        this.rotateX(angle);
     }
 
 }

@@ -43,7 +43,7 @@ export class CatapultBar extends DrawableObject {
     createBarWeight() {
         this.barWeight = new CatapultBarWeight();
         this.barWeight.translate(0, 0, -this.length / 2 * 0.95)
-            .rotate(Math.PI / 2, 0, 1, 0);
+            .rotateY(Math.PI / 2);
     }
 
     createBall() {
@@ -55,6 +55,6 @@ export class CatapultBar extends DrawableObject {
         this.envelope = new Cylinder(0.5, 0.35)
             .setColor(Colors.WHITE)
             .translate(0, 0, 1)
-            .rotate(Math.PI / 2, 1, 0, 0);
+            .rotateX(Math.PI / 2);
     }
 }

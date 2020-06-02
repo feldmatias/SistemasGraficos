@@ -32,10 +32,10 @@ export class CatapultBase extends DrawableObject {
 
         this.axleFront = axle.clone()
             .translate(0, 0, translation)
-            .rotate(Math.PI / 2, 0, 1, 0);
+            .rotateY(Math.PI / 2);
 
         this.axleBack = axle.clone()
             .translate(0, 0, -translation)
-            .rotate(Math.PI / 2, 0, 1, 0);
+            .rotateY(Math.PI / 2);
     }
 }

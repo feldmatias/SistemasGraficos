@@ -23,7 +23,7 @@ export class CastleFloor extends DrawableObject {
         let data = new SurfacesGenerator().generateSweepSurface(shape, path);
 
         this.setBuffers(data)
-            .rotate(-Math.PI / 2, 1, 0, 0)
+            .rotateX(-Math.PI / 2)
             .setColor(Colors.CASTLE_YELLOW);
 
         this.createWindows(width, length, height);
@@ -37,11 +37,11 @@ export class CastleFloor extends DrawableObject {
 
         for (let i = 0; i < width - 1; i++) {
             let windowFront = window.clone()
-                .rotate(Math.PI / 2, 1, 0, 0)
+                .rotateX(Math.PI / 2)
                 .translate(width / 2 - 1 - i, 0, length / 2);
 
             let windowBack = window.clone()
-                .rotate(Math.PI / 2, 1, 0, 0)
+                .rotateX(Math.PI / 2)
                 .translate(width / 2 - 1 - i, 0, -length / 2);
 
             this.windows.push(windowFront, windowBack);
@@ -49,14 +49,14 @@ export class CastleFloor extends DrawableObject {
 
         for (let i = 0; i < length - 1; i++) {
             let windowLeft = window.clone()
-                .rotate(Math.PI / 2, 1, 0, 0)
+                .rotateX(Math.PI / 2)
                 .translate(width / 2, 0, length / 2 - 1 - i)
-                .rotate(Math.PI / 2, 0, 1, 0);
+                .rotateY(Math.PI / 2);
 
             let windowRight = window.clone()
-                .rotate(Math.PI / 2, 1, 0, 0)
+                .rotateX(Math.PI / 2)
                 .translate(-width / 2, 0, length / 2 - 1 - i)
-                .rotate(Math.PI / 2, 0, 1, 0);
+                .rotateY(Math.PI / 2);
 
             this.windows.push(windowLeft, windowRight);
         }

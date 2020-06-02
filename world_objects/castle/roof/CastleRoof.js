@@ -19,7 +19,7 @@ export class CastleRoof extends DrawableObject {
 
         this.setBuffers(data)
             .setColor(Colors.CASTLE_BLUE)
-            .rotate(-Math.PI / 2, 1, 0, 0);
+            .rotateX(-Math.PI / 2);
     }
 
 }

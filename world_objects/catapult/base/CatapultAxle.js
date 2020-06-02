@@ -11,7 +11,7 @@ export class CatapultAxle extends DrawableObject {
         this.size = size + 0.2;
 
         this.axle = new Cylinder(0.1, this.size + 0.46)
-            .rotate(Math.PI / 2, 1, 0, 0)
+            .rotateX(Math.PI / 2)
             .setColor(Colors.CATAPULT_DARK_BROWN);
         this.createWheels();
     }

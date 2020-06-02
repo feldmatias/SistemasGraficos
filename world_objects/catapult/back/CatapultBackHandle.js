@@ -26,7 +26,7 @@ export class CatapultBackHandle extends DrawableObject {
     createBase() {
         this.base = new Cylinder(0.2, this.size)
             .setColor(Colors.CATAPULT_DARK_BROWN)
-            .rotate(Math.PI / 2, 1, 0, 0);
+            .rotateX(Math.PI / 2);
     }
 
     createHandles() {
@@ -44,11 +44,11 @@ export class CatapultBackHandle extends DrawableObject {
     createEnvelope() {
         this.envelope = new Cylinder(0.4, this.size / 4)
             .setColor(Colors.WHITE)
-            .rotate(Math.PI / 2, 1, 0, 0);
+            .rotateX(Math.PI / 2);
     }
 
     move(angle) {
         let velocity = 8;
-        this.rotate(angle * velocity, 0, 0, -1);
+        this.rotateZ(-angle * velocity);
     }
 }

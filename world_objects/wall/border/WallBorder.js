@@ -57,7 +57,7 @@ export class WallBorder extends DrawableObject {
             8: 68,
         }
         let angle = angles[this.columnCount] * Math.PI / 180;
-        this.rotate(-angle, 0, 1, 0);
+        this.rotateY(-angle);
     }
 
 }

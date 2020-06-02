@@ -8,7 +8,7 @@ export class CatapultBack extends DrawableObject {
     constructor() {
         super();
 
-        this.rotate(Math.PI / 2, 0, 1, 0);
+        this.rotateY(Math.PI / 2);
 
         this.createTrapeziums();
         this.createHandle();

@@ -40,7 +40,7 @@ export class CatapultBarWeight extends DrawableObject {
     createHandle() {
         this.handle = new Cylinder(0.07, this.separation + 0.4)
             .setColor(Colors.CATAPULT_DARK_BROWN)
-            .rotate(Math.PI / 2, 1, 0, 0);
+            .rotateX(Math.PI / 2);
     }
 
     createWeight() {
