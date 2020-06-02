@@ -1,7 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Cylinder} from "../../../objects/Cylinder.js";
 import {Colors} from "../../../scene/Colors.js";
-import {CatapultBar} from "../bar/CatapultBar.js";
+import {CatapultBar} from "./bar/CatapultBar.js";
 
 export class CatapultFrontHandle extends DrawableObject {
 

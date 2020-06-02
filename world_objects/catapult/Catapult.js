@@ -2,7 +2,7 @@ import {DrawableObject} from "../../objects/DrawableObject.js";
 import {CatapultBase} from "./base/CatapultBase.js";
 import {CatapultBack} from "./back/CatapultBack.js";
 import {CatapultFront} from "./front/CatapultFront.js";
-import {CatapultBarAnimation} from "./bar/CatapultBarAnimation.js";
+import {CatapultBarAnimation} from "./front/bar/CatapultBarAnimation.js";
 import {CatapultRope} from "./CatapultRope.js";
 
 export class Catapult extends DrawableObject {

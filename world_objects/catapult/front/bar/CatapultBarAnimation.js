@@ -1,4 +1,4 @@
-import {Animation} from "../../../objects/Animation.js";
+import {Animation} from "../../../../objects/Animation.js";
 
 export class CatapultBarAnimation extends Animation {
 

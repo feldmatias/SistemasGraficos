@@ -1,9 +1,9 @@
-import {DrawableObject} from "../../../objects/DrawableObject.js";
-import {Cube} from "../../../objects/Cube.js";
-import {Colors} from "../../../scene/Colors.js";
+import {DrawableObject} from "../../../../objects/DrawableObject.js";
+import {Cube} from "../../../../objects/Cube.js";
+import {Colors} from "../../../../scene/Colors.js";
 import {CatapultBarWeight} from "./CatapultBarWeight.js";
-import {Ball} from "../../Ball.js";
-import {Cylinder} from "../../../objects/Cylinder.js";
+import {Ball} from "../../../Ball.js";
+import {Cylinder} from "../../../../objects/Cylinder.js";
 
 export class CatapultBar extends DrawableObject {
 
