@@ -42,7 +42,7 @@ export class CatapultBar extends DrawableObject {
 
     createBarWeight() {
         this.barWeight = new CatapultBarWeight();
-        this.barWeight.translate(0, -this.barWeight.height * 0.9, -this.length / 2 * 0.95)
+        this.barWeight.translate(0, 0, -this.length / 2 * 0.95)
             .rotate(Math.PI / 2, 0, 1, 0);
     }
 
