@@ -31,10 +31,10 @@ export class CatapultBarWeight extends DrawableObject {
             .setColor(Colors.CATAPULT_BROWN);
 
         this.leftTrapezium = trapezium.clone()
-            .translate(0, -this.height / 2 /* *0.85 */, this.separation / 2);
+            .translate(0, -this.height / 2 * 0.7, this.separation / 2);
 
         this.rightTrapezium = trapezium.clone()
-            .translate(0, -this.height / 2, -this.separation / 2);
+            .translate(0, -this.height / 2 * 0.7, -this.separation / 2);
     }
 
     createHandle() {

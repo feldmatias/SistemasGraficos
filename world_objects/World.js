@@ -29,7 +29,7 @@ export class World extends DrawableObject {
     createCatapult() {
         this.catapult = new Catapult()
             .scale(0.6)
-            .translate(0, 1, 0);
+            .translate(0, 1, 45);
     }
 
     createWall(config) {
@@ -41,10 +41,10 @@ export class World extends DrawableObject {
 
     getChildren() {
         return [
-            //this.castle,
+            this.castle,
             this.terrain,
             this.catapult,
-            //this.wall,
+            this.wall,
         ];
     }
 
