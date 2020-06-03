@@ -5,7 +5,10 @@ export class Animation {
     }
 
     start() {
-        this.animating = true;
+        if (!this.animating) {
+            this.reset();
+            this.animating = true;
+        }
     }
 
     stop() {
@@ -20,5 +23,9 @@ export class Animation {
 
     next() {
         throw "Not implemented"
+    }
+
+    reset() {
+        // Do nothing
     }
 }

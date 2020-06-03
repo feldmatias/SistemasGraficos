@@ -3,6 +3,8 @@ import {Castle} from "./castle/Castle.js";
 import {Terrain} from "./terrain/Terrain.js";
 import {Catapult} from "./catapult/Catapult.js";
 import {Wall} from "./wall/Wall.js";
+import {BallAnimation} from "./ball/BallAnimation.js";
+import {Ball} from "./ball/Ball.js";
 
 export class World extends DrawableObject {
 
@@ -13,6 +15,7 @@ export class World extends DrawableObject {
         this.createTerrain();
         this.createCatapult();
         this.createWall(config);
+        this.createBall();
     }
 
     createCastle(config) {
@@ -29,7 +32,7 @@ export class World extends DrawableObject {
     createCatapult() {
         this.catapult = new Catapult()
             .scale(0.6)
-            .translate(0, 1, 45);
+            .translate(0, 1, /*45*/0);
     }
 
     createWall(config) {
@@ -39,12 +42,22 @@ export class World extends DrawableObject {
         this.wall = new Wall(config.wallColumnCount, config.wallHeight);
     }
 
+    createBall() {
+        this.ball = new Ball();
+        this.ball.hide();
+        this.ball.ball.setColor([255,0, 0]);
+        let ballAnimation = new BallAnimation(this.ball, this.catapult.getBall(), this);
+        this.ball.setAnimation(ballAnimation);
+        this.catapult.setWorldBall(this.ball);
+    }
+
     getChildren() {
         return [
-            this.castle,
-            this.terrain,
+            //this.castle,
+            //this.terrain,
             this.catapult,
-            this.wall,
+            //this.wall,
+            this.ball,
         ];
     }
 
@@ -55,5 +68,6 @@ export class World extends DrawableObject {
 
     recreateWall(config) {
         this.createWall(config);
+        this.ball.animation.start();  // TODO: do this on catapult shoot
     }
 }

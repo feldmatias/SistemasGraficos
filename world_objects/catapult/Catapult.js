@@ -37,4 +37,12 @@ export class Catapult extends DrawableObject {
             this.animation,
         ]
     }
+
+    getBall() {
+        return this.front.handle.bar.ball;
+    }
+
+    setWorldBall(worldBall) {
+        this.worldBall = worldBall;
+    }
 }
