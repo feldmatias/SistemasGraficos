@@ -20,7 +20,7 @@ export class Catapult extends DrawableObject {
 
         this.rope = new CatapultRope(this.front.getEnvelope(), this.back.getEnvelope());
 
-        this.animation = new CatapultBarAnimation(this.front.handle, this.back.handle);
+        this.animation = new CatapultBarAnimation(this.front.handle, this.back.handle, this);
     }
 
     getChildren() {
@@ -44,5 +44,16 @@ export class Catapult extends DrawableObject {
 
     setWorldBall(worldBall) {
         this.worldBall = worldBall;
+    }
+
+    startShooting() {
+        if (this.worldBall.isShowing) {
+            return;
+        }
+        this.animation.start();
+    }
+
+    shoot() {
+        this.worldBall.shoot();
     }
 }

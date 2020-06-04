@@ -27,4 +27,10 @@ export class Ball extends DrawableObject {
         return this.animation ? [this.animation] : [];
     }
 
+    shoot() {
+        if (this.animation) {
+            this.animation.start();
+        }
+    }
+
 }

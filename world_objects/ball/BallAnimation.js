@@ -44,6 +44,8 @@ export class BallAnimation extends Animation {
         this.lastPosition = position;
 
         this.ball.translate(0, translation[1], -translation[0]);
+
+        console.log(translation)
     }
 
     stop() {
