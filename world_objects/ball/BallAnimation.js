@@ -9,7 +9,7 @@ export class BallAnimation extends Animation {
         this.world = world;
 
         this.velocity = 25;
-        this.angle = 50 * Math.PI / 180;
+        this.angle = 40 * Math.PI / 180;
     }
 
     reset() {
@@ -28,7 +28,6 @@ export class BallAnimation extends Animation {
     }
 
     next() {
-        this.time += 1 / 60;
 
         let x = this.initialPosition[0] + this.velocity * Math.cos(this.angle) * this.time;
         let y = this.initialPosition[1] + this.velocity * Math.sin(this.angle) * this.time - 5 * this.time * this.time;
@@ -45,7 +44,7 @@ export class BallAnimation extends Animation {
 
         this.ball.translate(translation[0], translation[1], 0);
 
-        console.log(translation)
+        this.time += 1 / 60;
     }
 
     stop() {
