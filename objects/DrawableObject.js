@@ -167,4 +167,10 @@ export class DrawableObject {
         this.modelMatrix = modelMatrix;
     }
 
+    getPosition() {
+        let position = vec3.create();
+        mat4.getTranslation(position, this.worldModelMatrix);
+        return position;
+    }
+
 }
