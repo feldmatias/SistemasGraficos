@@ -9,15 +9,22 @@ export class BallAnimation extends Animation {
         this.world = world;
 
         this.velocity = 25;
-        this.angle = 40 * Math.PI / 180;
+        this.angle = 30 * Math.PI / 180;
     }
 
     reset() {
         this.ball.show();
         this.catapultBall.hide();
 
-        let matrix = mat4.create();
-        mat4.translate(matrix, matrix, this.catapultBall.getPosition());
+        let matrix = mat4.clone(this.catapultBall.worldModelMatrix);
+        let parentMatrix = mat4.clone(this.world.modelMatrix);
+        mat4.invert(parentMatrix, parentMatrix);
+        mat4.multiply(matrix, parentMatrix, matrix); // Remove world transformations because they will be applied in each draw
+
+        let position = vec3.create();
+        mat4.getTranslation(position, matrix);
+        mat4.identity(matrix)
+        mat4.translate(matrix, matrix, position);
         mat4.scale(matrix, matrix, this.catapultBall.getScale());
         mat4.rotateY(matrix, matrix, Math.PI / 2);
         this.ball.setMatrix(matrix);
@@ -25,15 +32,17 @@ export class BallAnimation extends Animation {
         this.time = 0;
         this.initialPosition = this.catapultBall.getPosition();
         this.lastPosition = this.initialPosition;
+
     }
 
     next() {
+        this.time += 1 / 60;
 
         let x = this.initialPosition[0] + this.velocity * Math.cos(this.angle) * this.time;
         let y = this.initialPosition[1] + this.velocity * Math.sin(this.angle) * this.time - 5 * this.time * this.time;
         let position = vec3.fromValues(x, y, 0);
 
-        if (y <= 0){
+        if (y < 0){
             this.stop();
             return;
         }
@@ -43,8 +52,6 @@ export class BallAnimation extends Animation {
         this.lastPosition = position;
 
         this.ball.translate(translation[0], translation[1], 0);
-
-        this.time += 1 / 60;
     }
 
     stop() {

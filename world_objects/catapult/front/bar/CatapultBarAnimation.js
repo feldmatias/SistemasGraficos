@@ -6,7 +6,7 @@ export class CatapultBarAnimation extends Animation {
         super();
 
         this.velocity = 50;
-        this.maxAngle = 50;
+        this.maxAngle = 70;
 
         this.currentAngle = 0;
         this.catapultBar = catapultBar;
@@ -27,12 +27,12 @@ export class CatapultBarAnimation extends Animation {
     checkNextAnimation() {
         if (this.currentAngle >= this.maxAngle) {
             this.currentAngle = this.maxAngle;
-            this.velocity *= -0.5;
+            this.velocity *= -0.25;
             this.catapult.shoot();
         }
         if (this.currentAngle <= 0) {
             this.currentAngle = 0;
-            this.velocity *= -2;
+            this.velocity *= -4;
             this.stop();
         }
     }
