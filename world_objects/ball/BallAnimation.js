@@ -16,7 +16,7 @@ export class BallAnimation extends Animation {
         this.ball.show();
         this.catapultBall.hide();
 
-        this.setBallMatrix();
+        this.setBallInitialMatrix();
 
         this.time = 0;
         this.initialPosition = this.catapultBall.getPosition();
@@ -49,7 +49,7 @@ export class BallAnimation extends Animation {
         super.stop();
     }
 
-    setBallMatrix() {
+    setBallInitialMatrix() {
         let matrix = mat4.clone(this.catapultBall.worldModelMatrix);  // Copy other ball's matrix
 
         let parentMatrix = mat4.clone(this.world.modelMatrix);
