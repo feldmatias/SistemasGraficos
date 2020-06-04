@@ -173,4 +173,10 @@ export class DrawableObject {
         return position;
     }
 
+    getScale() {
+        let scale = vec3.create();
+        mat4.getScaling(scale, this.worldModelMatrix);
+        return scale;
+    }
+
 }
