@@ -16,18 +16,7 @@ export class BallAnimation extends Animation {
         this.ball.show();
         this.catapultBall.hide();
 
-        let matrix = mat4.clone(this.catapultBall.worldModelMatrix);
-        let parentMatrix = mat4.clone(this.world.modelMatrix);
-        mat4.invert(parentMatrix, parentMatrix);
-        mat4.multiply(matrix, parentMatrix, matrix); // Remove world transformations because they will be applied in each draw
-
-        let position = vec3.create();
-        mat4.getTranslation(position, matrix);
-        mat4.identity(matrix)
-        mat4.translate(matrix, matrix, position);
-        mat4.scale(matrix, matrix, this.catapultBall.getScale());
-        mat4.rotateY(matrix, matrix, Math.PI / 2);
-        this.ball.setMatrix(matrix);
+        this.setBallMatrix();
 
         this.time = 0;
         this.initialPosition = this.catapultBall.getPosition();
@@ -60,4 +49,21 @@ export class BallAnimation extends Animation {
         super.stop();
     }
 
+    setBallMatrix() {
+        let matrix = mat4.clone(this.catapultBall.worldModelMatrix);  // Copy other ball's matrix
+
+        let parentMatrix = mat4.clone(this.world.modelMatrix);
+        mat4.invert(parentMatrix, parentMatrix);
+        mat4.multiply(matrix, parentMatrix, matrix); // Remove world transformations because they will be applied in each draw
+
+        let position = vec3.create();
+        mat4.getTranslation(position, matrix);  // Get current position of catapult ball
+
+        matrix = mat4.create();
+        mat4.translate(matrix, matrix, position);  // Translate world ball to current position
+        mat4.scale(matrix, matrix, this.catapultBall.getScale());
+        mat4.rotateY(matrix, matrix, Math.PI / 2);
+
+        this.ball.setMatrix(matrix);
+    }
 }

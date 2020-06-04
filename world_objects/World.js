@@ -32,7 +32,7 @@ export class World extends DrawableObject {
     createCatapult() {
         this.catapult = new Catapult()
             .scale(0.6)
-            .translate(0, 1, /*45*/0);
+            .translate(0, 1, 45);
     }
 
     createWall(config) {
@@ -45,7 +45,7 @@ export class World extends DrawableObject {
     createBall() {
         this.ball = new Ball();
         this.ball.hide();
-        this.ball.ball.setColor([255,0, 0]);
+
         let ballAnimation = new BallAnimation(this.ball, this.catapult.getBall(), this);
         this.ball.setAnimation(ballAnimation);
         this.catapult.setWorldBall(this.ball);
@@ -53,10 +53,10 @@ export class World extends DrawableObject {
 
     getChildren() {
         return [
-            //this.castle,
-            //this.terrain,
+            this.castle,
+            this.terrain,
             this.catapult,
-            //this.wall,
+            this.wall,
             this.ball,
         ];
     }
