@@ -5,7 +5,7 @@ export class CatapultBarAnimation extends Animation {
     constructor(catapultBar, catapultBackHandle, catapult) {
         super();
 
-        this.velocity = 50;
+        this.velocity = 60;
         this.maxAngle = 70;
 
         this.currentAngle = 0;
