@@ -24,8 +24,12 @@ export class Scene {
     }
 
     createCameras() {
-        this.orbitalCamera = new OrbitalCamera();
-        this.currentCamera = this.orbitalCamera;
+        this.cameras = {
+            orbital: new OrbitalCamera()
+        };
+
+        this.currentCamera = this.cameras.orbital;
+        this.currentCamera.activate();
     }
 
     draw() {
@@ -67,6 +71,12 @@ export class Scene {
 
         if (this.config.wallConfigChanged(lastConfig)) {
             this.world.recreateWall(this.config);
+        }
+
+        if (this.config.cameraChanged(lastConfig)) {
+            /*this.currentCamera.deactivate();
+            this.currentCamera = this.cameras[this.config.camera];
+            this.currentCamera.activate();*/
         }
     }
 }

@@ -1,8 +1,10 @@
 import {InputHandler} from "../scene/InputHandler.js";
+import {Camera} from "./Camera.js";
 
-export class OrbitalCamera {
+export class OrbitalCamera extends Camera {
 
     constructor() {
+        super();
         this.inputHandler = new OrbitalCameraInputHandler(this);
 
         this.alpha = 0;
@@ -58,11 +60,15 @@ class OrbitalCameraInputHandler extends InputHandler {
     }
 
     onMouseMoved(deltaX, deltaY) {
-        this.camera.move(deltaX, -deltaY);
+        if (this.camera.isActive()) {
+            this.camera.move(deltaX, -deltaY);
+        }
     }
 
     onScroll(direction) {
-        this.camera.scroll(-direction);
+        if (this.camera.isActive()) {
+            this.camera.scroll(-direction);
+        }
     }
 
 }

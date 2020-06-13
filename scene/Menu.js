@@ -2,10 +2,18 @@ import {SceneConfig} from "./SceneConfig.js";
 
 export class Menu {
 
+    cameraOptions = {
+        Orbital: 'orbital',
+        Catapulta: 'catapult',
+        PrimeraPersona: 'firstPerson'
+    }
+
     constructor() {
         this.setDefaultValues();
 
         this.menu = new dat.GUI();
+
+        this.menu.add(this, 'Camara', Object.keys(this.cameraOptions));
 
         // Castle configuration
         let castle = this.menu.addFolder('Castillo');
@@ -22,6 +30,8 @@ export class Menu {
     }
 
     setDefaultValues() {
+        this.Camara = 'Orbital';
+
         // Castle configuration
         this.Ancho = 7;
         this.Largo = 9;
@@ -38,6 +48,7 @@ export class Menu {
             .setCastleLength(this.Largo)
             .setCastleFloorsCount(this.Pisos)
             .setWallHeight(this.Altura)
-            .setWallColumnCount(this.Columnas);
+            .setWallColumnCount(this.Columnas)
+            .setCamera(this.cameraOptions[this.Camara]);
     }
 }

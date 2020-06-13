@@ -22,7 +22,7 @@ export class Animation {
     }
 
     next() {
-        throw "Not implemented"
+        throw "Not implemented";
     }
 
     reset() {

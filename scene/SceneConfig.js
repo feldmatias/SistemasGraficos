@@ -36,4 +36,13 @@ export class SceneConfig {
             this.wallColumnCount !== lastConfig.wallColumnCount;
     }
 
+    setCamera(camera) {
+        this.camera = camera;
+        return this;
+    }
+
+    cameraChanged(lastConfig) {
+        return this.camera !== lastConfig.camera;
+    }
+
 }
