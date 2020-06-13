@@ -30,7 +30,7 @@ export class Menu {
     }
 
     setDefaultValues() {
-        this.Camara = 'Catapulta';
+        this.Camara = 'Orbital';
 
         // Castle configuration
         this.Ancho = 7;

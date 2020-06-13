@@ -7,7 +7,7 @@ export class FirstPersonCamera extends Camera {
         super();
         this.inputHandler = new FirstPersonCameraInputHandler(this);
 
-        this.position = vec3.fromValues(0, 2, 50);
+        this.position = vec3.fromValues(20, 2, 50);
         this.forward = vec3.fromValues(0, 0, 1);
         this.right = vec3.fromValues(1, 0, 0);
 
@@ -15,8 +15,8 @@ export class FirstPersonCamera extends Camera {
         this.beta = 1.5;
         this.rotate(this.alpha);
 
-        this.lookVelocity = 0.002;
-        this.moveVelocity = 0.5;
+        this.lookVelocity = 0.0015;
+        this.moveVelocity = 0.2;
     }
 
     moveLook(deltaX, deltaY) {

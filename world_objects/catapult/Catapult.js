@@ -24,8 +24,8 @@ export class Catapult extends DrawableObject {
         this.animation = new CatapultBarAnimation(this.front.handle, this.back.handle, this);
         this.inputHandler = new CatapultInputHandler(this);
 
-        this.moveVelocity = 0.45;
-        this.rotationVelocity = 0.02;
+        this.moveVelocity = 0.3;
+        this.rotationVelocity = 0.01;
         this.rotation = 0;
     }
 

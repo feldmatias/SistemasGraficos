@@ -56,9 +56,24 @@ export class InputHandler {
     }
 
     initializeKeyboardEvent() {
+        this.keysPressed = [];
+
         this.body.on("keydown",(event) => {
-            this.onKeyPressed(event.key);
+            if (!this.keysPressed.includes(event.key)) {
+                this.keysPressed.push(event.key);
+            }
         });
+
+        this.body.on("keyup",(event) => {
+            this.keysPressed = this.keysPressed.filter((key) => key !== event.key);
+        });
+
+        this.pressKeys();
+    }
+
+    pressKeys() {
+        setTimeout(() => this.pressKeys(), 1000 / 60); // One key press per frame
+        this.keysPressed.forEach((key) => this.onKeyPressed(key));
     }
 
     onMouseMoved(deltaX, deltaY) {
