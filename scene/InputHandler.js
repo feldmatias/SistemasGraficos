@@ -18,10 +18,14 @@ export class InputHandler {
             }
         });
 
-        this.canvas.mouseup(() => {
+        this.canvas.mouseup((event) => {
             if (event.button === 0) {
                 this.isMouseDown = false;
             }
+        });
+
+        this.canvas.mouseleave((event) => {
+            this.isMouseDown = false;
         });
 
         this.canvas.mousemove((event) => {
