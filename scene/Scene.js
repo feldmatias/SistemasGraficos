@@ -32,7 +32,7 @@ export class Scene {
             firstPerson: new FirstPersonCamera(),
         };
 
-        this.currentCamera = this.cameras.orbital;
+        this.currentCamera = this.cameras[this.config.camera];
         this.currentCamera.activate();
     }
 
