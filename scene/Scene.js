@@ -3,6 +3,7 @@ import {Menu} from "./Menu.js";
 import {Colors} from "./Colors.js";
 import {OrbitalCamera} from "../cameras/OrbitalCamera.js";
 import {CatapultCamera} from "../cameras/CatapultCamera.js";
+import {FirstPersonCamera} from "../cameras/FirstPersonCamera.js";
 
 
 export class Scene {
@@ -28,6 +29,7 @@ export class Scene {
         this.cameras = {
             orbital: new OrbitalCamera(),
             catapult: new CatapultCamera(this.world.catapult),
+            firstPerson: new FirstPersonCamera(),
         };
 
         this.currentCamera = this.cameras.orbital;
