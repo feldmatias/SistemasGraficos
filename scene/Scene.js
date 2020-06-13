@@ -2,6 +2,7 @@ import {World} from "../world_objects/World.js";
 import {Menu} from "./Menu.js";
 import {Colors} from "./Colors.js";
 import {OrbitalCamera} from "../cameras/OrbitalCamera.js";
+import {CatapultCamera} from "../cameras/CatapultCamera.js";
 
 
 export class Scene {
@@ -25,7 +26,8 @@ export class Scene {
 
     createCameras() {
         this.cameras = {
-            orbital: new OrbitalCamera()
+            orbital: new OrbitalCamera(),
+            catapult: new CatapultCamera(this.world.catapult),
         };
 
         this.currentCamera = this.cameras.orbital;
@@ -74,9 +76,9 @@ export class Scene {
         }
 
         if (this.config.cameraChanged(lastConfig)) {
-            /*this.currentCamera.deactivate();
+            this.currentCamera.deactivate();
             this.currentCamera = this.cameras[this.config.camera];
-            this.currentCamera.activate();*/
+            this.currentCamera.activate();
         }
     }
 }
