@@ -12,12 +12,16 @@ export class InputHandler {
         this.isMouseDown = false;
         this.lastMousePosition = {x: 0, y: 0};
 
-        this.canvas.mousedown(() => {
-            this.isMouseDown = true;
+        this.canvas.mousedown((event) => {
+            if (event.button === 0) {
+                this.isMouseDown = true;
+            }
         });
 
         this.canvas.mouseup(() => {
-            this.isMouseDown = false;
+            if (event.button === 0) {
+                this.isMouseDown = false;
+            }
         });
 
         this.canvas.mousemove((event) => {

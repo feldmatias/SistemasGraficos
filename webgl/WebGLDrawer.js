@@ -44,11 +44,11 @@ export class WebGLDrawer {
         this.gl.uniformMatrix4fv(this.shaderProgram.projectionMatrixUniform, false, projectionMatrix);
     }
 
-    setView(cameraDistance, cameraHeight) {
+    setView(cameraOrigin, cameraDestination) {
         let viewMatrix = mat4.create();
         mat4.lookAt(viewMatrix,
-            vec3.fromValues(0, cameraHeight, cameraDistance),
-            vec3.fromValues(0, 0, 0),
+            cameraOrigin,
+            cameraDestination,
             vec3.fromValues(0, 1, 0)
         );
         this.gl.uniformMatrix4fv(this.shaderProgram.viewMatrixUniform, false, viewMatrix);

@@ -1,6 +1,7 @@
 import {World} from "../world_objects/World.js";
 import {Menu} from "./Menu.js";
 import {Colors} from "./Colors.js";
+import {OrbitalCamera} from "../cameras/OrbitalCamera.js";
 
 
 export class Scene {
@@ -10,6 +11,7 @@ export class Scene {
         this.canvas = canvas;
         this.createMenu();
         this.createSceneObjects();
+        this.createCameras();
     }
 
     createMenu() {
@@ -21,10 +23,13 @@ export class Scene {
         this.world = new World(this.config);
     }
 
+    createCameras() {
+        this.orbitalCamera = new OrbitalCamera();
+        this.currentCamera = this.orbitalCamera;
+    }
+
     draw() {
         this.getConfig();
-
-        this.world.rotateY(0.03 * 0.15 * this.config.angularVelocity); // Apply angular velocity
 
         this.gl.setup(this.canvas.width(), this.canvas.height(), Colors.SKY_BLUE);
         this.setProjection();
@@ -37,12 +42,14 @@ export class Scene {
         let aspect = this.canvas.width() / this.canvas.height();
         let verticalFieldOfView = 30;
         let near = 0.1;
-        let far = 100.0;
+        let far = 200.0;
         this.gl.getDrawer().setProjection(verticalFieldOfView, aspect, near, far);
     }
 
     setView() {
-        this.gl.getDrawer().setView(this.config.cameraDistance, this.config.cameraHeight);
+        this.gl.getDrawer().setView(
+            this.currentCamera.getViewOrigin(),
+            this.currentCamera.getViewDestination());
     }
 
     setLighting() {

@@ -1,20 +1,5 @@
 export class SceneConfig {
 
-    setCameraDistance(cameraDistance) {
-        this.cameraDistance = cameraDistance;
-        return this;
-    }
-
-    setCameraHeight(cameraHeight) {
-        this.cameraHeight = cameraHeight;
-        return this;
-    }
-
-    setAngularVelocity(angularVelocity) {
-        this.angularVelocity = angularVelocity;
-        return this;
-    }
-
     setCastleWidth(castleWidth) {
         this.castleWidth = castleWidth;
         return this;

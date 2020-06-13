@@ -6,9 +6,6 @@ export class Menu {
         this.setDefaultValues();
 
         this.menu = new dat.GUI();
-        this.menu.add(this, 'AlturaCamara', 0, 30);
-        this.menu.add(this, 'DistanciaCamara', 1, 60);
-        this.menu.add(this, 'VelocidadAngular', 0, 10).step(1);
 
         // Castle configuration
         let castle = this.menu.addFolder('Castillo');
@@ -25,10 +22,6 @@ export class Menu {
     }
 
     setDefaultValues() {
-        this.AlturaCamara = 6;
-        this.DistanciaCamara = 25;
-        this.VelocidadAngular = 1;
-
         // Castle configuration
         this.Ancho = 7;
         this.Largo = 9;
@@ -41,9 +34,6 @@ export class Menu {
 
     getSceneConfig() {
         return new SceneConfig()
-            .setCameraDistance(this.DistanciaCamara)
-            .setCameraHeight(this.AlturaCamara)
-            .setAngularVelocity(this.VelocidadAngular)
             .setCastleWidth(this.Ancho)
             .setCastleLength(this.Largo)
             .setCastleFloorsCount(this.Pisos)
