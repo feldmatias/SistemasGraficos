@@ -26,6 +26,7 @@ export class Catapult extends DrawableObject {
 
         this.moveVelocity = 0.75;
         this.rotationVelocity = 0.1;
+        this.rotation = 0;
     }
 
     getChildren() {
@@ -71,10 +72,12 @@ export class Catapult extends DrawableObject {
     }
 
     moveLeft() {
+        this.rotation -= this.rotationVelocity;
         this.rotateY(-this.rotationVelocity);
     }
 
     moveRight() {
+        this.rotation += this.rotationVelocity;
         this.rotateY(this.rotationVelocity);
     }
 }

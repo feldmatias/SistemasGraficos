@@ -40,7 +40,11 @@ export class BallAnimation extends Animation {
         vec3.subtract(translation, position, this.lastPosition);
         this.lastPosition = position;
 
-        this.ball.translate(translation[0], translation[1], 0);
+        this.ball.translate(
+            translation[0] * Math.cos(this.direction),
+            translation[1],
+            -translation[0] * Math.sin(this.direction)
+        );
     }
 
     stop() {
@@ -65,5 +69,7 @@ export class BallAnimation extends Animation {
         mat4.rotateY(matrix, matrix, Math.PI / 2);
 
         this.ball.setMatrix(matrix);
+
+        this.direction = this.world.catapult.rotation;
     }
 }
