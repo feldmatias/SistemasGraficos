@@ -9,25 +9,27 @@ export class CatapultCamera extends Camera {
         this.inputHandler = new CatapultCameraInputHandler(this);
 
         this.height = 5;
-        this.distance = 14;
+        this.distance = 20;
         this.scrollVelocity = 1;
     }
 
     scroll(direction) {
         this.distance += direction * this.scrollVelocity;
 
-        if (this.distance < 10) {
-            this.distance = 10;
+        if (this.distance < 15) {
+            this.distance = 15;
         }
-        if (this.distance > 30) {
-            this.distance = 30;
+        if (this.distance > 45) {
+            this.distance = 45;
         }
     }
 
     getViewOrigin() {
-        let position = this.catapult.getPosition();
-        position[1] += this.height;
-        position[2] += this.distance;
+        let matrix = mat4.clone(this.catapult.worldModelMatrix);
+        mat4.rotateY(matrix, matrix, Math.PI);
+        mat4.translate(matrix, matrix, [0, this.height, -this.distance]);
+        let position = vec3.create();
+        mat4.getTranslation(position, matrix);
         return position;
     }
 
