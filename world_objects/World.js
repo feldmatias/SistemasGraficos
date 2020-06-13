@@ -63,7 +63,6 @@ export class World extends DrawableObject {
 
     recreateCastle(config) {
         this.createCastle(config);
-        this.catapult.startShooting(); // TODO: do this on button press
     }
 
     recreateWall(config) {

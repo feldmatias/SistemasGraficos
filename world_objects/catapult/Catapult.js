@@ -4,6 +4,7 @@ import {CatapultBack} from "./back/CatapultBack.js";
 import {CatapultFront} from "./front/CatapultFront.js";
 import {CatapultBarAnimation} from "./front/bar/CatapultBarAnimation.js";
 import {CatapultRope} from "./CatapultRope.js";
+import {CatapultInputHandler} from "./CatapultInputHandler.js";
 
 export class Catapult extends DrawableObject {
 
@@ -21,6 +22,10 @@ export class Catapult extends DrawableObject {
         this.rope = new CatapultRope(this.front.getEnvelope(), this.back.getEnvelope());
 
         this.animation = new CatapultBarAnimation(this.front.handle, this.back.handle, this);
+        this.inputHandler = new CatapultInputHandler(this);
+
+        this.moveVelocity = 0.75;
+        this.rotationVelocity = 0.1;
     }
 
     getChildren() {
@@ -55,5 +60,21 @@ export class Catapult extends DrawableObject {
 
     shoot() {
         this.worldBall.shoot();
+    }
+
+    moveForward() {
+        this.translate(0, 0, -this.moveVelocity);
+    }
+
+    moveBack() {
+        this.translate(0, 0, this.moveVelocity);
+    }
+
+    moveLeft() {
+        this.rotateY(-this.rotationVelocity);
+    }
+
+    moveRight() {
+        this.rotateY(this.rotationVelocity);
     }
 }
