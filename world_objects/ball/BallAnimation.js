@@ -31,7 +31,7 @@ export class BallAnimation extends Animation {
         let y = this.initialPosition[1] + this.velocity * Math.sin(this.angle) * this.time - 5 * this.time * this.time;
         let position = vec3.fromValues(x, y, 0);
 
-        if (y < 0){
+        if (y < -12){
             this.stop();
             return;
         }
