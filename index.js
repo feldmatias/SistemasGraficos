@@ -1,5 +1,6 @@
 import {WebGL} from "./webgl/WebGL.js";
 import {Scene} from "./scene/Scene.js";
+import {InputManager} from "./scene/InputManager.js";
 
 let scene;
 
@@ -13,6 +14,7 @@ function initWebGL() {
     }
 
     if (webGL) {
+        inputManager = new InputManager();
         scene = new Scene(webGL, $("#my-canvas"));
         loadShaders();
 
