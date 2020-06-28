@@ -83,14 +83,14 @@ export class InputManager {
     }
 
     onMouseMoved(deltaX, deltaY) {
-        this.subscribers.forEach(suscriptor => suscriptor.onMouseMoved(deltaX, deltaY));
+        this.subscribers.forEach(subscriber => subscriber.onMouseMoved(deltaX, deltaY));
     }
 
     onScroll(direction) {
-        this.subscribers.forEach(suscriptor => suscriptor.onScroll(direction));
+        this.subscribers.forEach(subscriber => subscriber.onScroll(direction));
     }
 
     onKeyPressed(key) {
-        this.subscribers.forEach(suscriptor => suscriptor.onKeyPressed(key));
+        this.subscribers.forEach(subscriber => subscriber.onKeyPressed(key));
     }
 }
