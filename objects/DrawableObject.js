@@ -75,30 +75,7 @@ export class DrawableObject {
     }
 
     getTexture() {
-        return this.material ? this.material.getTexture() : this.texture; // TODO: remove the if when materials refactor is finished
-    }
-
-    setColors(colors, width = 1, height = 1) {
-        // TODO: remove when materials refactor is finished
-        colors = colors.map(color => {
-            if (color.length === 3) {
-                color.push(255); // Append alpha=1 for all colors that don't have alpha
-            }
-            return color;
-        });
-        this.texture = this.gl.createColorTexture(colors, width, height);
-    }
-
-    setColor(color) {
-        // TODO: remove when materials refactor is finished
-        this.setColors([color], 1, 1);
-        return this;
-    }
-
-    setImage(image) {
-        // TODO: remove when materials refactor is finished
-        this.texture = this.gl.createImageTexture(image);
-        return this;
+        return this.material.getTexture();
     }
 
     setBuffers(data) {
@@ -114,7 +91,6 @@ export class DrawableObject {
         this.gl.deleteBuffer(this.normalsBuffer);
         this.gl.deleteBuffer(this.uvsBuffer);
         this.gl.deleteBuffer(this.indicesBuffer);
-        this.gl.deleteTexture(this.texture);
         this.getChildren().forEach(child => child.delete());
     }
 

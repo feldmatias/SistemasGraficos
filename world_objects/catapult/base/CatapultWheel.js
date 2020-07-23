@@ -1,7 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Cylinder} from "../../../objects/Cylinder.js";
-import {Materials} from "../../../materials/Materials.js";
-import {CATAPULT_WOOD_MATERIAL} from "../../../materials/Materials.js";
+import {Materials} from "../../../materials/MaterialsFactory.js";
+import {CATAPULT_WOOD_MATERIAL} from "../../../materials/MaterialsFactory.js";
 
 export class CatapultWheel extends DrawableObject {
 

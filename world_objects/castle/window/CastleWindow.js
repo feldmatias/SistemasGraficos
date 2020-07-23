@@ -1,8 +1,8 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../../scene/Colors.js";
 import {CastleWindowShape} from "./CastleWindowShape.js";
 import {LinePath} from "../../../surfaces/paths/LinePath.js";
+import {CASTLE_WINDOW_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js";
 
 export class CastleWindow extends DrawableObject {
 
@@ -18,7 +18,7 @@ export class CastleWindow extends DrawableObject {
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
 
         this.setBuffers(data)
-            .setColor(Colors.CASTLE_BLACK);
+            .setMaterial(Materials.getMaterial(CASTLE_WINDOW_MATERIAL));
     }
 
 }

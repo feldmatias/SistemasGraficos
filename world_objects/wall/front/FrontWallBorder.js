@@ -2,7 +2,7 @@ import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {WallShape} from "../border/WallShape.js";
 import {LinePath} from "../../../surfaces/paths/LinePath.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../../scene/Colors.js";
+import {Materials, WALL_MATERIAL} from "../../../materials/MaterialsFactory.js";
 
 export class FrontWallBorder extends DrawableObject {
 
@@ -23,7 +23,7 @@ export class FrontWallBorder extends DrawableObject {
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
 
         this.setBuffers(data)
-            .setColor(Colors.WALL_GREY);
+            .setMaterial(Materials.getMaterial(WALL_MATERIAL));
     }
 
 }

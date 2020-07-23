@@ -1,7 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../../scene/Colors.js";
 import {GrassShape} from "./GrassShape.js";
+import {GRASS_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js";
 
 export class Grass extends DrawableObject {
 
@@ -21,7 +21,7 @@ export class Grass extends DrawableObject {
         let data = new SurfacesGenerator().generateRevolutionSurface(shape, 360 / 8);
 
         this.setBuffers(data)
-            .setColor(Colors.GRASS_GREEN);
+            .setMaterial(Materials.getMaterial(GRASS_MATERIAL));
 
     }
 

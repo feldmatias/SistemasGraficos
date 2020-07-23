@@ -1,7 +1,7 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
 import {SurfacesGenerator} from "../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../scene/Colors.js";
 import {CylinderRevolutionShape} from "../../surfaces/shapes/CylinderRevolutionShape.js";
+import {GRASS_MATERIAL, Materials} from "../../materials/MaterialsFactory.js";
 
 export class Isle extends DrawableObject {
 
@@ -17,7 +17,7 @@ export class Isle extends DrawableObject {
         let data = new SurfacesGenerator().generateRevolutionSurface(shape, step);
 
         this.setBuffers(data)
-            .setColor(Colors.GRASS_GREEN)
+            .setMaterial(Materials.getMaterial(GRASS_MATERIAL))
             .translate(0, 0.05, 0);
     }
 

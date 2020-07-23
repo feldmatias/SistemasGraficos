@@ -1,7 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../../scene/Colors.js";
 import {CastleColumnRoofShape} from "./CastleColumnRoofShape.js";
+import {CASTLE_ROOF_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js";
 
 export class CastleColumnRoof extends DrawableObject {
 
@@ -17,7 +17,7 @@ export class CastleColumnRoof extends DrawableObject {
         let data = new SurfacesGenerator().generateRevolutionSurface(shape);
 
         this.setBuffers(data)
-            .setColor(Colors.CASTLE_BLUE);
+            .setMaterial(Materials.getMaterial(CASTLE_ROOF_MATERIAL));
     }
 
 }

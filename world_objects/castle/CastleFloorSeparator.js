@@ -2,7 +2,7 @@ import {DrawableObject} from "../../objects/DrawableObject.js";
 import {SquareShape} from "../../surfaces/shapes/SquareShape.js";
 import {LinePath} from "../../surfaces/paths/LinePath.js";
 import {SurfacesGenerator} from "../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../scene/Colors.js";
+import {CASTLE_WALL_MATERIAL, Materials} from "../../materials/MaterialsFactory.js";
 
 export class CastleFloorSeparator extends DrawableObject {
 
@@ -18,7 +18,7 @@ export class CastleFloorSeparator extends DrawableObject {
         let data = new SurfacesGenerator().generateSweepSurface(shape, path);
 
         this.setBuffers(data)
-            .setColor(Colors.CASTLE_YELLOW);
+            .setMaterial(Materials.getMaterial(CASTLE_WALL_MATERIAL));
     }
 
 }

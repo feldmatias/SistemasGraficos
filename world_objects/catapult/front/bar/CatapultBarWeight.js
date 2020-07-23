@@ -1,10 +1,13 @@
 import {DrawableObject} from "../../../../objects/DrawableObject.js";
 import {Trapezium} from "../../../../objects/Trapezium.js";
-import {Colors} from "../../../../scene/Colors.js";
 import {Cylinder} from "../../../../objects/Cylinder.js";
 import {Cube} from "../../../../objects/Cube.js";
-import {Materials} from "../../../../materials/Materials.js";
-import {CATAPULT_WOOD_MATERIAL} from "../../../../materials/Materials.js";
+import {
+    CATAPULT_CEMENT_MATERIAL,
+    CATAPULT_METAL_MATERIAL,
+    CATAPULT_WOOD_MATERIAL,
+    Materials
+} from "../../../../materials/MaterialsFactory.js";
 
 export class CatapultBarWeight extends DrawableObject {
 
@@ -41,14 +44,14 @@ export class CatapultBarWeight extends DrawableObject {
 
     createHandle() {
         this.handle = new Cylinder(0.07, this.separation + 0.4)
-            .setColor(Colors.CATAPULT_DARK_BROWN)
+            .setMaterial(Materials.getMaterial(CATAPULT_METAL_MATERIAL))
             .rotateX(Math.PI / 2);
     }
 
     createWeight() {
         let size = 1.4;
         this.weight = new Cube(size, size, size)
-            .setColor(Colors.CATAPULT_GREY)
+            .setMaterial(Materials.getMaterial(CATAPULT_CEMENT_MATERIAL))
             .translate(0, -size / 2 - this.height * 0.7, 0);
     }
 }

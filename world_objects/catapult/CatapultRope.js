@@ -1,6 +1,6 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
 import {Cylinder} from "../../objects/Cylinder.js";
-import {Colors} from "../../scene/Colors.js";
+import {Materials, ROPE_MATERIAL} from "../../materials/MaterialsFactory.js";
 
 export class CatapultRope extends DrawableObject {
 
@@ -10,7 +10,7 @@ export class CatapultRope extends DrawableObject {
         this.backEnvelope = backEnvelope;
 
         this.rope = new Cylinder(0.015, 1)
-            .setColor(Colors.WHITE);
+            .setMaterial(Materials.getMaterial(ROPE_MATERIAL));
     }
 
     draw() {

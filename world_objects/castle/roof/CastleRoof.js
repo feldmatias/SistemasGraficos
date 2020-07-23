@@ -2,7 +2,7 @@ import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {SquareShape} from "../../../surfaces/shapes/SquareShape.js";
 import {CastleRoofPath} from "./CastleRoofPath.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../../scene/Colors.js";
+import {CASTLE_ROOF_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js";
 
 export class CastleRoof extends DrawableObject {
 
@@ -18,7 +18,7 @@ export class CastleRoof extends DrawableObject {
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
 
         this.setBuffers(data)
-            .setColor(Colors.CASTLE_BLUE)
+            .setMaterial(Materials.getMaterial(CASTLE_ROOF_MATERIAL))
             .rotateX(-Math.PI / 2);
     }
 

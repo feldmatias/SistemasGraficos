@@ -1,8 +1,8 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {CatapultAxle} from "./CatapultAxle.js";
 import {Cube} from "../../../objects/Cube.js";
-import {Materials} from "../../../materials/Materials.js";
-import {CATAPULT_WOOD_MATERIAL} from "../../../materials/Materials.js";
+import {Materials} from "../../../materials/MaterialsFactory.js";
+import {CATAPULT_WOOD_MATERIAL} from "../../../materials/MaterialsFactory.js";
 
 export class CatapultBase extends DrawableObject {
 

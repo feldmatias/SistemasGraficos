@@ -2,8 +2,8 @@ import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {WallShape} from "./WallShape.js";
 import {CirclePath} from "../../../surfaces/paths/CirclePath.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../../scene/Colors.js";
 import {WallColumn} from "./WallColumn.js";
+import {Materials, WALL_MATERIAL} from "../../../materials/MaterialsFactory.js";
 
 export class WallBorder extends DrawableObject {
 
@@ -31,7 +31,7 @@ export class WallBorder extends DrawableObject {
         let data = new SurfacesGenerator().generateSweepSurface(shape, path);
 
         this.setBuffers(data)
-            .setColor(Colors.WALL_GREY);
+            .setMaterial(Materials.getMaterial(WALL_MATERIAL));
     }
 
     createColumns() {

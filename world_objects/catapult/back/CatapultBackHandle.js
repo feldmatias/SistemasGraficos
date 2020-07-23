@@ -1,8 +1,11 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Cylinder} from "../../../objects/Cylinder.js";
-import {Colors} from "../../../scene/Colors.js";
-import {Materials} from "../../../materials/Materials.js";
-import {CATAPULT_WOOD_MATERIAL} from "../../../materials/Materials.js";
+import {
+    CATAPULT_METAL_MATERIAL,
+    CATAPULT_WOOD_MATERIAL,
+    Materials,
+    ROPE_MATERIAL
+} from "../../../materials/MaterialsFactory.js";
 
 export class CatapultBackHandle extends DrawableObject {
 
@@ -27,7 +30,7 @@ export class CatapultBackHandle extends DrawableObject {
 
     createBase() {
         this.base = new Cylinder(0.2, this.size)
-            .setColor(Colors.CATAPULT_DARK_BROWN)
+            .setMaterial(Materials.getMaterial(CATAPULT_METAL_MATERIAL))
             .rotateX(Math.PI / 2);
     }
 
@@ -45,7 +48,7 @@ export class CatapultBackHandle extends DrawableObject {
 
     createEnvelope() {
         this.envelope = new Cylinder(0.4, this.size / 4)
-            .setColor(Colors.WHITE)
+            .setMaterial(Materials.getMaterial(ROPE_MATERIAL))
             .rotateX(Math.PI / 2);
     }
 

@@ -1,11 +1,9 @@
 import {DrawableObject} from "../../../../objects/DrawableObject.js";
 import {Cube} from "../../../../objects/Cube.js";
-import {Colors} from "../../../../scene/Colors.js";
 import {CatapultBarWeight} from "./CatapultBarWeight.js";
 import {Ball} from "../../../ball/Ball.js";
 import {Cylinder} from "../../../../objects/Cylinder.js";
-import {Materials} from "../../../../materials/Materials.js";
-import {CATAPULT_WOOD_MATERIAL} from "../../../../materials/Materials.js";
+import {CATAPULT_WOOD_MATERIAL, Materials, ROPE_MATERIAL} from "../../../../materials/MaterialsFactory.js";
 
 export class CatapultBar extends DrawableObject {
 
@@ -55,7 +53,7 @@ export class CatapultBar extends DrawableObject {
 
     createEnvelope() {
         this.envelope = new Cylinder(0.5, 0.35)
-            .setColor(Colors.WHITE)
+            .setMaterial(Materials.getMaterial(ROPE_MATERIAL))
             .translate(0, 0, 1)
             .rotateX(Math.PI / 2);
     }

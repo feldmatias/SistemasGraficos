@@ -1,6 +1,6 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
 import {Sphere} from "../../objects/Sphere.js";
-import {Colors} from "../../scene/Colors.js";
+import {BALL_MATERIAL, Materials} from "../../materials/MaterialsFactory.js";
 
 export class Ball extends DrawableObject {
 
@@ -10,7 +10,7 @@ export class Ball extends DrawableObject {
         this.radius = 1
 
         this.ball = new Sphere(this.radius)
-            .setColor(Colors.BALL_GREY);
+            .setMaterial(Materials.getMaterial(BALL_MATERIAL));
     }
 
     getChildren() {

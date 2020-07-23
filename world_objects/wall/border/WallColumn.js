@@ -1,7 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../../scene/Colors.js";
 import {WallColumnShape} from "./WallColumnShape.js";
+import {Materials, WALL_MATERIAL} from "../../../materials/MaterialsFactory.js";
 
 export class WallColumn extends DrawableObject {
 
@@ -19,7 +19,7 @@ export class WallColumn extends DrawableObject {
         let data = new SurfacesGenerator().generateRevolutionSurface(shape, 10);
 
         this.setBuffers(data)
-            .setColor(Colors.WALL_GREY);
+            .setMaterial(Materials.getMaterial(WALL_MATERIAL));
     }
 
 }

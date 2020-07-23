@@ -1,7 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Cylinder} from "../../../objects/Cylinder.js";
-import {Colors} from "../../../scene/Colors.js";
 import {CatapultBar} from "./bar/CatapultBar.js";
+import {CATAPULT_METAL_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js";
 
 export class CatapultFrontHandle extends DrawableObject {
 
@@ -23,7 +23,7 @@ export class CatapultFrontHandle extends DrawableObject {
 
     createBase() {
         this.base = new Cylinder(0.32, this.size)
-            .setColor(Colors.CATAPULT_DARK_BROWN)
+            .setMaterial(Materials.getMaterial(CATAPULT_METAL_MATERIAL))
             .rotateX(Math.PI / 2);
     }
 

@@ -1,6 +1,6 @@
-import {Colors} from "../../scene/Colors.js";
 import {Plane} from "../../objects/Plane.js";
 import {DrawableObject} from "../../objects/DrawableObject.js";
+import {Materials, WATER_MATERIAL} from "../../materials/MaterialsFactory.js";
 
 export class Water extends DrawableObject {
 
@@ -8,7 +8,7 @@ export class Water extends DrawableObject {
         super();
 
         this.object = new Plane(radius, radius)
-            .setColor(Colors.WATER_BLUE)
+            .setMaterial(Materials.getMaterial(WATER_MATERIAL))
             .translate(0, 0.025, 0);
     }
 

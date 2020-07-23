@@ -2,8 +2,8 @@ import {DrawableObject} from "../../objects/DrawableObject.js";
 import {SquareShape} from "../../surfaces/shapes/SquareShape.js";
 import {LinePath} from "../../surfaces/paths/LinePath.js";
 import {SurfacesGenerator} from "../../surfaces/SurfacesGenerator.js";
-import {Colors} from "../../scene/Colors.js";
 import {CastleWindow} from "./window/CastleWindow.js";
+import {CASTLE_WALL_MATERIAL, Materials} from "../../materials/MaterialsFactory.js";
 
 export class CastleFloor extends DrawableObject {
 
@@ -24,7 +24,7 @@ export class CastleFloor extends DrawableObject {
 
         this.setBuffers(data)
             .rotateX(-Math.PI / 2)
-            .setColor(Colors.CASTLE_YELLOW);
+            .setMaterial(Materials.getMaterial(CASTLE_WALL_MATERIAL));
 
         this.createWindows(width, length, height);
     }

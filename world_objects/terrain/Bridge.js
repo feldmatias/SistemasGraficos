@@ -1,6 +1,6 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
 import {Cube} from "../../objects/Cube.js";
-import {Colors} from "../../scene/Colors.js";
+import {GRASS_MATERIAL, Materials} from "../../materials/MaterialsFactory.js";
 
 export class Bridge extends DrawableObject {
 
@@ -8,7 +8,7 @@ export class Bridge extends DrawableObject {
         super();
 
         this.object = new Cube(width, 0.1, length)
-            .setColor(Colors.GRASS_GREEN)
+            .setMaterial(Materials.getMaterial(GRASS_MATERIAL))
             .translate(0, 0.05, 0);
     }
 
