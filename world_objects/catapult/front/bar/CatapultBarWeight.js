@@ -3,6 +3,8 @@ import {Trapezium} from "../../../../objects/Trapezium.js";
 import {Colors} from "../../../../scene/Colors.js";
 import {Cylinder} from "../../../../objects/Cylinder.js";
 import {Cube} from "../../../../objects/Cube.js";
+import {Materials} from "../../../../materials/Materials.js";
+import {CATAPULT_WOOD_MATERIAL} from "../../../../materials/Materials.js";
 
 export class CatapultBarWeight extends DrawableObject {
 
@@ -28,7 +30,7 @@ export class CatapultBarWeight extends DrawableObject {
         this.separation = 1;
 
         let trapezium = new Trapezium(0.6, 0.2, this.height, 0.1)
-            .setColor(Colors.CATAPULT_BROWN);
+            .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL));
 
         this.leftTrapezium = trapezium.clone()
             .translate(0, -this.height / 2 * 0.7, this.separation / 2);

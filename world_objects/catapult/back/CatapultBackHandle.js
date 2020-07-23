@@ -1,6 +1,8 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Cylinder} from "../../../objects/Cylinder.js";
 import {Colors} from "../../../scene/Colors.js";
+import {Materials} from "../../../materials/Materials.js";
+import {CATAPULT_WOOD_MATERIAL} from "../../../materials/Materials.js";
 
 export class CatapultBackHandle extends DrawableObject {
 
@@ -31,7 +33,7 @@ export class CatapultBackHandle extends DrawableObject {
 
     createHandles() {
         let handle = new Cylinder(0.03, 1)
-            .setColor(Colors.CATAPULT_BROWN);
+            .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL));
         let translation = this.size / 2 * 0.85;
 
         this.leftHandle = handle.clone()

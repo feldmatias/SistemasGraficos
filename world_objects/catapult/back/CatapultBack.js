@@ -1,7 +1,8 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Trapezium} from "../../../objects/Trapezium.js";
-import {Colors} from "../../../scene/Colors.js";
 import {CatapultBackHandle} from "./CatapultBackHandle.js";
+import {Materials} from "../../../materials/Materials.js";
+import {CATAPULT_WOOD_MATERIAL} from "../../../materials/Materials.js";
 
 export class CatapultBack extends DrawableObject {
 
@@ -27,7 +28,7 @@ export class CatapultBack extends DrawableObject {
         this.separation = 1.2;
 
         let trapezium = new Trapezium(1.2, 0.4, this.height, 0.1)
-            .setColor(Colors.CATAPULT_BROWN);
+            .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL));
 
         this.leftTrapezium = trapezium.clone()
             .translate(0, this.height / 2, this.separation / 2);

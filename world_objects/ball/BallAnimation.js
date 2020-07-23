@@ -68,7 +68,7 @@ export class BallAnimation extends Animation {
         mat4.scale(matrix, matrix, this.catapultBall.getScale());
         mat4.rotateY(matrix, matrix, Math.PI / 2);
 
-        this.ball.setMatrix(matrix);
+        this.ball.setModelMatrix(matrix);
 
         this.direction = this.world.catapult.rotation;
     }

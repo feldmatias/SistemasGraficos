@@ -1,7 +1,8 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {CatapultAxle} from "./CatapultAxle.js";
 import {Cube} from "../../../objects/Cube.js";
-import {Colors} from "../../../scene/Colors.js";
+import {Materials} from "../../../materials/Materials.js";
+import {CATAPULT_WOOD_MATERIAL} from "../../../materials/Materials.js";
 
 export class CatapultBase extends DrawableObject {
 
@@ -13,7 +14,7 @@ export class CatapultBase extends DrawableObject {
         this.width = width;
 
         this.base = new Cube(this.width, this.height, this.length)
-            .setColor(Colors.CATAPULT_BROWN);
+            .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL));
 
         this.createAxles(width, length);
     }

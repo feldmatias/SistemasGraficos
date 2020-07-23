@@ -69,11 +69,17 @@ export class DrawableObject {
         this.indicesBuffer = this.gl.createIndexBuffer(indices, 1);
     }
 
+    setMaterial(material) {
+        this.material = material;
+        return this;
+    }
+
     getTexture() {
-        return this.texture;
+        return this.material ? this.material.getTexture() : this.texture; // TODO: remove the if when materials refactor is finished
     }
 
     setColors(colors, width = 1, height = 1) {
+        // TODO: remove when materials refactor is finished
         colors = colors.map(color => {
             if (color.length === 3) {
                 color.push(255); // Append alpha=1 for all colors that don't have alpha
@@ -84,11 +90,13 @@ export class DrawableObject {
     }
 
     setColor(color) {
+        // TODO: remove when materials refactor is finished
         this.setColors([color], 1, 1);
         return this;
     }
 
     setImage(image) {
+        // TODO: remove when materials refactor is finished
         this.texture = this.gl.createImageTexture(image);
         return this;
     }
@@ -161,10 +169,6 @@ export class DrawableObject {
 
     hide() {
         this.isShowing = false;
-    }
-
-    setMatrix(modelMatrix) {
-        this.modelMatrix = modelMatrix;
     }
 
     getPosition() {

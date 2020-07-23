@@ -1,6 +1,7 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {Cylinder} from "../../../objects/Cylinder.js";
-import {Colors} from "../../../scene/Colors.js";
+import {Materials} from "../../../materials/Materials.js";
+import {CATAPULT_WOOD_MATERIAL} from "../../../materials/Materials.js";
 
 export class CatapultWheel extends DrawableObject {
 
@@ -9,7 +10,7 @@ export class CatapultWheel extends DrawableObject {
 
         this.object = new Cylinder(1, 0.2)
             .rotateX(Math.PI / 2)
-            .setColor(Colors.CATAPULT_BROWN);
+            .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL));
     }
 
     getChildren() {
