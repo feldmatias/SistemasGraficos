@@ -10,11 +10,21 @@ uniform sampler2D uSampler;
 
 void main(void) {
 
-    vec4 textureColor = texture2D(uSampler, vec2(vUv.s, vUv.t));
+    vec3 surfaceColor = texture2D(uSampler, vec2(vUv.s, vUv.t)).xyz;
+    vec3 normal = normalize(vNormal);
 
-    vec3 lightDirection = normalize(uLightPosition - vec3(vWorldPosition));
+    /* Phong model */
 
-    vec3 color = (vec3(0.5, 0.5, 0.5) + dot(lightDirection, vNormal)) * textureColor.xyz;
+    // Ambient
+    float ambientLight = 0.3;
+    vec3 ambient = ambientLight * surfaceColor;
+
+    // Diffuse
+    vec3 lightDirection = normalize(uLightPosition - vWorldPosition);
+    float diffuseIntensity = max(dot(normal, lightDirection), 0.0);
+    vec3 diffuse = diffuseIntensity * surfaceColor;
+
+    vec3 color = ambient + diffuse;
 
     gl_FragColor = vec4(color, 1.0);
 
