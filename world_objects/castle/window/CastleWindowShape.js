@@ -13,45 +13,45 @@ export class CastleWindowShape extends Shape {
     }
 
     getVertices() {
-        let left = [
-            vec3.fromValues(-this.width, -this.height, 0),
-            vec3.fromValues(-this.width, 0, 0),
-            vec3.fromValues(-this.width, this.curveStart, 0),
+        let right = [
+            vec3.fromValues(this.width, -this.height, 0),
+            vec3.fromValues(this.width, 0, 0),
+            vec3.fromValues(this.width, this.curveStart, 0),
         ];
 
-        let right = [
-            vec3.fromValues(this.width, this.curveStart, 0),
-            vec3.fromValues(this.width, 0, 0),
-            vec3.fromValues(this.width, -this.height, 0),
+        let left = [
+            vec3.fromValues(-this.width, this.curveStart, 0),
+            vec3.fromValues(-this.width, 0, 0),
+            vec3.fromValues(-this.width, -this.height, 0),
         ];
 
         let bottom = [
-            vec3.fromValues(this.width, -this.height, 0),
-            vec3.fromValues(0, -this.height, 0),
             vec3.fromValues(-this.width, -this.height, 0),
+            vec3.fromValues(0, -this.height, 0),
+            vec3.fromValues(this.width, -this.height, 0),
         ];
 
         let curve = this.curvePoints.map(point => point.getPoint());
 
         return [
-            left,
-            curve,
             right,
+            curve,
+            left,
             bottom,
         ].flat();
     }
 
     getNormals() {
-        let left = [
-            vec3.fromValues(-1, 0, 0),
-            vec3.fromValues(-1, 0, 0),
-            vec3.fromValues(-1, 0, 0),
-        ];
-
         let right = [
             vec3.fromValues(1, 0, 0),
             vec3.fromValues(1, 0, 0),
             vec3.fromValues(1, 0, 0),
+        ];
+
+        let left = [
+            vec3.fromValues(-1, 0, 0),
+            vec3.fromValues(-1, 0, 0),
+            vec3.fromValues(-1, 0, 0),
         ];
 
         let bottom = [
@@ -63,9 +63,9 @@ export class CastleWindowShape extends Shape {
         let curve = this.curvePoints.map(point => point.getNormal());
 
         return [
-            left,
-            curve,
             right,
+            curve,
+            left,
             bottom,
         ].flat();
     }
@@ -77,13 +77,13 @@ export class CastleWindowShape extends Shape {
     createCurveVertices() {
         let curvesCalculator = new BezierQuadraticCurves();
         let curveControlPoints = [
-            vec3.fromValues(-this.width, this.curveStart, 0),
-            vec3.fromValues(-this.width, this.height, 0),
-            vec3.fromValues(0, this.height, 0),
-            vec3.fromValues(0, this.height, 0),
-            vec3.fromValues(this.width, this.height, 0),
             vec3.fromValues(this.width, this.curveStart, 0),
-        ]
+            vec3.fromValues(this.width, this.height, 0),
+            vec3.fromValues(0, this.height, 0),
+            vec3.fromValues(0, this.height, 0),
+            vec3.fromValues(-this.width, this.height, 0),
+            vec3.fromValues(-this.width, this.curveStart, 0),
+        ];
         this.curvePoints = curvesCalculator.calculateForPoints(curveControlPoints);
     }
 }
