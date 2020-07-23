@@ -45,4 +45,9 @@ export class SceneConfig {
         return this.camera !== lastConfig.camera;
     }
 
+    setAmbientLight(light) {
+        this.ambientLight = light;
+        return this;
+    }
+
 }

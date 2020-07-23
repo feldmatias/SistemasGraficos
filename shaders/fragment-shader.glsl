@@ -5,6 +5,7 @@ varying vec3 vNormal;
 varying vec3 vWorldPosition;
 
 uniform vec3 uLightPosition;
+uniform vec3 uLightColor;
 
 uniform sampler2D uSampler;
 
@@ -17,12 +18,12 @@ void main(void) {
 
     // Ambient
     float ambientLight = 0.3;
-    vec3 ambient = ambientLight * surfaceColor;
+    vec3 ambient = ambientLight * uLightColor * surfaceColor;
 
     // Diffuse
     vec3 lightDirection = normalize(uLightPosition - vWorldPosition);
     float diffuseIntensity = max(dot(normal, lightDirection), 0.0);
-    vec3 diffuse = diffuseIntensity * surfaceColor;
+    vec3 diffuse = diffuseIntensity * uLightColor * surfaceColor;
 
     vec3 color = ambient + diffuse;
 

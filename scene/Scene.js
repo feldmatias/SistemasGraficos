@@ -61,8 +61,9 @@ export class Scene {
     }
 
     setLighting() {
-        let lightPosition = [45.0, 100.0, 45.0];
-        this.gl.getDrawer().setLighting(lightPosition);
+        let lightPosition = [80.0, 100.0, 80.0];
+        let lightColor = this.config.ambientLight;
+        this.gl.getDrawer().setLighting(lightPosition, lightColor);
     }
 
     getConfig() {

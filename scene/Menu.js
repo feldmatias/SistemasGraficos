@@ -14,6 +14,7 @@ export class Menu {
         this.menu = new dat.GUI();
 
         this.menu.add(this, 'Camara', Object.keys(this.cameraOptions));
+        this.menu.addColor(this, 'LuzAmbiente')
 
         // Castle configuration
         let castle = this.menu.addFolder('Castillo');
@@ -32,6 +33,9 @@ export class Menu {
     setDefaultValues() {
         this.Camara = 'Orbital';
 
+        // Lights
+        this.LuzAmbiente = [150, 150, 150];
+
         // Castle configuration
         this.Ancho = 7;
         this.Largo = 9;
@@ -49,6 +53,7 @@ export class Menu {
             .setCastleFloorsCount(this.Pisos)
             .setWallHeight(this.Altura)
             .setWallColumnCount(this.Columnas)
-            .setCamera(this.cameraOptions[this.Camara]);
+            .setCamera(this.cameraOptions[this.Camara])
+            .setAmbientLight(this.LuzAmbiente);
     }
 }

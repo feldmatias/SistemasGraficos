@@ -54,7 +54,8 @@ export class WebGLDrawer {
         this.gl.uniformMatrix4fv(this.shaderProgram.viewMatrixUniform, false, viewMatrix);
     }
 
-    setLighting(lightPosition) {
+    setLighting(lightPosition, lightColor) {
         this.gl.uniform3fv(this.shaderProgram.lightPositionUniform, lightPosition);
+        this.gl.uniform3fv(this.shaderProgram.lightColorUniform, lightColor.map(x => x / 255));
     }
 }
