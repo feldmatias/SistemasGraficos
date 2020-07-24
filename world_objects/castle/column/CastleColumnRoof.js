@@ -20,4 +20,12 @@ export class CastleColumnRoof extends DrawableObject {
             .setMaterial(Materials.getMaterial(CASTLE_ROOF_MATERIAL));
     }
 
+    invertUvs() {
+        return true;
+    }
+
+    getUvsScale() {
+        return [-1, 1];
+    }
+
 }
