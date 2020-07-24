@@ -24,6 +24,14 @@ export class WallBorder extends DrawableObject {
         return this.columns;
     }
 
+    getUvsScale() {
+        return [this.height >= 5 ? 2 : 1, 4];
+    }
+
+    invertUvs() {
+        return true;
+    }
+
     initialize() {
         let shape = new WallShape(this.height, this.width);
         let path = new CirclePath(this.radius, 360 - this.angleStep, this.angleStep);
