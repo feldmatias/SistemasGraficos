@@ -93,8 +93,7 @@ class SweepSurfacesAlgorithm {
 
         this.vertices = shape.getVertices();
         this.normals = shape.getNormals();
-        this.shapeUvs = shape.getUvs();
-        this.pathUvs = path.getUvs();
+        this.getUvs(shape, path);
 
         this.levels = this.getLevels(path, withCaps);
 
@@ -112,7 +111,8 @@ class SweepSurfacesAlgorithm {
             let normalMatrix = path.getLevelNormalMatrix(level);
             let modified_normals = this.applyMatrix(normals, normalMatrix, true);
 
-            this.fillBuffers(i, modified_vertices, modified_normals);
+            let capUvs = isCap ? this.centerCapUvs : (isNormalCap ? this.capUvs : null);
+            this.fillBuffers(i, modified_vertices, modified_normals, capUvs);
         }
     }
 
@@ -140,16 +140,30 @@ class SweepSurfacesAlgorithm {
         });
     }
 
-    fillBuffers(level, modified_vertices, modified_normals) {
+    fillBuffers(level, modified_vertices, modified_normals, capUvs) {
         for (let j = 0; j < modified_vertices.length; j++) {
             let vertex = modified_vertices[j];
             this.positionBuffer.push(vertex[0], vertex[1], vertex[2]);
             let normal = modified_normals[j];
             this.normalBuffer.push(normal[0], normal[1], normal[2]);
 
-            let u = this.shapeUvs[j];
-            let v = this.pathUvs[level];
-            this.uvBuffer.push(u, v);
+            if (capUvs) {
+                let uv = capUvs[j];
+                this.uvBuffer.push(uv[0], uv[1]);
+            } else {
+                let u = this.shapeUvs[j];
+                let v = this.pathUvs[level];
+                this.uvBuffer.push(u, v);
+            }
+
         }
+    }
+
+    getUvs(shape, path) {
+        this.shapeUvs = shape.getUvs();
+        this.pathUvs = path.getUvs();
+
+        this.capUvs = shape.getCapUvs();
+        this.centerCapUvs = shape.getCenterCapUvs();
     }
 }

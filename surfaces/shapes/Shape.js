@@ -46,4 +46,25 @@ export class Shape {
         let normal = vec3.fromValues(0, 0, isFirstCap ? -1 : 1);
         return Array(verticesCount).fill(normal);
     }
+
+    getCapUvs() {
+        let vertices = this.getVertices();
+
+        let minX = Math.min( ...vertices.map(v => v[0]));
+        let maxX = Math.max( ...vertices.map(v => v[0]));
+        let minY = Math.min( ...vertices.map(v => v[1]));
+        let maxY = Math.max( ...vertices.map(v => v[1]));
+
+        return vertices.map(vertex => {
+           let x = (vertex[0] - minX) / (maxX - minX);
+           let y = (vertex[1] - minY) / (maxY - minY);
+           return vec2.fromValues(x, y);
+        });
+    }
+
+    getCenterCapUvs() {
+        let verticesCount = this.getVertices().length;
+        let uv = vec2.fromValues(0.5, 0.5);
+        return Array(verticesCount).fill(uv);
+    }
 }
