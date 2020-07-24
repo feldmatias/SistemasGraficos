@@ -5,6 +5,7 @@ export class DrawableObject {
         this.modelMatrix = mat4.create();
         this.worldModelMatrix = mat4.create();
         this.isShowing = true;
+        this.buffers = new DrawableObjectBuffers();
     }
 
     getChildren() {
@@ -27,7 +28,7 @@ export class DrawableObject {
 
 
         if (this.isShowing) {
-            if (this.positionsBuffer) {
+            if (this.buffers.hasBuffers()) {
                 let drawer = this.gl.getDrawer();
                 drawer.setModelMatrix(this.worldModelMatrix);
                 drawer.drawObject(this);
@@ -35,38 +36,6 @@ export class DrawableObject {
 
             this.getChildren().forEach(child => child.draw(this.worldModelMatrix));
         }
-    }
-
-    getPositionsBuffer() {
-        return this.positionsBuffer;
-    }
-
-    setPositionsBuffer(positionsBuffer) {
-        this.positionsBuffer = this.gl.createBuffer(positionsBuffer, 3);
-    }
-
-    getNormalsBuffer() {
-        return this.normalsBuffer;
-    }
-
-    setNormalsBuffer(normalsBuffer) {
-        this.normalsBuffer = this.gl.createBuffer(normalsBuffer, 3);
-    }
-
-    getUvsBuffer() {
-        return this.uvsBuffer;
-    }
-
-    setUvsBuffer(uvsBuffer) {
-        this.uvsBuffer = this.gl.createBuffer(uvsBuffer, 2);
-    }
-
-    getIndicesBuffer() {
-        return this.indicesBuffer;
-    }
-
-    setIndicesBuffer(indices) {
-        this.indicesBuffer = this.gl.createIndexBuffer(indices, 1);
     }
 
     setMaterial(material) {
@@ -79,18 +48,12 @@ export class DrawableObject {
     }
 
     setBuffers(data) {
-        this.setPositionsBuffer(data.positionBuffer);
-        this.setNormalsBuffer(data.normalBuffer);
-        this.setUvsBuffer(data.uvBuffer);
-        this.setIndicesBuffer(data.indexBuffer);
+        this.buffers.setBuffers(data);
         return this;
     }
 
     delete() {
-        this.gl.deleteBuffer(this.positionsBuffer);
-        this.gl.deleteBuffer(this.normalsBuffer);
-        this.gl.deleteBuffer(this.uvsBuffer);
-        this.gl.deleteBuffer(this.indicesBuffer);
+        this.buffers.delete();
         this.getChildren().forEach(child => child.delete());
     }
 
@@ -157,6 +120,64 @@ export class DrawableObject {
         let scale = vec3.create();
         mat4.getScaling(scale, this.worldModelMatrix);
         return scale;
+    }
+
+}
+
+class DrawableObjectBuffers {
+
+    constructor() {
+        this.gl = webGL;
+    }
+
+    hasBuffers() {
+        return this.positionsBuffer !== undefined;
+    }
+
+    getPositionsBuffer() {
+        return this.positionsBuffer;
+    }
+
+    setPositionsBuffer(positionsBuffer) {
+        this.positionsBuffer = this.gl.createBuffer(positionsBuffer, 3);
+    }
+
+    getNormalsBuffer() {
+        return this.normalsBuffer;
+    }
+
+    setNormalsBuffer(normalsBuffer) {
+        this.normalsBuffer = this.gl.createBuffer(normalsBuffer, 3);
+    }
+
+    getUvsBuffer() {
+        return this.uvsBuffer;
+    }
+
+    setUvsBuffer(uvsBuffer) {
+        this.uvsBuffer = this.gl.createBuffer(uvsBuffer, 2);
+    }
+
+    getIndicesBuffer() {
+        return this.indicesBuffer;
+    }
+
+    setIndicesBuffer(indices) {
+        this.indicesBuffer = this.gl.createIndexBuffer(indices, 1);
+    }
+
+    setBuffers(data) {
+        this.setPositionsBuffer(data.positionBuffer);
+        this.setNormalsBuffer(data.normalBuffer);
+        this.setUvsBuffer(data.uvBuffer);
+        this.setIndicesBuffer(data.indexBuffer);
+    }
+
+    delete() {
+        this.gl.deleteBuffer(this.positionsBuffer);
+        this.gl.deleteBuffer(this.normalsBuffer);
+        this.gl.deleteBuffer(this.uvsBuffer);
+        this.gl.deleteBuffer(this.indicesBuffer);
     }
 
 }

@@ -6,15 +6,15 @@ export class WebGLDrawer {
     }
 
     drawObject(drawableObject) {
-        let positionBuffer = drawableObject.getPositionsBuffer();
+        let positionBuffer = drawableObject.buffers.getPositionsBuffer();
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
         this.gl.vertexAttribPointer(this.shaderProgram.vertexPositionAttribute, positionBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
 
-        let uvBuffer = drawableObject.getUvsBuffer();
+        let uvBuffer = drawableObject.buffers.getUvsBuffer();
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, uvBuffer);
         this.gl.vertexAttribPointer(this.shaderProgram.textureCoordAttribute, uvBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
 
-        let normalBuffer = drawableObject.getNormalsBuffer();
+        let normalBuffer = drawableObject.buffers.getNormalsBuffer();
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, normalBuffer);
         this.gl.vertexAttribPointer(this.shaderProgram.vertexNormalAttribute, normalBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
 
@@ -22,7 +22,7 @@ export class WebGLDrawer {
         this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.getTexture());
         this.gl.uniform1i(this.shaderProgram.samplerTextureUniform, 0);
 
-        let indexBuffer = drawableObject.getIndicesBuffer();
+        let indexBuffer = drawableObject.buffers.getIndicesBuffer();
         this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
 
         this.gl.drawElements(this.gl.TRIANGLE_STRIP, indexBuffer.numItems, this.gl.UNSIGNED_SHORT, 0);
