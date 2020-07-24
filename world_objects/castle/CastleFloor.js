@@ -29,6 +29,10 @@ export class CastleFloor extends DrawableObject {
         this.createWindows(width, length, height);
     }
 
+    getUvsScale() {
+        return [5, 1];
+    }
+
     createWindows(width, length, height) {
         this.windows = [];
         let windowWidth = 0.6;

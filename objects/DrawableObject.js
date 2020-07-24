@@ -47,7 +47,17 @@ export class DrawableObject {
         return this.material.getTexture();
     }
 
+    getUvsScale() {
+        return [1, 1];
+    }
+
     setBuffers(data) {
+        let [xScale, yScale] = this.getUvsScale();
+        for (let i = 0; i < data.uvBuffer.length; i += 2) {
+            data.uvBuffer[i] *= xScale;
+            data.uvBuffer[i + 1] *= yScale;
+        }
+
         this.buffers.setBuffers(data);
         return this;
     }

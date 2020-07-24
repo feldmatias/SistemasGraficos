@@ -21,4 +21,8 @@ export class CastleFloorSeparator extends DrawableObject {
             .setMaterial(Materials.getMaterial(CASTLE_WALL_MATERIAL));
     }
 
+    getUvsScale() {
+        return [5, 0.3];
+    }
+
 }
