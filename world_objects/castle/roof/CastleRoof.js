@@ -22,4 +22,8 @@ export class CastleRoof extends DrawableObject {
             .rotateX(-Math.PI / 2);
     }
 
+    getUvsScale() {
+        return [2, 2];
+    }
+
 }
