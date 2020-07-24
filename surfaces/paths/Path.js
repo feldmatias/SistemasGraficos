@@ -16,14 +16,14 @@ export class Path {
     }
 
     getUvs() {
-        let perimeter = this.getLevelsCount();
-        let accumulatedDistances = [];
+        let perimeter = this.getLevelsCount() - 1;
+        let uvs = [];
 
         for (let i = 0; i < this.getLevelsCount(); i++) {
-            accumulatedDistances.push(i / perimeter);
+            uvs.push(i / perimeter);
         }
 
-        return accumulatedDistances;
+        return uvs;
     }
 
 }
