@@ -51,11 +51,18 @@ export class DrawableObject {
         return [1, 1];
     }
 
+    invertUvs() {
+        return false;
+    }
+
     setBuffers(data) {
         let [xScale, yScale] = this.getUvsScale();
+        let invert = this.invertUvs();
         for (let i = 0; i < data.uvBuffer.length; i += 2) {
-            data.uvBuffer[i] *= xScale;
-            data.uvBuffer[i + 1] *= yScale;
+            let x = data.uvBuffer[i] * xScale;
+            let y = data.uvBuffer[i + 1] * yScale;
+            data.uvBuffer[i] = invert ? y : x;
+            data.uvBuffer[i + 1] = invert ? x : y;
         }
 
         this.buffers.setBuffers(data);

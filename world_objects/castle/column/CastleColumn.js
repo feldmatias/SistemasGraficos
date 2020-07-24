@@ -2,15 +2,16 @@ import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
 import {CastleColumnShape} from "./CastleColumnShape.js";
 import {CastleColumnRoof} from "./CastleColumnRoof.js";
-import {CASTLE_WALL_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js";
+import {CASTLE_COLUMN_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js";
 
 export class CastleColumn extends DrawableObject {
 
-    constructor(height, topHeight) {
+    constructor(height, topHeight, floorsCount) {
         super();
 
         this.height = height;
         this.topHeight = topHeight;
+        this.floorsCount = floorsCount;
         this.width = 0.4;
         this.topWidth = this.width * 1.8;
 
@@ -30,7 +31,15 @@ export class CastleColumn extends DrawableObject {
         let data = new SurfacesGenerator().generateRevolutionSurface(shape);
 
         this.setBuffers(data)
-            .setMaterial(Materials.getMaterial(CASTLE_WALL_MATERIAL));
+            .setMaterial(Materials.getMaterial(CASTLE_COLUMN_MATERIAL));
+    }
+
+    getUvsScale() {
+        return [this.floorsCount, 1];
+    }
+
+    invertUvs() {
+        return true;
     }
 
     createRoof() {

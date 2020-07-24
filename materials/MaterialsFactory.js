@@ -10,6 +10,7 @@ import {BallMaterial} from "./ball/BallMaterial.js";
 import {RopeMaterial} from "./catapult/RopeMaterial.js";
 import {GrassMaterial} from "./terrain/GrassMaterial.js";
 import {WaterMaterial} from "./terrain/WaterMaterial.js";
+import {CastleColumnMaterial} from "./castle/CastleColumnMaterial.js";
 
 export const CATAPULT_WOOD_MATERIAL = "CATAPULT_WOOD";
 export const CATAPULT_METAL_MATERIAL = "CATAPULT_METAL";
@@ -17,6 +18,7 @@ export const CATAPULT_CEMENT_MATERIAL = "CATAPULT_CEMENT";
 export const ROPE_MATERIAL = "ROPE";
 
 export const CASTLE_WALL_MATERIAL = "CASTLE_WALL";
+export const CASTLE_COLUMN_MATERIAL = "CASTLE_COLUMN";
 export const CASTLE_ROOF_MATERIAL = "CASTLE_ROOF";
 export const CASTLE_WINDOW_MATERIAL = "CASTLE_WINDOW";
 
@@ -35,6 +37,7 @@ const MaterialClasses = {
     CATAPULT_CEMENT: CatapultCementMaterial,
     ROPE: RopeMaterial,
     CASTLE_WALL: CastleWallMaterial,
+    CASTLE_COLUMN: CastleColumnMaterial,
     CASTLE_ROOF: CastleRoofMaterial,
     CASTLE_WINDOW: CastleWindowMaterial,
     WALL: WallMaterial,
