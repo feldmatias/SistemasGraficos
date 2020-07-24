@@ -8,8 +8,22 @@ export class Shape {
         return this.getVertices();
     }
 
-    getTextures(u, v) {
-        return vec2.fromValues(u, v);
+    getUvs() {
+        let perimeter = 0;
+        let accumulatedDistances = [0];
+
+        let vertices = this.getVertices();
+        if (this.isClosed()) {
+            vertices.push(vertices[0]);
+        }
+
+        for (let i = 1; i < vertices.length; i++) {
+            let distance = vec3.distance(vertices[i], vertices[i-1]);
+            perimeter += distance;
+            accumulatedDistances.push(perimeter);
+        }
+
+        return accumulatedDistances.map(x => x / perimeter);
     }
 
     isClosed() {

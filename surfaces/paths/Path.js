@@ -15,4 +15,15 @@ export class Path {
         return normalMatrix;
     }
 
+    getUvs() {
+        let perimeter = this.getLevelsCount();
+        let accumulatedDistances = [];
+
+        for (let i = 0; i < this.getLevelsCount(); i++) {
+            accumulatedDistances.push(i / perimeter);
+        }
+
+        return accumulatedDistances;
+    }
+
 }
