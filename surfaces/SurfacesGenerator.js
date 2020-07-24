@@ -112,7 +112,7 @@ class SweepSurfacesAlgorithm {
             let modified_normals = this.applyMatrix(normals, normalMatrix, true);
 
             let capUvs = isCap ? this.centerCapUvs : (isNormalCap ? this.capUvs : null);
-            this.fillBuffers(i, modified_vertices, modified_normals, capUvs);
+            this.fillBuffers(withCaps ? i - 2 : i, modified_vertices, modified_normals, capUvs);
         }
     }
 

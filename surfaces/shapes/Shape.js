@@ -18,7 +18,7 @@ export class Shape {
         }
 
         for (let i = 1; i < vertices.length; i++) {
-            let distance = vec3.distance(vertices[i], vertices[i-1]);
+            let distance = vec3.distance(vertices[i], vertices[i -1]);
             perimeter += distance;
             accumulatedDistances.push(perimeter);
         }
