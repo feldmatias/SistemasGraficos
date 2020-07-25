@@ -36,4 +36,8 @@ export class WallEntrance extends DrawableObject {
     createDoor() {
         this.door = new WallDoor(this.length - 0.4, this.height - 0.2);
     }
+
+    getUvsScale() {
+        return [5, 1];
+    }
 }

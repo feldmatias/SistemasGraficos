@@ -82,7 +82,32 @@ export class WallEntranceShape extends Shape {
 
             vec3.fromValues(-width, 0, 0),
             vec3.fromValues(-width, 0, 0),
+        ];
+    }
 
+    getCenterCapUvs() {
+        let width = this.width - this.wallWidth / 2;
+        let height = this.height - this.wallWidth / 2;
+        return [
+            vec2.fromValues(width, 0),
+            vec2.fromValues(width, height),
+            vec2.fromValues(width, height),
+            vec2.fromValues(width, height),
+            vec2.fromValues(width, height),
+            vec2.fromValues(width, 0),
+
+            vec2.fromValues(width, 0),
+            vec2.fromValues(width, 0),
+
+            vec2.fromValues(width, 0),
+            vec2.fromValues(width, height),
+            vec2.fromValues(width, height),
+            vec2.fromValues(width, height),
+            vec2.fromValues(width, height),
+            vec2.fromValues(width, 0),
+
+            vec2.fromValues(width, 0),
+            vec2.fromValues(width, 0),
         ];
     }
 
