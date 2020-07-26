@@ -9,7 +9,7 @@ export class Water extends DrawableObject {
 
         this.object = new Plane(radius, radius, 10)
             .setMaterial(Materials.getMaterial(WATER_MATERIAL))
-            .translate(0, 0.025, 0);
+            .translate(0, 0.05, 0);
     }
 
     getChildren() {

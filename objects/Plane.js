@@ -13,7 +13,7 @@ export class Plane extends DrawableObject {
 
     setVerticesData(width, height) {
         let shape = new SquareShape(width, height);
-        let path = new LinePath(0.01);
+        let path = new LinePath(0.05);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
         this.setBuffers(data);
