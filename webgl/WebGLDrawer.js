@@ -27,6 +27,7 @@ export class WebGLDrawer {
 
         this.gl.uniform1f(this.shaderProgram.specularIntensityUniform, drawableObject.material.getSpecularIntensity());
         this.gl.uniform1f(this.shaderProgram.specularShininessUniform, drawableObject.material.getSpecularShininess());
+        this.gl.uniform1i(this.shaderProgram.ignoreLightingUniform, drawableObject.material.ignoreLighting());
 
         this.gl.drawElements(this.gl.TRIANGLE_STRIP, indexBuffer.numItems, this.gl.UNSIGNED_SHORT, 0);
     }

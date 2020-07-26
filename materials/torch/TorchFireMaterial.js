@@ -1,11 +1,10 @@
 import {Material} from "../Material.js";
-import {Colors} from "../../scene/Colors.js";
 
 export class TorchFireMaterial extends Material {
 
     constructor() {
         super();
-        this.setColor(Colors.TORCH_FIRE);
+        this.setImage('textures/terrain/fire_diffuse.png');
     }
 
     getSpecularIntensity() {
@@ -15,5 +14,10 @@ export class TorchFireMaterial extends Material {
     getSpecularShininess() {
         return 100;
     }
+
+    ignoreLighting() {
+        return true;
+    }
+
 
 }

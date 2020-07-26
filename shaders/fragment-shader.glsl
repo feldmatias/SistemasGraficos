@@ -19,6 +19,8 @@ uniform float uSpecularShininess;
 
 uniform vec3 uPointLightsPositions[POINT_LIGHTS];
 
+uniform bool uIgnoreLighting;
+
 
 vec3 directionalLight(vec3 surfaceColor, vec3 normal);
 vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal);
@@ -26,8 +28,12 @@ vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal);
 
 
 void main(void) {
-
     vec3 surfaceColor = texture2D(uSampler, vec2(vUv.s, vUv.t)).xyz;
+    if (uIgnoreLighting) {
+        gl_FragColor = vec4(surfaceColor, 1.0);
+        return;
+    }
+
     vec3 normal = normalize(vNormal);
 
     vec3 color = directionalLight(surfaceColor, normal);

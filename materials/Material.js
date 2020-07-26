@@ -34,4 +34,8 @@ export class Material {
         this.texture = this.gl.createImageTexture(image);
     }
 
+    ignoreLighting() {
+        return false;
+    }
+
 }
