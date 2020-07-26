@@ -21,4 +21,8 @@ export class CastleWindow extends DrawableObject {
             .setMaterial(Materials.getMaterial(CASTLE_WINDOW_MATERIAL));
     }
 
+    getUvsScale() {
+        return [0.25, 0.25];
+    }
+
 }
