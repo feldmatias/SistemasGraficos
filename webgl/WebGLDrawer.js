@@ -19,7 +19,7 @@ export class WebGLDrawer {
         this.gl.vertexAttribPointer(this.shaderProgram.vertexNormalAttribute, normalBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
 
         this.gl.activeTexture(this.gl.TEXTURE0);
-        this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.getTexture());
+        this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.material.getTexture());
         this.gl.uniform1i(this.shaderProgram.samplerTextureUniform, 0);
 
         let indexBuffer = drawableObject.buffers.getIndicesBuffer();

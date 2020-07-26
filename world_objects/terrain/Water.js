@@ -4,10 +4,10 @@ import {Materials, WATER_MATERIAL} from "../../materials/MaterialsFactory.js";
 
 export class Water extends DrawableObject {
 
-    constructor(radius = 50) {
+    constructor(radius = 100) {
         super();
 
-        this.object = new Plane(radius, radius)
+        this.object = new Plane(radius, radius, 10)
             .setMaterial(Materials.getMaterial(WATER_MATERIAL))
             .translate(0, 0.025, 0);
     }

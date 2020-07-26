@@ -5,7 +5,7 @@ import {GRASS_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js"
 
 export class Grass extends DrawableObject {
 
-    constructor(isleLength, waterLength = 5) {
+    constructor(isleLength, waterLength = 15) {
         super();
 
         this.isleLength = isleLength;

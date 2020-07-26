@@ -4,8 +4,9 @@ import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js";
 
 export class Plane extends DrawableObject {
 
-    constructor(width = 1, height = 1) {
+    constructor(width = 1, height = 1, uvsScale = 1) {
         super();
+        this.uvsScale = [uvsScale, uvsScale];
         this.setVerticesData(width, height);
     }
 
@@ -14,5 +15,9 @@ export class Plane extends DrawableObject {
 
         let data = new SurfacesGenerator().generateSurface(surface, 10, 10);
         this.setBuffers(data);
+    }
+
+    getUvsScale() {
+        return this.uvsScale;
     }
 }

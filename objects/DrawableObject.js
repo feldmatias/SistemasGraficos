@@ -43,10 +43,6 @@ export class DrawableObject {
         return this;
     }
 
-    getTexture() {
-        return this.material.getTexture();
-    }
-
     getUvsScale() {
         return [1, 1];
     }
