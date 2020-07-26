@@ -7,9 +7,9 @@ export class Bridge extends DrawableObject {
     constructor(width, length) {
         super();
 
-        this.object = new Cube(width, 0.1, length)
+        this.object = new Cube(width, 0.1, length, 0.5)
             .setMaterial(Materials.getMaterial(GRASS_MATERIAL))
-            .translate(0, 0.05, 0);
+            .translate(0, 0.052, 0);
     }
 
     getChildren() {

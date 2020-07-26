@@ -1,7 +1,8 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
 import {SurfacesGenerator} from "../../surfaces/SurfacesGenerator.js";
-import {CylinderRevolutionShape} from "../../surfaces/shapes/CylinderRevolutionShape.js";
 import {GRASS_MATERIAL, Materials} from "../../materials/MaterialsFactory.js";
+import {CircleShape} from "../../surfaces/shapes/CircleShape.js";
+import {LinePath} from "../../surfaces/paths/LinePath.js";
 
 export class Isle extends DrawableObject {
 
@@ -12,13 +13,15 @@ export class Isle extends DrawableObject {
     }
 
     initialize(radius, step) {
-        let shape = new CylinderRevolutionShape(radius, 0.1);
+        let shape = new CircleShape(radius + 0.4, 360, 0, step);
+        let path = new LinePath(0.2);
 
-        let data = new SurfacesGenerator().generateRevolutionSurface(shape, step);
+        let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
 
         this.setBuffers(data)
             .setMaterial(Materials.getMaterial(GRASS_MATERIAL))
-            .translate(0, 0.05, 0);
+            .rotateX(Math.PI / 2)
+            .translate(0, 0.1, 0);
     }
 
     invertUvs() {

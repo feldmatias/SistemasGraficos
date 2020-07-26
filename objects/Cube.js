@@ -5,8 +5,9 @@ import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js"
 
 export class Cube extends DrawableObject {
 
-    constructor(width, height, length) {
+    constructor(width, height, length, uvsScale = 1) {
         super();
+        this.uvsScale = uvsScale;
         this.setVerticesData(width, height, length);
     }
 
@@ -16,5 +17,9 @@ export class Cube extends DrawableObject {
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
         this.setBuffers(data);
+    }
+
+    getUvsScale() {
+        return [this.uvsScale, this.uvsScale];
     }
 }
