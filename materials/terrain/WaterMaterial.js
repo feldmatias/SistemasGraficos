@@ -4,7 +4,7 @@ export class WaterMaterial extends Material {
 
     constructor() {
         super();
-        this.setImage('textures/terrain/water_diffuse.png');
+        this.setImage('textures/terrain/water_diffuse.jpg');
     }
 
     getSpecularIntensity() {
