@@ -2,16 +2,17 @@ import {Shape} from './Shape.js'
 
 export class CircleShape extends Shape {
 
-    constructor(radius = 1, angle = 360, step = 5) {
+    constructor(radius = 1, angle = 360, startAngle = 0, step = 5) {
         super();
         this.radius = radius;
         this.angle = angle;
+        this.startAngle = startAngle;
         this.step = step;
     }
 
     getVertices() {
         let vertices = [];
-        for (let i = 0; i < this.angle; i += this.step) {
+        for (let i = this.startAngle; i < this.angle; i += this.step) {
             let angle = i * Math.PI / 180;
             let x = this.radius * Math.cos(angle);
             let y = this.radius * Math.sin(angle);
@@ -21,6 +22,6 @@ export class CircleShape extends Shape {
     }
 
     isClosed() {
-        return true;
+        return this.angle === 360;
     }
 }

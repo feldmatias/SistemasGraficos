@@ -1,6 +1,6 @@
 import {DrawableObject} from "./DrawableObject.js";
 import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js";
-import {SphereSurface} from "../surfaces/surfaces/SphereSurface.js";
+import {CircleShape} from "../surfaces/shapes/CircleShape.js";
 
 export class Sphere extends DrawableObject {
 
@@ -10,9 +10,9 @@ export class Sphere extends DrawableObject {
     }
 
     setVerticesData(radius) {
-        let surface = new SphereSurface(radius);
+        let shape = new CircleShape(radius, 90, -90);
 
-        let data = new SurfacesGenerator().generateSurface(surface, 50, 50);
+        let data = new SurfacesGenerator().generateRevolutionSurface(shape);
         this.setBuffers(data);
     }
 }
