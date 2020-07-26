@@ -14,7 +14,12 @@ export class Menu {
         this.menu = new dat.GUI();
 
         this.menu.add(this, 'Camara', Object.keys(this.cameraOptions));
-        this.menu.addColor(this, 'LuzAmbiente')
+
+        // Lighting configuration
+        let lighting = this.menu.addFolder('Iluminacion');
+        lighting.addColor(this, 'LuzSolar');
+        lighting.addColor(this, 'LuzAntorchas');
+        lighting.open();
 
         // Castle configuration
         let castle = this.menu.addFolder('Castillo');
@@ -34,7 +39,8 @@ export class Menu {
         this.Camara = 'Orbital';
 
         // Lights
-        this.LuzAmbiente = [85, 85, 85];
+        this.LuzSolar = [85, 85, 85];
+        this.LuzAntorchas = [255, 187, 0];
 
         // Castle configuration
         this.Ancho = 9;
@@ -54,6 +60,7 @@ export class Menu {
             .setWallHeight(this.Altura)
             .setWallColumnCount(this.Columnas)
             .setCamera(this.cameraOptions[this.Camara])
-            .setAmbientLight(this.LuzAmbiente);
+            .setAmbientLight(this.LuzSolar)
+            .setTorchesLight(this.LuzAntorchas);
     }
 }

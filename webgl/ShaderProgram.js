@@ -27,11 +27,13 @@ export class ShaderProgram {
         this.lightPositionUniform = gl.getUniformLocation(shaderProgram, "uLightPosition");
         this.lightColorUniform = gl.getUniformLocation(shaderProgram, "uLightColor");
 
-        this.cameraPositionUniform = gl.getUniformLocation(shaderProgram, "uCameraPosition");
+        this.pointLightsColorUniform = gl.getUniformLocation(shaderProgram, "uPointLightsColor");
         this.pointLightsPositionsUniforms = [];
         for (let i = 0; i < 3; i++) {
             this.pointLightsPositionsUniforms.push(gl.getUniformLocation(shaderProgram, `uPointLightsPositions[${i}]`));
         }
+
+        this.cameraPositionUniform = gl.getUniformLocation(shaderProgram, "uCameraPosition");
 
         this.specularIntensityUniform = gl.getUniformLocation(shaderProgram, "uSpecularIntensity");
         this.specularShininessUniform = gl.getUniformLocation(shaderProgram, "uSpecularShininess");

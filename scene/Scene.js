@@ -63,8 +63,8 @@ export class Scene {
     setLighting() {
         let lightPosition = [80.0, 100.0, 80.0];
         let lightColor = this.config.ambientLight;
-        this.gl.getDrawer().setLighting(lightPosition, lightColor);;
-        this.gl.getDrawer().setPointLights(this.world.getTorches().map(torch => torch.getPosition()))
+        this.gl.getDrawer().setLighting(lightPosition, lightColor);
+        this.gl.getDrawer().setPointLights(this.world.getTorches().map(torch => torch.getPosition()), this.config.torchesLight);
     }
 
     getConfig() {

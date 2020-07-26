@@ -63,7 +63,8 @@ export class WebGLDrawer {
         this.gl.uniform3fv(this.shaderProgram.lightColorUniform, lightColor.map(x => x / 255));
     }
 
-    setPointLights(pointLightsPositions) {
+    setPointLights(pointLightsPositions, pointLightsColor) {
+        this.gl.uniform3fv(this.shaderProgram.pointLightsColorUniform, pointLightsColor.map(x => x / 255));
         for (let i = 0; i < this.shaderProgram.pointLightsPositionsUniforms.length; i++) {
             this.gl.uniform3fv(this.shaderProgram.pointLightsPositionsUniforms[i], pointLightsPositions[i]);
         }

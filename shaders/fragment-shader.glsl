@@ -8,6 +8,7 @@ varying vec3 vWorldPosition;
 
 uniform vec3 uLightPosition;
 uniform vec3 uLightColor;
+uniform vec3 uPointLightsColor;
 
 uniform vec3 uCameraPosition;
 
@@ -62,12 +63,12 @@ vec3 directionalLight(vec3 surfaceColor, vec3 normal) {
 
 vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal) {
     float distance = length(lightPosition - vWorldPosition);
-    float intensity = 1.0 / (1.0 + 0.09 * distance + 0.032 * distance * distance);
+    float intensity = 1.0 / (1.0 + 0.045 * distance + 0.0075 * distance * distance);
 
     // Diffuse
     vec3 lightDirection = normalize(lightPosition - vWorldPosition);
     float diffuseComponent = max(dot(normal, lightDirection), 0.0);
-    vec3 diffuse = diffuseComponent * vec3(1.0, 214.0/255.0, 0.0) * surfaceColor;
+    vec3 diffuse = diffuseComponent * uPointLightsColor * surfaceColor;
 
     return diffuse * intensity;
 }

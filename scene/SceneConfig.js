@@ -50,4 +50,9 @@ export class SceneConfig {
         return this;
     }
 
+    setTorchesLight(light) {
+        this.torchesLight = light;
+        return this;
+    }
+
 }
