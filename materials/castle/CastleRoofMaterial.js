@@ -4,7 +4,7 @@ export class CastleRoofMaterial extends Material {
 
     constructor() {
         super();
-        this.setImage('textures/castle/castle_roof_diffuse.jpg');
+        this.setImage('textures/castle/castle_roof_diffuse.png');
     }
 
 }

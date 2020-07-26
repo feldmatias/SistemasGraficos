@@ -23,7 +23,7 @@ export class CastleRoof extends DrawableObject {
     }
 
     getUvsScale() {
-        return [2, 2];
+        return [5, 2];
     }
 
 }
