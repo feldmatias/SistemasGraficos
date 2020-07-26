@@ -2,38 +2,6 @@ import {RevolutionPath} from "./paths/CirclePath.js";
 
 export class SurfacesGenerator {
 
-    generateSurface(surface, rows, columns) {
-        let positionBuffer = [];
-        let normalBuffer = [];
-        let uvBuffer = [];
-
-        for (let i = 0; i <= rows; i++) {
-            for (let j = 0; j <= columns; j++) {
-
-                let u = j / columns;
-                let v = i / rows;
-
-                let position = surface.getPosition(u, v);
-                positionBuffer.push(position[0], position[1], position[2]);
-
-                let normal = surface.getNormal(u, v);
-                normalBuffer.push(normal[0], normal[1], normal[2]);
-
-                let uvs = surface.getTextures(u, v);
-                uvBuffer.push(uvs[0], uvs[1]);
-            }
-        }
-
-        let indexBuffer = this._generateIndexBuffer(rows, columns);
-
-        return {
-            positionBuffer,
-            normalBuffer,
-            uvBuffer,
-            indexBuffer
-        }
-    }
-
     generateSweepSurface(shape, path, withCaps = false) {
 
         let sweepSurface = new SweepSurfacesAlgorithm();
