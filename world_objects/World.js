@@ -68,4 +68,12 @@ export class World extends DrawableObject {
     recreateWall(config) {
         this.createWall(config);
     }
+
+    getTorches() {
+        return [
+            this.ball,
+            this.catapult.getBall(),
+            this.wall.getTorches(),
+        ].flat().filter(o => o.isShowing);
+    }
 }

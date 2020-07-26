@@ -62,4 +62,8 @@ export class WebGLDrawer {
         this.gl.uniform3fv(this.shaderProgram.lightPositionUniform, lightPosition);
         this.gl.uniform3fv(this.shaderProgram.lightColorUniform, lightColor.map(x => x / 255));
     }
+
+    setPointLights(pointLightsPositions) {
+        this.gl.uniform3fv(this.shaderProgram.cameraPositionUniform, pointLightsPositions);
+    }
 }

@@ -33,4 +33,8 @@ export class Wall extends DrawableObject {
         this.frontWall = new FrontWall(this.height, this.width, length)
             .translate(0, 0, translation + 0.25);
     }
+
+    getTorches() {
+        return this.frontWall.borders.map(border => border.torch.fire);
+    }
 }

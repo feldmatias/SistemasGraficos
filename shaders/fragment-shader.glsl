@@ -1,5 +1,7 @@
 precision mediump float;
 
+#define POINT_LIGHTS 3
+
 varying vec2 vUv;
 varying vec3 vNormal;
 varying vec3 vWorldPosition;
@@ -14,8 +16,11 @@ uniform sampler2D uSampler;
 uniform float uSpecularIntensity;
 uniform float uSpecularShininess;
 
+uniform vec3 uPointLightsPositions[POINT_LIGHTS];
+
 
 vec3 directionalLight(vec3 surfaceColor, vec3 normal);
+vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal);
 
 
 
@@ -25,6 +30,9 @@ void main(void) {
     vec3 normal = normalize(vNormal);
 
     vec3 color = directionalLight(surfaceColor, normal);
+    for (int i = 0; i < POINT_LIGHTS; i++) {
+        color += pointLight(uPointLightsPositions[i], surfaceColor, normal);
+    }
 
     gl_FragColor = vec4(color, 1.0);
 
@@ -50,4 +58,9 @@ vec3 directionalLight(vec3 surfaceColor, vec3 normal) {
     vec3 specular = uSpecularIntensity * specularComponent * uLightColor;
 
     return ambient + diffuse + specular;
+}
+
+vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal) {
+
+    return vec3(0,0,0);
 }
