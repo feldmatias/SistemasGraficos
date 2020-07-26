@@ -1,20 +1,7 @@
 export const Colors = {
     WHITE: [255, 255, 255],
 
-    CASTLE_YELLOW: [175, 170, 121],
-    CASTLE_BLUE: [41, 64, 113],
-    CASTLE_BLACK: [46, 46, 53],
-
-    GRASS_GREEN: [67, 143, 74],
-    WATER_BLUE: [137, 169, 207],
-    SKY_BLUE: [234, 255, 255],
-
-    CATAPULT_BROWN: [127, 101, 78],
-    CATAPULT_DARK_BROWN: [64, 44, 45],
-    CATAPULT_GREY: [149, 150, 155],
-
-    WALL_GREY: [152, 153, 158],
-    WALL_BROWN: [74, 60, 51],
+    SKY_BLUE: [10, 20, 85],
 
     BALL_GREY: [153, 154, 159],
 };
