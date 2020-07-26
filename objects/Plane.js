@@ -1,6 +1,7 @@
 import {DrawableObject} from "./DrawableObject.js";
-import {PlaneSurface} from "../surfaces/surfaces/PlaneSurface.js";
 import {SurfacesGenerator} from "../surfaces/SurfacesGenerator.js";
+import {LinePath} from "../surfaces/paths/LinePath.js";
+import {SquareShape} from "../surfaces/shapes/SquareShape.js";
 
 export class Plane extends DrawableObject {
 
@@ -11,10 +12,13 @@ export class Plane extends DrawableObject {
     }
 
     setVerticesData(width, height) {
-        let surface = new PlaneSurface(width, height);
+        let shape = new SquareShape(width, height);
+        let path = new LinePath(0.01);
 
-        let data = new SurfacesGenerator().generateSurface(surface, 10, 10);
+        let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
         this.setBuffers(data);
+
+        this.rotateX(Math.PI / 2);
     }
 
     getUvsScale() {
