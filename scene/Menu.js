@@ -37,8 +37,8 @@ export class Menu {
         this.LuzAmbiente = [85, 85, 85];
 
         // Castle configuration
-        this.Ancho = 7;
-        this.Largo = 9;
+        this.Ancho = 9;
+        this.Largo = 7;
         this.Pisos = 2;
 
         // Wall configuration

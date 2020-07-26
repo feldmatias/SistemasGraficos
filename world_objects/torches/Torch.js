@@ -8,7 +8,7 @@ export class Torch extends DrawableObject {
     constructor() {
         super();
 
-        this.height = 1.4;
+        this.height = 2;
 
         this.createTorch();
         this.createFire();

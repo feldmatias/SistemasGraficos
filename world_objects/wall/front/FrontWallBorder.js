@@ -3,6 +3,7 @@ import {WallShape} from "../border/WallShape.js";
 import {LinePath} from "../../../surfaces/paths/LinePath.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
 import {Materials, WALL_MATERIAL} from "../../../materials/MaterialsFactory.js";
+import {Torch} from "../../torches/Torch.js";
 
 export class FrontWallBorder extends DrawableObject {
 
@@ -14,6 +15,14 @@ export class FrontWallBorder extends DrawableObject {
 
         this.initialize();
         this.rotateY(Math.PI / 2);
+
+        this.createTorch();
+    }
+
+    getChildren() {
+        return [
+            this.torch,
+        ];
     }
 
     initialize() {
@@ -32,6 +41,12 @@ export class FrontWallBorder extends DrawableObject {
 
     invertUvs() {
         return true;
+    }
+
+    createTorch() {
+        this.torch = new Torch()
+            .translate(this.width / 4, this.height / 2, 0)
+            .rotateZ(-Math.PI / 4);
     }
 
 }
