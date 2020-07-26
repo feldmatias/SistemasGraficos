@@ -7,6 +7,8 @@ varying vec3 vWorldPosition;
 uniform vec3 uLightPosition;
 uniform vec3 uLightColor;
 
+uniform vec3 uCameraPosition;
+
 uniform sampler2D uSampler;
 
 vec3 directionalLight(vec3 surfaceColor, vec3 normal);
@@ -24,14 +26,25 @@ void main(void) {
 
 vec3 directionalLight(vec3 surfaceColor, vec3 normal) {
 
-    //Ambient
+    // Ambient
     float ambientLight = 0.3;
     vec3 ambient = ambientLight * uLightColor * surfaceColor;
 
     // Diffuse
     vec3 lightDirection = normalize(uLightPosition - vWorldPosition);
-    float diffuseIntensity = max(dot(normal, lightDirection), 0.0);
-    vec3 diffuse = diffuseIntensity * uLightColor * surfaceColor;
+    float diffuseComponent = max(dot(normal, lightDirection), 0.0);
+    vec3 diffuse = diffuseComponent * uLightColor * surfaceColor;
 
-    return ambient + diffuse;
+    // Specular
+    float specularIntensity = 0.9; // Todo: material param
+    float shininess = 32.0;  // Todo: material param
+
+    vec3 viewDirection = normalize(uCameraPosition - vWorldPosition);
+    vec3 reflectDirection = reflect(-lightDirection, normal);
+
+    float specularComponent = max(dot(viewDirection, reflectDirection), 0.0);
+    specularComponent = pow(specularComponent, shininess);
+    vec3 specular = specularIntensity * specularComponent * uLightColor;
+
+    return ambient + diffuse + specular;
 }

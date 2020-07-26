@@ -21,8 +21,12 @@ export class ShaderProgram {
         this.modelMatrixUniform = gl.getUniformLocation(shaderProgram, "uModelMatrix");
         this.viewMatrixUniform = gl.getUniformLocation(shaderProgram, "uViewMatrix");
         this.normalMatrixUniform = gl.getUniformLocation(shaderProgram, "uNormalMatrix");
+
         this.samplerTextureUniform = gl.getUniformLocation(shaderProgram, "uSampler");
+
         this.lightPositionUniform = gl.getUniformLocation(shaderProgram, "uLightPosition");
         this.lightColorUniform = gl.getUniformLocation(shaderProgram, "uLightColor");
+
+        this.cameraPositionUniform = gl.getUniformLocation(shaderProgram, "uCameraPosition");
     }
 }
