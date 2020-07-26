@@ -35,7 +35,7 @@ export class CastleColumn extends DrawableObject {
     }
 
     getUvsScale() {
-        return [this.floorsCount, 1];
+        return [this.floorsCount * 3, 1];
     }
 
     invertUvs() {

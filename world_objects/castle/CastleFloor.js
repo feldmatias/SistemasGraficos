@@ -30,7 +30,7 @@ export class CastleFloor extends DrawableObject {
     }
 
     getUvsScale() {
-        return [3, 0.5];
+        return [4, 0.5];
     }
 
     createWindows(width, length, height) {
