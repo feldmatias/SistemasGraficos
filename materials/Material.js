@@ -8,6 +8,14 @@ export class Material {
         return this.texture;
     }
 
+    getSpecularIntensity() {
+        return 0.5;
+    }
+
+    getSpecularShininess() {
+        return 32;
+    }
+
     setColors(colors, width = 1, height = 1) {
         colors = colors.map(color => {
             if (color.length === 3) {

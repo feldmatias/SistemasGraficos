@@ -25,6 +25,9 @@ export class WebGLDrawer {
         let indexBuffer = drawableObject.buffers.getIndicesBuffer();
         this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
 
+        this.gl.uniform1f(this.shaderProgram.specularIntensityUniform, drawableObject.material.getSpecularIntensity());
+        this.gl.uniform1f(this.shaderProgram.specularShininessUniform, drawableObject.material.getSpecularShininess());
+
         this.gl.drawElements(this.gl.TRIANGLE_STRIP, indexBuffer.numItems, this.gl.UNSIGNED_SHORT, 0);
     }
 
