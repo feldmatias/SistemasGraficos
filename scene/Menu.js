@@ -40,7 +40,7 @@ export class Menu {
 
         // Lights
         this.LuzSolar = [85, 85, 85];
-        this.LuzAntorchas = [255, 187, 0];
+        this.LuzAntorchas = [193, 138, 37];
 
         // Castle configuration
         this.Ancho = 9;
