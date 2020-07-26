@@ -22,7 +22,14 @@ export class Grass extends DrawableObject {
 
         this.setBuffers(data)
             .setMaterial(Materials.getMaterial(GRASS_MATERIAL));
+    }
 
+    getUvsScale() {
+        return [10, 10];
+    }
+
+    invertUvs() {
+        return true;
     }
 
 }

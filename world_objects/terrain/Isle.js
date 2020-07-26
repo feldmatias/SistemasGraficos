@@ -21,4 +21,8 @@ export class Isle extends DrawableObject {
             .translate(0, 0.05, 0);
     }
 
+    invertUvs() {
+        return true;
+    }
+
 }
