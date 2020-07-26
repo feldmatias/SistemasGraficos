@@ -8,4 +8,12 @@ export class RopeMaterial extends Material {
         this.setColor(Colors.WHITE);
     }
 
+    getSpecularIntensity() {
+        return 0.05;
+    }
+
+    getSpecularShininess() {
+        return 200;
+    }
+
 }

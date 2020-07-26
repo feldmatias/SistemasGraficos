@@ -7,4 +7,12 @@ export class CastleRoofMaterial extends Material {
         this.setImage('textures/castle/castle_roof_diffuse.png');
     }
 
+    getSpecularIntensity() {
+        return 0.9;
+    }
+
+    getSpecularShininess() {
+        return 32;
+    }
+
 }

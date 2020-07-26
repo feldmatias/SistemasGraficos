@@ -7,4 +7,12 @@ export class GrassMaterial extends Material {
         this.setImage('textures/terrain/ground_diffuse.jpg');
     }
 
+    getSpecularIntensity() {
+        return 0.2;
+    }
+
+    getSpecularShininess() {
+        return 15;
+    }
+
 }

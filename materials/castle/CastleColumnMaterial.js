@@ -7,4 +7,12 @@ export class CastleColumnMaterial extends Material {
         this.setImage('textures/castle/castle_column_diffuse.png');
     }
 
+    getSpecularIntensity() {
+        return 0.75;
+    }
+
+    getSpecularShininess() {
+        return 56;
+    }
+
 }

@@ -7,4 +7,12 @@ export class WallDoorMaterial extends Material {
         this.setImage('textures/wall/wall_door_diffuse.jpg');
     }
 
+    getSpecularIntensity() {
+        return 0.2;
+    }
+
+    getSpecularShininess() {
+        return 100;
+    }
+
 }

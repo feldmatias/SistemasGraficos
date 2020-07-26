@@ -7,4 +7,12 @@ export class CatapultWoodMaterial extends Material {
         this.setImage('textures/catapult/catapult_wood_diffuse.jpg');
     }
 
+    getSpecularIntensity() {
+        return 0.3;
+    }
+
+    getSpecularShininess() {
+        return 67;
+    }
+
 }

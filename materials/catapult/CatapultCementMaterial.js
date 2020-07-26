@@ -7,4 +7,12 @@ export class CatapultCementMaterial extends Material {
         this.setImage('textures/catapult/catapult_cement_diffuse.png');
     }
 
+    getSpecularIntensity() {
+        return 0.1;
+    }
+
+    getSpecularShininess() {
+        return 45;
+    }
+
 }

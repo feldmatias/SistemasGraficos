@@ -8,4 +8,12 @@ export class BallMaterial extends Material {
         this.setColor(Colors.BALL_GREY);
     }
 
+    getSpecularIntensity() {
+        return 0.7;
+    }
+
+    getSpecularShininess() {
+        return 100;
+    }
+
 }

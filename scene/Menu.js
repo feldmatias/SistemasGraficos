@@ -34,7 +34,7 @@ export class Menu {
         this.Camara = 'Orbital';
 
         // Lights
-        this.LuzAmbiente = [150, 150, 150];
+        this.LuzAmbiente = [85, 85, 85];
 
         // Castle configuration
         this.Ancho = 7;
