@@ -26,4 +26,12 @@ export class FrontWallBorder extends DrawableObject {
             .setMaterial(Materials.getMaterial(WALL_MATERIAL));
     }
 
+    getUvsScale() {
+        return [this.height >= 5 ? 2 : 1, 1];
+    }
+
+    invertUvs() {
+        return true;
+    }
+
 }
