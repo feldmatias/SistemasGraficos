@@ -9,14 +9,22 @@ uniform vec3 uLightColor;
 
 uniform sampler2D uSampler;
 
+vec3 directionalLight(vec3 surfaceColor, vec3 normal);
+
 void main(void) {
 
     vec3 surfaceColor = texture2D(uSampler, vec2(vUv.s, vUv.t)).xyz;
     vec3 normal = normalize(vNormal);
 
-    /* Phong model */
+    vec3 color = directionalLight(surfaceColor, normal);
 
-    // Ambient
+    gl_FragColor = vec4(color, 1.0);
+
+}
+
+vec3 directionalLight(vec3 surfaceColor, vec3 normal) {
+
+    //Ambient
     float ambientLight = 0.3;
     vec3 ambient = ambientLight * uLightColor * surfaceColor;
 
@@ -25,8 +33,5 @@ void main(void) {
     float diffuseIntensity = max(dot(normal, lightDirection), 0.0);
     vec3 diffuse = diffuseIntensity * uLightColor * surfaceColor;
 
-    vec3 color = ambient + diffuse;
-
-    gl_FragColor = vec4(color, 1.0);
-
+    return ambient + diffuse;
 }
