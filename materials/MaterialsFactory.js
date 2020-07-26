@@ -6,11 +6,12 @@ import {CastleRoofMaterial} from "./castle/CastleRoofMaterial.js";
 import {CastleWindowMaterial} from "./castle/CastleWindowMaterial.js";
 import {WallMaterial} from "./wall/WallMaterial.js";
 import {WallDoorMaterial} from "./wall/WallDoorMaterial.js";
-import {BallMaterial} from "./ball/BallMaterial.js";
+import {TorchFireMaterial} from "./torch/TorchFireMaterial.js";
 import {RopeMaterial} from "./catapult/RopeMaterial.js";
 import {GrassMaterial} from "./terrain/GrassMaterial.js";
 import {WaterMaterial} from "./terrain/WaterMaterial.js";
 import {CastleColumnMaterial} from "./castle/CastleColumnMaterial.js";
+import {TorchMaterial} from "./torch/TorchMaterial.js";
 
 export const CATAPULT_WOOD_MATERIAL = "CATAPULT_WOOD";
 export const CATAPULT_METAL_MATERIAL = "CATAPULT_METAL";
@@ -25,10 +26,11 @@ export const CASTLE_WINDOW_MATERIAL = "CASTLE_WINDOW";
 export const WALL_MATERIAL = "WALL";
 export const WALL_DOOR_MATERIAL = "WALL_DOOR";
 
-export const BALL_MATERIAL = "BALL";
-
 export const GRASS_MATERIAL = "GRASS";
 export const WATER_MATERIAL = "WATER";
+
+export const TORCH_MATERIAL = "TORCH";
+export const TORCH_FIRE_MATERIAL = "TORCH_FIRE";
 
 
 const MaterialClasses = {
@@ -42,7 +44,8 @@ const MaterialClasses = {
     CASTLE_WINDOW: CastleWindowMaterial,
     WALL: WallMaterial,
     WALL_DOOR: WallDoorMaterial,
-    BALL: BallMaterial,
+    TORCH: TorchMaterial,
+    TORCH_FIRE: TorchFireMaterial,
     GRASS: GrassMaterial,
     WATER: WaterMaterial,
 };

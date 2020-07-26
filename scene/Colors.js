@@ -3,5 +3,6 @@ export const Colors = {
 
     SKY_BLUE: [10, 20, 85],
 
-    BALL_GREY: [153, 154, 159],
+    TORCH: [53, 40, 30],
+    TORCH_FIRE: [153, 154, 159],
 };

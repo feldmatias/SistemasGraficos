@@ -1,6 +1,6 @@
 import {DrawableObject} from "../../objects/DrawableObject.js";
 import {Sphere} from "../../objects/Sphere.js";
-import {BALL_MATERIAL, Materials} from "../../materials/MaterialsFactory.js";
+import {TORCH_FIRE_MATERIAL, Materials} from "../../materials/MaterialsFactory.js";
 
 export class Ball extends DrawableObject {
 
@@ -10,7 +10,7 @@ export class Ball extends DrawableObject {
         this.radius = 1
 
         this.ball = new Sphere(this.radius)
-            .setMaterial(Materials.getMaterial(BALL_MATERIAL));
+            .setMaterial(Materials.getMaterial(TORCH_FIRE_MATERIAL));
     }
 
     getChildren() {

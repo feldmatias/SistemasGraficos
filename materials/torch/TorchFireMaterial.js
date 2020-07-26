@@ -1,11 +1,11 @@
 import {Material} from "../Material.js";
 import {Colors} from "../../scene/Colors.js";
 
-export class BallMaterial extends Material {
+export class TorchFireMaterial extends Material {
 
     constructor() {
         super();
-        this.setColor(Colors.BALL_GREY);
+        this.setColor(Colors.TORCH_FIRE);
     }
 
     getSpecularIntensity() {
