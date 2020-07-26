@@ -70,5 +70,13 @@ vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal) {
     float diffuseComponent = max(dot(normal, lightDirection), 0.0);
     vec3 diffuse = diffuseComponent * uPointLightsColor * surfaceColor;
 
-    return diffuse * intensity;
+    // Specular
+    vec3 viewDirection = normalize(uCameraPosition - vWorldPosition);
+    vec3 reflectDirection = reflect(-lightDirection, normal);
+
+    float specularComponent = max(dot(viewDirection, reflectDirection), 0.0);
+    specularComponent = pow(specularComponent, uSpecularShininess);
+    vec3 specular = uSpecularIntensity * specularComponent * uPointLightsColor;
+
+    return (diffuse + specular) * intensity;
 }

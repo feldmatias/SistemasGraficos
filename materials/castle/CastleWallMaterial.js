@@ -8,7 +8,7 @@ export class CastleWallMaterial extends Material {
     }
 
     getSpecularIntensity() {
-        return 0.38;
+        return 0.28;
     }
 
     getSpecularShininess() {
