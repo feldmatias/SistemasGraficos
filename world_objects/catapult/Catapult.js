@@ -65,10 +65,14 @@ export class Catapult extends DrawableObject {
 
     moveForward() {
         this.translate(0, 0, -this.moveVelocity);
+        this.base.axleFront.rotateZ(-this.moveVelocity);
+        this.base.axleBack.rotateZ(-this.moveVelocity);
     }
 
     moveBack() {
         this.translate(0, 0, this.moveVelocity);
+        this.base.axleFront.rotateZ(this.moveVelocity);
+        this.base.axleBack.rotateZ(this.moveVelocity);
     }
 
     moveLeft() {
