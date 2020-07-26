@@ -61,6 +61,13 @@ vec3 directionalLight(vec3 surfaceColor, vec3 normal) {
 }
 
 vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal) {
+    float distance = length(lightPosition - vWorldPosition);
+    float intensity = 1.0 / (1.0 + 0.09 * distance + 0.032 * distance * distance);
 
-    return vec3(0,0,0);
+    // Diffuse
+    vec3 lightDirection = normalize(lightPosition - vWorldPosition);
+    float diffuseComponent = max(dot(normal, lightDirection), 0.0);
+    vec3 diffuse = diffuseComponent * vec3(1.0, 214.0/255.0, 0.0) * surfaceColor;
+
+    return diffuse * intensity;
 }

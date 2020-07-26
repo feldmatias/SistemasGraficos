@@ -76,6 +76,13 @@ export class DrawableObject {
             Object.getPrototypeOf(this),
             Object.getOwnPropertyDescriptors(this)
         );
+
+        Object.keys(cloned).forEach(key => {
+            // Clone children
+            if (this[key] instanceof DrawableObject) {
+                cloned[key] = this[key].clone();
+            }
+        })
         cloned.modelMatrix = mat4.clone(this.modelMatrix);
         return cloned;
     }
