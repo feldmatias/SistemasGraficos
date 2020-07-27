@@ -26,4 +26,8 @@ export class CastleRoof extends DrawableObject {
         return [5, 2];
     }
 
+    invertUvs() {
+        return true;
+    }
+
 }
