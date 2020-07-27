@@ -77,4 +77,10 @@ export class Shape {
         let uv = vec2.fromValues(0.5, 0.5);
         return Array(verticesCount).fill(uv);
     }
+
+    getCapTangents() {
+        let verticesCount = this.getVertices().length;
+        let tangent = vec3.fromValues(1, 0, 0);
+        return Array(verticesCount).fill(tangent);
+    }
 }

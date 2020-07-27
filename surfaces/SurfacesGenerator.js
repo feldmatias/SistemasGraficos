@@ -84,7 +84,8 @@ class SweepSurfacesAlgorithm {
             let normalMatrix = path.getLevelNormalMatrix(level);
             let modified_normals = this.applyMatrix(normals, normalMatrix, true);
 
-            let modified_tangents = this.applyMatrix(this.tangents, normalMatrix, true);
+            let tangents = isNormalCap ? shape.getCapTangents() : this.tangents;
+            let modified_tangents = this.applyMatrix(tangents, normalMatrix, true);
 
             let capUvs = isCap ? this.centerCapUvs : (isNormalCap ? this.capUvs : null);
             this.fillBuffers(withCaps ? i - 2 : i, modified_vertices, modified_normals, modified_tangents, capUvs);
