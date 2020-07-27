@@ -8,7 +8,7 @@ export class WallDoor extends DrawableObject {
     constructor(width, height) {
         super();
 
-        this.door = new Cube(width, height, 0.3)
+        this.door = new Cube(width, height, 0.3, -1)
             .setMaterial(Materials.getMaterial(WALL_DOOR_MATERIAL))
             .translate(0, height / 2, 0);
 
