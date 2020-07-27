@@ -14,6 +14,8 @@ export class SurfacesGenerator {
         return {
             positionBuffer: sweepSurface.positionBuffer,
             normalBuffer: sweepSurface.normalBuffer,
+            tangentBuffer: sweepSurface.tangentBuffer,
+            binormalBuffer: sweepSurface.binormalBuffer,
             uvBuffer: sweepSurface.uvBuffer,
             indexBuffer: indexBuffer
         }

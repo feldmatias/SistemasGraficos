@@ -4,6 +4,8 @@ precision mediump float;
 
 varying vec2 vUv;
 varying vec3 vNormal;
+varying vec3 vTangent;
+varying vec3 vBinormal;
 varying vec3 vWorldPosition;
 
 uniform vec3 uLightPosition;

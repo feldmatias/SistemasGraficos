@@ -14,6 +14,12 @@ export class ShaderProgram {
 
         this.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "aNormal");
         gl.enableVertexAttribArray(this.vertexNormalAttribute);
+
+        this.vertexTangentAttribute = gl.getAttribLocation(shaderProgram, "aTangent");
+        gl.enableVertexAttribArray(this.vertexTangentAttribute);
+
+        this.vertexBinormalAttribute = gl.getAttribLocation(shaderProgram, "aBinormal");
+        gl.enableVertexAttribArray(this.vertexBinormalAttribute);
     }
 
     setUniforms(gl, shaderProgram) {
