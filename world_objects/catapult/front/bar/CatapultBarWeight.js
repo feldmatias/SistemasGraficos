@@ -32,7 +32,7 @@ export class CatapultBarWeight extends DrawableObject {
         this.height = 0.75;
         this.separation = 1;
 
-        let trapezium = new Trapezium(0.6, 0.2, this.height, 0.1)
+        let trapezium = new Trapezium(0.6, 0.2, this.height, 0.1, 0.5)
             .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL));
 
         this.leftTrapezium = trapezium.clone()
