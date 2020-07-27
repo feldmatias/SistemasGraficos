@@ -30,6 +30,7 @@ export class ShaderProgram {
 
         this.samplerTextureUniform = gl.getUniformLocation(shaderProgram, "uSampler");
         this.samplerNormalsTextureUniform = gl.getUniformLocation(shaderProgram, "uSamplerNormals");
+        this.hasNormalMappingUniform = gl.getUniformLocation(shaderProgram, "uHasNormalMapping");
         this.ignoreLightingUniform = gl.getUniformLocation(shaderProgram, "uIgnoreLighting");
 
         this.lightPositionUniform = gl.getUniformLocation(shaderProgram, "uLightPosition");

@@ -30,6 +30,8 @@ export class WebGLDrawer {
         this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.material.getTexture());
         this.gl.uniform1i(this.shaderProgram.samplerTextureUniform, 0);
 
+        this.gl.uniform1i(this.shaderProgram.hasNormalMappingUniform, drawableObject.material.getNormalsTexture() !== undefined);
+
         this.gl.activeTexture(this.gl.TEXTURE1);
         this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.material.getNormalsTexture());
         this.gl.uniform1i(this.shaderProgram.samplerNormalsTextureUniform, 1);

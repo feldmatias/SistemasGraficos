@@ -16,6 +16,7 @@ uniform vec3 uCameraPosition;
 
 uniform sampler2D uSampler;
 uniform sampler2D uSamplerNormals;
+uniform bool uHasNormalMapping;
 
 uniform float uSpecularIntensity;
 uniform float uSpecularShininess;
@@ -51,6 +52,16 @@ void main(void) {
 
 vec3 normalMapping() {
     vec3 normal = normalize(vNormal);
+
+    if (uHasNormalMapping) {
+        vec3 newNormal = texture2D(uSamplerNormals, vec2(vUv.s, vUv.t)).xyz;
+        newNormal = normalize(newNormal * 2.0 - 1.0);
+
+        mat3 TBN = mat3(normalize(vTangent), normalize(vBinormal), normal);
+
+        normal = normalize(TBN * newNormal);
+    }
+
     return normal;
 }
 
