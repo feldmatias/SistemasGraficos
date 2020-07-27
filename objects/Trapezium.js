@@ -5,8 +5,9 @@ import {LinePath} from "../surfaces/paths/LinePath.js";
 
 export class Trapezium extends DrawableObject {
 
-    constructor(longWidth, shortWidth, height, length) {
+    constructor(longWidth, shortWidth, height, length, uvsScale = 1) {
         super();
+        this.uvsScale = uvsScale;
         this.setVerticesData(longWidth, shortWidth, height, length);
     }
 
@@ -16,5 +17,9 @@ export class Trapezium extends DrawableObject {
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
         this.setBuffers(data);
+    }
+
+    getUvsScale() {
+        return [this.uvsScale, this.uvsScale];
     }
 }

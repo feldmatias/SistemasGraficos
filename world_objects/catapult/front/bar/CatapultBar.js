@@ -29,7 +29,7 @@ export class CatapultBar extends DrawableObject {
 
     createBar() {
         this.length = 9;
-        this.bar = new Cube(0.7, 0.4, this.length)
+        this.bar = new Cube(0.7, 0.4, this.length, 0.5)
             .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL));
     }
 
@@ -37,7 +37,7 @@ export class CatapultBar extends DrawableObject {
         let size = 2.5;
         this.munitionBase = new Cube(size, 0.4, size)
             .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL))
-            .translate(0, 0, this.length / 2);
+            .translate(0, 0.2, this.length / 2);
     }
 
     createBarWeight() {

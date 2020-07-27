@@ -27,7 +27,7 @@ export class CatapultFront extends DrawableObject {
         this.height = 4;
         this.separation = 3;
 
-        let trapezium = new Trapezium(2.4, 0.8, this.height, 0.2)
+        let trapezium = new Trapezium(2.4, 0.8, this.height, 0.2, 0.5)
             .setMaterial(Materials.getMaterial(CATAPULT_WOOD_MATERIAL));
 
         this.leftTrapezium = trapezium.clone()
