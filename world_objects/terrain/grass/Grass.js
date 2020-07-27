@@ -25,7 +25,7 @@ export class Grass extends DrawableObject {
     }
 
     getUvsScale() {
-        return [6, 10];
+        return [8, 10];
     }
 
 }
