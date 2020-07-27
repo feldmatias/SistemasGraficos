@@ -14,6 +14,12 @@ export class ShaderProgram {
 
         this.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "aNormal");
         gl.enableVertexAttribArray(this.vertexNormalAttribute);
+
+        this.vertexTangentAttribute = gl.getAttribLocation(shaderProgram, "aTangent");
+        gl.enableVertexAttribArray(this.vertexTangentAttribute);
+
+        this.vertexBinormalAttribute = gl.getAttribLocation(shaderProgram, "aBinormal");
+        gl.enableVertexAttribArray(this.vertexBinormalAttribute);
     }
 
     setUniforms(gl, shaderProgram) {
@@ -23,6 +29,8 @@ export class ShaderProgram {
         this.normalMatrixUniform = gl.getUniformLocation(shaderProgram, "uNormalMatrix");
 
         this.samplerTextureUniform = gl.getUniformLocation(shaderProgram, "uSampler");
+        this.samplerNormalsTextureUniform = gl.getUniformLocation(shaderProgram, "uSamplerNormals");
+        this.hasNormalMappingUniform = gl.getUniformLocation(shaderProgram, "uHasNormalMapping");
         this.ignoreLightingUniform = gl.getUniformLocation(shaderProgram, "uIgnoreLighting");
 
         this.lightPositionUniform = gl.getUniformLocation(shaderProgram, "uLightPosition");

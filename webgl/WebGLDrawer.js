@@ -18,9 +18,23 @@ export class WebGLDrawer {
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, normalBuffer);
         this.gl.vertexAttribPointer(this.shaderProgram.vertexNormalAttribute, normalBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
 
+        let tangentBuffer = drawableObject.buffers.getTangentsBuffer();
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, tangentBuffer);
+        this.gl.vertexAttribPointer(this.shaderProgram.vertexTangentAttribute, tangentBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
+
+        let binormalBuffer = drawableObject.buffers.getBinormalsBuffer();
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, binormalBuffer);
+        this.gl.vertexAttribPointer(this.shaderProgram.vertexBinormalAttribute, binormalBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
+
         this.gl.activeTexture(this.gl.TEXTURE0);
         this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.material.getTexture());
         this.gl.uniform1i(this.shaderProgram.samplerTextureUniform, 0);
+
+        this.gl.uniform1i(this.shaderProgram.hasNormalMappingUniform, drawableObject.material.getNormalsTexture() !== undefined);
+
+        this.gl.activeTexture(this.gl.TEXTURE1);
+        this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.material.getNormalsTexture());
+        this.gl.uniform1i(this.shaderProgram.samplerNormalsTextureUniform, 1);
 
         let indexBuffer = drawableObject.buffers.getIndicesBuffer();
         this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);

@@ -14,6 +14,8 @@ export class SurfacesGenerator {
         return {
             positionBuffer: sweepSurface.positionBuffer,
             normalBuffer: sweepSurface.normalBuffer,
+            tangentBuffer: sweepSurface.tangentBuffer,
+            binormalBuffer: sweepSurface.binormalBuffer,
             uvBuffer: sweepSurface.uvBuffer,
             indexBuffer: indexBuffer
         }
@@ -57,10 +59,13 @@ class SweepSurfacesAlgorithm {
     generateSweepSurface(shape, path, withCaps = false) {
         this.positionBuffer = [];
         this.normalBuffer = [];
+        this.tangentBuffer = [];
+        this.binormalBuffer = [];
         this.uvBuffer = [];
 
         this.vertices = shape.getVertices();
         this.normals = shape.getNormals();
+        this.tangents = shape.getTangents();
         this.getUvs(shape, path);
 
         this.levels = this.getLevels(path, withCaps);
@@ -79,8 +84,11 @@ class SweepSurfacesAlgorithm {
             let normalMatrix = path.getLevelNormalMatrix(level);
             let modified_normals = this.applyMatrix(normals, normalMatrix, true);
 
+            let tangents = isNormalCap ? shape.getCapTangents() : this.tangents;
+            let modified_tangents = this.applyMatrix(tangents, normalMatrix, true);
+
             let capUvs = isCap ? this.centerCapUvs : (isNormalCap ? this.capUvs : null);
-            this.fillBuffers(withCaps ? i - 2 : i, modified_vertices, modified_normals, capUvs);
+            this.fillBuffers(withCaps ? i - 2 : i, modified_vertices, modified_normals, modified_tangents, capUvs);
         }
     }
 
@@ -108,12 +116,18 @@ class SweepSurfacesAlgorithm {
         });
     }
 
-    fillBuffers(level, modified_vertices, modified_normals, capUvs) {
+    fillBuffers(level, modified_vertices, modified_normals, modified_tangents, capUvs) {
         for (let j = 0; j < modified_vertices.length; j++) {
             let vertex = modified_vertices[j];
             this.positionBuffer.push(vertex[0], vertex[1], vertex[2]);
             let normal = modified_normals[j];
             this.normalBuffer.push(normal[0], normal[1], normal[2]);
+            let tangent = modified_tangents[j];
+            this.tangentBuffer.push(tangent[0], tangent[1], tangent[2]);
+
+            let binormal = vec3.create();
+            vec3.cross(binormal, tangent, normal);
+            this.binormalBuffer.push(binormal[0], binormal[1], binormal[2]);
 
             if (capUvs) {
                 let uv = capUvs[j];

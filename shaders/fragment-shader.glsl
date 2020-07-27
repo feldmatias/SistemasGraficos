@@ -4,6 +4,8 @@ precision mediump float;
 
 varying vec2 vUv;
 varying vec3 vNormal;
+varying vec3 vTangent;
+varying vec3 vBinormal;
 varying vec3 vWorldPosition;
 
 uniform vec3 uLightPosition;
@@ -13,6 +15,8 @@ uniform vec3 uPointLightsColor;
 uniform vec3 uCameraPosition;
 
 uniform sampler2D uSampler;
+uniform sampler2D uSamplerNormals;
+uniform bool uHasNormalMapping;
 
 uniform float uSpecularIntensity;
 uniform float uSpecularShininess;
@@ -22,6 +26,7 @@ uniform vec3 uPointLightsPositions[POINT_LIGHTS];
 uniform bool uIgnoreLighting;
 
 
+vec3 normalMapping();
 vec3 directionalLight(vec3 surfaceColor, vec3 normal);
 vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal);
 
@@ -34,7 +39,7 @@ void main(void) {
         return;
     }
 
-    vec3 normal = normalize(vNormal);
+    vec3 normal = normalMapping();
 
     vec3 color = directionalLight(surfaceColor, normal);
     for (int i = 0; i < POINT_LIGHTS; i++) {
@@ -43,6 +48,21 @@ void main(void) {
 
     gl_FragColor = vec4(color, 1.0);
 
+}
+
+vec3 normalMapping() {
+    vec3 normal = normalize(vNormal);
+
+    if (uHasNormalMapping) {
+        vec3 newNormal = texture2D(uSamplerNormals, vec2(vUv.s, vUv.t)).xyz;
+        newNormal = normalize(newNormal * 2.0 - 1.0);
+
+        mat3 TBN = mat3(normalize(vTangent), normalize(vBinormal), normal);
+
+        normal = normalize(TBN * newNormal);
+    }
+
+    return normal;
 }
 
 vec3 directionalLight(vec3 surfaceColor, vec3 normal) {

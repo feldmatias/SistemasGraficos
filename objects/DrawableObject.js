@@ -186,9 +186,27 @@ class DrawableObjectBuffers {
         this.indicesBuffer = this.gl.createIndexBuffer(indices, 1);
     }
 
+    getTangentsBuffer() {
+        return this.tangentsBuffer;
+    }
+
+    setTangentsBuffer(tangentsBuffer) {
+        this.tangentsBuffer = this.gl.createBuffer(tangentsBuffer, 3);
+    }
+
+    getBinormalsBuffer() {
+        return this.binormalsBuffer;
+    }
+
+    setBinormalsBuffer(binormalsBuffer) {
+        this.binormalsBuffer = this.gl.createBuffer(binormalsBuffer, 3);
+    }
+
     setBuffers(data) {
         this.setPositionsBuffer(data.positionBuffer);
         this.setNormalsBuffer(data.normalBuffer);
+        this.setTangentsBuffer(data.tangentBuffer);
+        this.setBinormalsBuffer(data.binormalBuffer);
         this.setUvsBuffer(data.uvBuffer);
         this.setIndicesBuffer(data.indexBuffer);
     }
@@ -196,6 +214,8 @@ class DrawableObjectBuffers {
     delete() {
         this.gl.deleteBuffer(this.positionsBuffer);
         this.gl.deleteBuffer(this.normalsBuffer);
+        this.gl.deleteBuffer(this.tangentsBuffer);
+        this.gl.deleteBuffer(this.binormalsBuffer);
         this.gl.deleteBuffer(this.uvsBuffer);
         this.gl.deleteBuffer(this.indicesBuffer);
     }

@@ -8,6 +8,10 @@ export class Material {
         return this.texture;
     }
 
+    getNormalsTexture() {
+        return this.normalsTexture;
+    }
+
     getSpecularIntensity() {
         return 0.5;
     }
@@ -32,6 +36,10 @@ export class Material {
 
     setImage(image) {
         this.texture = this.gl.createImageTexture(image);
+    }
+
+    setNormalMapping(image) {
+        this.normalsTexture = this.gl.createImageTexture(image);
     }
 
     ignoreLighting() {

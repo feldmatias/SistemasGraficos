@@ -8,6 +8,16 @@ export class Shape {
         return this.getVertices();
     }
 
+    getTangents() {
+        // All shapes are in XY plane, so binormal is in z direction
+        let binormal = vec3.fromValues(0, 0, 1);
+        return this.getNormals().map(normal => {
+           let tangent = vec3.create();
+           vec3.cross(tangent, normal, binormal);
+           return tangent;
+        });
+    }
+
     getUvs() {
         let perimeter = 0;
         let accumulatedDistances = [0];
@@ -66,5 +76,11 @@ export class Shape {
         let verticesCount = this.getVertices().length;
         let uv = vec2.fromValues(0.5, 0.5);
         return Array(verticesCount).fill(uv);
+    }
+
+    getCapTangents() {
+        let verticesCount = this.getVertices().length;
+        let tangent = vec3.fromValues(1, 0, 0);
+        return Array(verticesCount).fill(tangent);
     }
 }
