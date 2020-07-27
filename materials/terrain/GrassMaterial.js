@@ -5,6 +5,7 @@ export class GrassMaterial extends Material {
     constructor() {
         super();
         this.setImage('textures/terrain/ground_diffuse.jpg');
+        this.setNormalMapping('textures/terrain/ground_normals.jpg');
     }
 
     getSpecularIntensity() {

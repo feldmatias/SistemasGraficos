@@ -5,6 +5,7 @@ export class CastleColumnMaterial extends Material {
     constructor() {
         super();
         this.setImage('textures/castle/castle_column_diffuse.png');
+        this.setNormalMapping('textures/castle/castle_column_normals.png');
     }
 
     getSpecularIntensity() {
