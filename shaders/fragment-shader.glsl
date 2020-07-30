@@ -118,8 +118,8 @@ vec3 reflection(vec3 normal) {
         return vec3(0, 0, 0);
     }
 
-    vec3 viewDirection = normalize(vWorldPosition - uCameraPosition);
-    vec3 direction = reflect(viewDirection, normal);
+    vec3 viewDirection = normalize(uCameraPosition - vWorldPosition);
+    vec3 direction = reflect(-viewDirection, normal);
 
     float reflectionIntensity = 0.4;
     return reflectionIntensity * textureCube(uSamplerReflection, direction).xyz;
