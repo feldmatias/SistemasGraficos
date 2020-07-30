@@ -114,5 +114,13 @@ vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal) {
 }
 
 vec3 reflection(vec3 normal) {
-    return vec3(0, 0, 0);
+    if (!uHasReflection) {
+        return vec3(0, 0, 0);
+    }
+
+    vec3 viewDirection = normalize(vWorldPosition - uCameraPosition);
+    vec3 direction = reflect(viewDirection, normal);
+
+    float reflectionIntensity = 0.6;
+    return reflectionIntensity * textureCube(uSamplerReflection, direction).xyz;
 }

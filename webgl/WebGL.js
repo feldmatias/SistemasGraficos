@@ -119,6 +119,7 @@ export class WebGL {
         ];
 
         let texture = this.gl.createTexture();
+        this.gl.bindTexture(this.gl.TEXTURE_CUBE_MAP, texture);
 
         for(let i = 0; i < targets.length; i++) {
             let target = targets[i];
@@ -126,16 +127,18 @@ export class WebGL {
 
             let image = new Image();
 
+            this.gl.texImage2D(target, 0, this.gl.RGBA, 1, 1, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, null);
+
             image.onload = () => {
                 this.gl.bindTexture(this.gl.TEXTURE_CUBE_MAP, texture);
                 this.gl.texImage2D(target, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image);
-                this.gl.texParameteri(this.gl.TEXTURE_CUBE_MAP, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
-                this.gl.texParameteri(this.gl.TEXTURE_CUBE_MAP, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR_MIPMAP_NEAREST);
                 this.gl.generateMipmap(this.gl.TEXTURE_CUBE_MAP);
             };
 
             image.src = imagePath;
         }
+
+        this.gl.texParameteri(this.gl.TEXTURE_CUBE_MAP, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR_MIPMAP_LINEAR);
         return texture;
     }
 }
