@@ -15,8 +15,12 @@ uniform vec3 uPointLightsColor;
 uniform vec3 uCameraPosition;
 
 uniform sampler2D uSampler;
+
 uniform sampler2D uSamplerNormals;
 uniform bool uHasNormalMapping;
+
+uniform samplerCube uSamplerReflection;
+uniform bool uHasReflection;
 
 uniform float uSpecularIntensity;
 uniform float uSpecularShininess;
@@ -29,6 +33,7 @@ uniform bool uIgnoreLighting;
 vec3 normalMapping();
 vec3 directionalLight(vec3 surfaceColor, vec3 normal);
 vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal);
+vec3 reflection(vec3 normal);
 
 
 
@@ -45,6 +50,7 @@ void main(void) {
     for (int i = 0; i < POINT_LIGHTS; i++) {
         color += pointLight(uPointLightsPositions[i], surfaceColor, normal);
     }
+    color += reflection(normal);
 
     gl_FragColor = vec4(color, 1.0);
 
@@ -105,4 +111,8 @@ vec3 pointLight(vec3 lightPosition, vec3 surfaceColor, vec3 normal) {
     vec3 specular = uSpecularIntensity * specularComponent * uPointLightsColor;
 
     return (diffuse + specular) * intensity;
+}
+
+vec3 reflection(vec3 normal) {
+    return vec3(0, 0, 0);
 }
