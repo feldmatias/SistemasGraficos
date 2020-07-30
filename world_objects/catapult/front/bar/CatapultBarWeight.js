@@ -50,8 +50,9 @@ export class CatapultBarWeight extends DrawableObject {
 
     createWeight() {
         let size = 1.4;
-        this.weight = new Cube(size, size, size, 0.25)
+        this.weight = new Cube(size, size, size, 0.5)
             .setMaterial(Materials.getMaterial(CATAPULT_CEMENT_MATERIAL))
-            .translate(0, -size / 2 - this.height * 0.7, 0);
+            .translate(0, -size / 2 - this.height * 0.7, 0)
+            .rotateX(Math.PI / 2);
     }
 }
