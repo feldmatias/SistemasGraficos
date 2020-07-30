@@ -6,7 +6,7 @@ import {LinePath} from "../../surfaces/paths/LinePath.js";
 
 export class Isle extends DrawableObject {
 
-    constructor(radius = 17, step = 10) {
+    constructor(radius = 20, step = 10) {
         super();
         this.radius = radius;
         this.initialize(radius, step);
@@ -20,8 +20,8 @@ export class Isle extends DrawableObject {
 
         this.setBuffers(data)
             .setMaterial(Materials.getMaterial(GRASS_MATERIAL))
-            .rotateX(Math.PI / 2)
-            .translate(0, 0.1, 0);
+            .translate(0, 0.02, 0)
+            .rotateX(Math.PI / 2);
     }
 
     invertUvs() {

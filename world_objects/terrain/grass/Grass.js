@@ -6,7 +6,7 @@ import {LinePath} from "../../../surfaces/paths/LinePath.js";
 
 export class Grass extends DrawableObject {
 
-    constructor(isleLength, waterLength = 15) {
+    constructor(isleLength, waterLength = 30) {
         super();
 
         this.isleLength = isleLength;
@@ -17,7 +17,7 @@ export class Grass extends DrawableObject {
 
     initialize() {
         let length = this.isleLength + this.waterLength;
-        let shape = new GrassShape(length, 100);
+        let shape = new GrassShape(length, 150);
         let path = new LinePath(0.1);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);

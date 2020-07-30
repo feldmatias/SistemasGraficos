@@ -33,8 +33,8 @@ export class OrbitalCamera extends Camera {
         if (this.distance < 10) {
             this.distance = 10;
         }
-        if (this.distance > 100) {
-            this.distance = 100;
+        if (this.distance > 120) {
+            this.distance = 120;
         }
     }
 

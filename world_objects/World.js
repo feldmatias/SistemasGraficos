@@ -31,7 +31,7 @@ export class World extends DrawableObject {
 
     createCatapult() {
         this.catapult = new Catapult()
-            .scale(0.6)
+            .scale(0.7)
             .translate(0, 1, 55);
     }
 

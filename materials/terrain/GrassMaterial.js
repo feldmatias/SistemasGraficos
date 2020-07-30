@@ -9,11 +9,11 @@ export class GrassMaterial extends Material {
     }
 
     getSpecularIntensity() {
-        return 0.2;
+        return 0.4;
     }
 
     getSpecularShininess() {
-        return 15;
+        return 35;
     }
 
 }
