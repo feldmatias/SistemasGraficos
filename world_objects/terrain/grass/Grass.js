@@ -24,7 +24,7 @@ export class Grass extends DrawableObject {
 
         this.setBuffers(data)
             .setMaterial(Materials.getMaterial(GRASS_MATERIAL))
-            .translate(0, 0.045, 0)
+            .translate(0, 0.06, 0)
             .rotateX(-Math.PI / 2);
     }
 
