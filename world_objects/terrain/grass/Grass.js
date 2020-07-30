@@ -2,6 +2,7 @@ import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
 import {GrassShape} from "./GrassShape.js";
 import {GRASS_MATERIAL, Materials} from "../../../materials/MaterialsFactory.js";
+import {LinePath} from "../../../surfaces/paths/LinePath.js";
 
 export class Grass extends DrawableObject {
 
@@ -16,16 +17,19 @@ export class Grass extends DrawableObject {
 
     initialize() {
         let length = this.isleLength + this.waterLength;
-        let shape = new GrassShape(length, 100, 0.1);
+        let shape = new GrassShape(length, 100);
+        let path = new LinePath(0.1);
 
-        let data = new SurfacesGenerator().generateRevolutionSurface(shape, 360 / 8);
+        let data = new SurfacesGenerator().generateSweepSurface(shape, path, true);
 
         this.setBuffers(data)
-            .setMaterial(Materials.getMaterial(GRASS_MATERIAL));
+            .setMaterial(Materials.getMaterial(GRASS_MATERIAL))
+            .translate(0, 0.045, 0)
+            .rotateX(-Math.PI / 2);
     }
 
     getUvsScale() {
-        return [8, 10];
+        return [3, 3];
     }
 
 }

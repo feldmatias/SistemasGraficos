@@ -1,60 +1,60 @@
-import {RevolutionShape} from "../../../surfaces/shapes/RevolutionShape.js";
+import {CircleShape} from "../../../surfaces/shapes/CircleShape.js";
+import {Shape} from "../../../surfaces/shapes/Shape.js";
 
-export class GrassShape extends RevolutionShape {
+export class GrassShape extends Shape {
 
-    constructor(isleLength, length, height) {
+    constructor(isleLength, length) {
         super();
         this.isleLength = isleLength;
         this.length = length;
-        this.height = height;
+
+        this.outerShape = new CircleShape(this.length, 361, 0, 360 / 8);
+        this.innerShape = new CircleShape(this.isleLength, 361, 0, 360 / 8);
     }
 
     getVertices() {
-        let longLine = [];
-        for (let i = this.isleLength; i <= this.length; i++) {
-            longLine.push(vec3.fromValues(i, this.height, 0))
-        }
+        let outerShape = this.outerShape.getVertices();
+        let innerShape = this.innerShape.getVertices().reverse();
         return [
-            vec3.fromValues(0, 0, 0),
-            vec3.fromValues(this.isleLength, 0, 0),
-
-            vec3.fromValues(this.isleLength, 0, 0),
-            vec3.fromValues(this.isleLength, this.height, 0),
-
-            longLine,
-
-            vec3.fromValues(this.length, this.height, 0),
-            vec3.fromValues(this.length, 0, 0),
-
-            vec3.fromValues(this.length, 0, 0),
-            vec3.fromValues(0, 0, 0),
+            outerShape,
+            innerShape
         ].flat();
     }
 
     getNormals() {
-        let longLine = [];
-        for (let i = this.isleLength; i <= this.length; i++) {
-            longLine.push(vec3.fromValues(0, 1, 0))
-        }
+        let outerShape = this.outerShape.getNormals();
+        let innerShape = this.innerShape.getNormals().reverse();
         return [
-            vec3.fromValues(0, 1, 0),
-            vec3.fromValues(0, 1, 0),
-
-            vec3.fromValues(-1, 0, 0),
-            vec3.fromValues(-1, 0, 0),
-
-            longLine,
-
-            vec3.fromValues(1, 0, 0),
-            vec3.fromValues(1, 0, 0),
-
-            vec3.fromValues(0, -1, 0),
-            vec3.fromValues(0, -1, 0),
+            outerShape,
+            innerShape
         ].flat();
     }
 
+    getCapVertices() {
+        let shape = new CircleShape((this.length + this.isleLength) / 2, 361, 0, 360 / 8);
+        return [
+            shape.getVertices(),
+            shape.getVertices().reverse()
+        ].flat();
+    }
+
+    getCenterCapUvs() {
+        let vertices = this.getVertices();
+
+        let minX = Math.min( ...vertices.map(v => v[0]));
+        let maxX = Math.max( ...vertices.map(v => v[0]));
+        let minY = Math.min( ...vertices.map(v => v[1]));
+        let maxY = Math.max( ...vertices.map(v => v[1]));
+
+        return this.getCapVertices().map(vertex => {
+            let x = (vertex[0] - minX) / (maxX - minX);
+            let y = (vertex[1] - minY) / (maxY - minY);
+            return vec2.fromValues(x, y);
+        });
+    }
+
     isClosed() {
-        return false;
+        return true;
     }
 
 }
