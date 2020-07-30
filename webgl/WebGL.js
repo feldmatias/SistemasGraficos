@@ -108,9 +108,34 @@ export class WebGL {
         return texture;
     }
 
-    deleteTexture(texture) {
-        if (texture) {
-            this.gl.deleteTexture(texture);
+    createCubeMapTexture(imagePaths) {
+        let targets = [
+            this.gl.TEXTURE_CUBE_MAP_POSITIVE_X,
+            this.gl.TEXTURE_CUBE_MAP_NEGATIVE_X,
+            this.gl.TEXTURE_CUBE_MAP_POSITIVE_Y,
+            this.gl.TEXTURE_CUBE_MAP_NEGATIVE_Y,
+            this.gl.TEXTURE_CUBE_MAP_POSITIVE_Z,
+            this.gl.TEXTURE_CUBE_MAP_NEGATIVE_Z,
+        ];
+
+        let texture = this.gl.createTexture();
+
+        for(let i = 0; i < targets.length; i++) {
+            let target = targets[i];
+            let imagePath = imagePaths[i];
+
+            let image = new Image();
+
+            image.onload = () => {
+                this.gl.bindTexture(this.gl.TEXTURE_CUBE_MAP, texture);
+                this.gl.texImage2D(target, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image);
+                this.gl.texParameteri(this.gl.TEXTURE_CUBE_MAP, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
+                this.gl.texParameteri(this.gl.TEXTURE_CUBE_MAP, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR_MIPMAP_NEAREST);
+                this.gl.generateMipmap(this.gl.TEXTURE_CUBE_MAP);
+            };
+
+            image.src = imagePath;
         }
+        return texture;
     }
 }
