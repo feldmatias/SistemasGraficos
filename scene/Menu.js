@@ -39,7 +39,7 @@ export class Menu {
         this.Camara = 'Orbital';
 
         // Lights
-        this.LuzSolar = [85, 85, 85];
+        this.LuzSolar = [30, 30, 30];
         this.LuzAntorchas = [193, 138, 37];
 
         // Castle configuration
