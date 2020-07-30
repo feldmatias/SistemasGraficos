@@ -12,6 +12,10 @@ export class Material {
         return this.normalsTexture;
     }
 
+    getReflectionTexture() {
+        return this.reflectionTexture;
+    }
+
     getSpecularIntensity() {
         return 0.5;
     }
@@ -40,6 +44,10 @@ export class Material {
 
     setNormalMapping(image) {
         this.normalsTexture = this.gl.createImageTexture(image);
+    }
+
+    setReflection(images) {
+        this.reflectionTexture = this.gl.createCubeMapTexture(images);
     }
 
     ignoreLighting() {

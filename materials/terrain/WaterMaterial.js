@@ -6,6 +6,14 @@ export class WaterMaterial extends Material {
         super();
         this.setImage('textures/terrain/water_diffuse.jpg');
         this.setNormalMapping('textures/terrain/water_normals.jpg');
+        this.setReflection([
+            'textures/terrain/sky_reflection/px.png',
+            'textures/terrain/sky_reflection/nx.png',
+            'textures/terrain/sky_reflection/py.png',
+            'textures/terrain/sky_reflection/ny.png',
+            'textures/terrain/sky_reflection/pz.png',
+            'textures/terrain/sky_reflection/nz.png',
+        ]);
     }
 
     getSpecularIntensity() {

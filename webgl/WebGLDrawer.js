@@ -31,10 +31,14 @@ export class WebGLDrawer {
         this.gl.uniform1i(this.shaderProgram.samplerTextureUniform, 0);
 
         this.gl.uniform1i(this.shaderProgram.hasNormalMappingUniform, drawableObject.material.getNormalsTexture() !== undefined);
-
         this.gl.activeTexture(this.gl.TEXTURE1);
         this.gl.bindTexture(this.gl.TEXTURE_2D, drawableObject.material.getNormalsTexture());
         this.gl.uniform1i(this.shaderProgram.samplerNormalsTextureUniform, 1);
+
+        this.gl.uniform1i(this.shaderProgram.hasReflectionUniform, drawableObject.material.getReflectionTexture() !== undefined);
+        this.gl.activeTexture(this.gl.TEXTURE2);
+        this.gl.bindTexture(this.gl.TEXTURE_CUBE_MAP, drawableObject.material.getReflectionTexture());
+        this.gl.uniform1i(this.shaderProgram.samplerReflectionTextureUniform, 2);
 
         let indexBuffer = drawableObject.buffers.getIndicesBuffer();
         this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
