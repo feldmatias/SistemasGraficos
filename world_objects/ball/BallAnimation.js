@@ -8,7 +8,7 @@ export class BallAnimation extends Animation {
         this.catapultBall = catapultBall;
         this.world = world;
 
-        this.velocity = 25;
+        this.velocity = 32;
         this.angle = 30 * Math.PI / 180;
     }
 
