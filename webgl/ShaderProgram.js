@@ -1,3 +1,5 @@
+const POINT_LIGHTS = 3
+
 export class ShaderProgram {
 
     constructor(gl, shaderProgram) {
@@ -43,7 +45,7 @@ export class ShaderProgram {
 
         this.pointLightsColorUniform = gl.getUniformLocation(shaderProgram, "uPointLightsColor");
         this.pointLightsPositionsUniforms = [];
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < POINT_LIGHTS; i++) {
             this.pointLightsPositionsUniforms.push(gl.getUniformLocation(shaderProgram, `uPointLightsPositions[${i}]`));
         }
 
