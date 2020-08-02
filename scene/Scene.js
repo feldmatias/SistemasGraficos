@@ -1,6 +1,5 @@
 import {World} from "../world_objects/World.js";
 import {Menu} from "./Menu.js";
-import {Colors} from "./Colors.js";
 import {OrbitalCamera} from "../cameras/OrbitalCamera.js";
 import {CatapultCamera} from "../cameras/CatapultCamera.js";
 import {FirstPersonCamera} from "../cameras/FirstPersonCamera.js";
@@ -39,7 +38,8 @@ export class Scene {
     draw() {
         this.getConfig();
 
-        this.gl.setup(this.canvas.width(), this.canvas.height(), Colors.SKY_BLUE);
+        let skyColor = [10, 20, 85];
+        this.gl.setup(this.canvas.width(), this.canvas.height(), skyColor);
         this.setProjection();
         this.setView();
         this.setLighting();

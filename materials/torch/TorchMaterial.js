@@ -1,11 +1,11 @@
 import {Material} from "../Material.js";
-import {Colors} from "../../scene/Colors.js";
 
 export class TorchMaterial extends Material {
 
     constructor() {
         super();
-        this.setColor(Colors.TORCH);
+        this.setImage('textures/terrain/torch_diffuse.jpg');
+        this.setNormalMapping('textures/terrain/torch_normals.jpg');
     }
 
     getSpecularIntensity() {
