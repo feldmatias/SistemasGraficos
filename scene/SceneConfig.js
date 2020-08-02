@@ -55,4 +55,9 @@ export class SceneConfig {
         return this;
     }
 
+    setUseNormalMapping(normalMapping) {
+        this.useNormalMapping = normalMapping;
+        return this;
+    }
+
 }

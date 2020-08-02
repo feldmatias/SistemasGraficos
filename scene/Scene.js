@@ -65,6 +65,7 @@ export class Scene {
         let lightColor = this.config.ambientLight;
         this.gl.getDrawer().setLighting(lightPosition, lightColor);
         this.gl.getDrawer().setPointLights(this.world.getTorches().map(torch => torch.getPosition()), this.config.torchesLight);
+        this.gl.getDrawer().setUseNormalMapping(this.config.useNormalMapping);
     }
 
     getConfig() {

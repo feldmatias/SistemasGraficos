@@ -19,6 +19,7 @@ export class Menu {
         let lighting = this.menu.addFolder('Iluminacion');
         lighting.addColor(this, 'LuzSolar');
         lighting.addColor(this, 'LuzAntorchas');
+        lighting.add(this, 'NormalMapping');
         lighting.open();
 
         // Castle configuration
@@ -41,6 +42,7 @@ export class Menu {
         // Lights
         this.LuzSolar = [50, 50, 50];
         this.LuzAntorchas = [193, 138, 37];
+        this.NormalMapping = true;
 
         // Castle configuration
         this.Ancho = 9;
@@ -61,6 +63,7 @@ export class Menu {
             .setWallColumnCount(this.Columnas)
             .setCamera(this.cameraOptions[this.Camara])
             .setAmbientLight(this.LuzSolar)
-            .setTorchesLight(this.LuzAntorchas);
+            .setTorchesLight(this.LuzAntorchas)
+            .setUseNormalMapping(this.NormalMapping);
     }
 }
