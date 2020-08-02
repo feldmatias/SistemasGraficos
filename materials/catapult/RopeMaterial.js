@@ -1,11 +1,11 @@
 import {Material} from "../Material.js";
-import {Colors} from "../../scene/Colors.js";
 
 export class RopeMaterial extends Material {
 
     constructor() {
         super();
-        this.setColor(Colors.WHITE);
+        this.setImage('textures/catapult/catapult_rope_diffuse.png');
+        this.setNormalMapping('textures/catapult/catapult_rope_normals.png');
     }
 
     getSpecularIntensity() {
