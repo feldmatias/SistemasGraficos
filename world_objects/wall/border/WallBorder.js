@@ -1,6 +1,6 @@
 import {DrawableObject} from "../../../objects/DrawableObject.js";
 import {WallShape} from "./WallShape.js";
-import {CirclePath} from "../../../surfaces/paths/CirclePath.js";
+import {CirclePathFaceted} from "../../../surfaces/paths/CirclePath.js";
 import {SurfacesGenerator} from "../../../surfaces/SurfacesGenerator.js";
 import {WallColumn} from "./WallColumn.js";
 import {Materials, WALL_MATERIAL} from "../../../materials/MaterialsFactory.js";
@@ -25,7 +25,7 @@ export class WallBorder extends DrawableObject {
     }
 
     getUvsScale() {
-        return [this.height >= 5 ? 2 : 1, 4];
+        return [this.height >= 5 ? 2 : 1, 8];
     }
 
     invertUvs() {
@@ -34,7 +34,7 @@ export class WallBorder extends DrawableObject {
 
     initialize() {
         let shape = new WallShape(this.height, this.width);
-        let path = new CirclePath(this.radius, 360 - this.angleStep, this.angleStep);
+        let path = new CirclePathFaceted(this.radius, this.columnCount);
 
         let data = new SurfacesGenerator().generateSweepSurface(shape, path);
 
